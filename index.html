@@ -1,140 +1,147 @@
-<!--
-  Name:Cruz Plamondon 
-  Course:WEB DEVELOPMENT II (SLOT 7A/8A) 
-  Teacher:Mr.hardman 
-  School:Pembina Trails Collegiate 
-  Date Last Modified:2026/03/13
--->
 <!doctype html>
+<!-- Document type: HTML5 -->
 <html lang="en">
+  <!-- Root HTML element; `lang` helps screenreaders and search engines -->
   <head>
+    <!-- Document metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Treaty 1: The Winnipeg Treaty Education</title>
 
+    <!-- Preconnect to Google Fonts for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- External font stylesheet (Inter + Playfair Display) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Main stylesheet for layout and theme -->
     <link rel="stylesheet" href="stylesheets/index.css" />
 
+    <!-- Inline styles for the hero section (kept here for quick   tweaks) -->
     <style>
-      /* INTERNAL STYLESHEET: Sp ``ecific to the Home Page Hero Section */
-
       #hero {
-        /* background-image with a gradient overlay to ensure WCAG text contrast compliance */
+        height: 100vh;
         background:
-          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("images/hero-content-background.jpeg") center/cover no-repeat;
-        height: 500px;
-        display: flex; /* Flexbox centers the hero-content box perfectly */
+          /* Blends the image into the middle layer color (--bg-1) */
+          linear-gradient(to bottom, rgba(241, 245, 249, 0.8), var(--bg-1)),
+          url("https://images.unsplash.com/photo-1478719059408-592965723cbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
+            center/cover no-repeat;
+        display: flex;
         align-items: center;
         justify-content: center;
+        text-align: center;
         padding: 0 2rem;
       }
 
-      .hero-content {
-        /* Glassmorphism effect: Semi-transparent background with rounded corners */
-        background: rgba(0, 0, 0, 0.4);
-        padding: 3rem; /* Internal spacing around the text */
-        border-radius: 20px; /* Removes the "square" look for a modern design */
-        text-align: center;
-        max-width: 900px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(
-          5px
-        ); /* Adds a subtle blur to the background image behind the box */
-      }
-
-      /* Typography for the Hero landing area */
       .hero-content h1 {
-        color: #ffffff;
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3rem, 8vw, 6rem);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        /* Gradient using the olive green from your image */
+        background: linear-gradient(
+          to right,
+          var(--text-heading),
+          var(--primary-dark)
+        );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .hero-content p {
-        color: #f0f0f0;
         font-size: 1.25rem;
+        color: var(--text-body);
+        max-width: 600px;
+        margin: 0 auto;
       }
     </style>
   </head>
   <body>
+    <!-- Page header containing the main navigation and hero banner -->
     <header>
+      <!-- Primary navigation for the site; `aria-label` improves accessibility -->
       <nav aria-label="Main Navigation">
         <div class="nav-container">
-          <a href="index.html" class="logo"
-            ><img
-              src="images/treaty-one-flag.png"
-              alt="the flag of the treaty one land."
-              width="150px"
-          /></a>
+          <!-- Site logo / home link -->
+          <a href="index.html" class="logo">Treaty 1 Education</a>
+          <!-- Top-level site links -->
           <ul class="nav-links">
-            <li><a href="#negotiation">The Negotiation</a></li>
-            <li><a href="#geography">Geography</a></li>
-            <li><a href="#Treaty-1-in-the-21st-Century">21st Century</a></li>
+            <li><a href="negotiation.html">History</a></li>
+            <li><a href="geography.html">Maps</a></li>
+            <li><a href="modern.html">Modern Day</a></li>
           </ul>
         </div>
       </nav>
+
+      <!-- Hero section: large visual banner and main page heading -->
+      <section id="hero">
+        <div class="hero-content">
+          <!-- Prominent page title (uses gradient text styling) -->
+          <h1>Treaty 1:<br />The Winnipeg Treaty</h1>
+          <!-- Short descriptive subheading for the site purpose -->
+          <p>
+            Educating youth on the foundation of Manitoba's first Numbered
+            Treaty.
+          </p>
+        </div>
+      </section>
     </header>
 
-    <section id="hero">
-      <div class="hero-content">
-        <h1>Treaty 1: The Winnipeg Treaty</h1>
-        <p>
-          Educating youth on the foundation of Manitoba's first Numbered Treaty.
-        </p>
-      </div>
-    </section>
-
     <main>
+      <!-- Negotiation section: historical background and key events -->
       <section id="negotiation" class="container">
         <h2>Negotiation & Historical Context</h2>
+        <!-- Grid layout for content cards -->
         <div class="bento-grid">
-          <article class="card wide">
+          <!-- Wide card: narrative + supporting image -->
+          <section class="card wide">
             <h3>The Gathering at Lower Fort Garry</h3>
             <p>
               In <span class="highlight">August 1871</span>, over 1,000
               Anishinaabe and Muskego-Cree people gathered at Lower Fort Garry
-              to negotiate with the Crown . The atmosphere was tense; the First
+              to negotiate with the Crown. The atmosphere was tense; the First
               Nations leaders, including
               <span class="highlight">Chief Mis-koo-kenew (Red Eagle)</span>,
               were not merely "surrendering" land but seeking a framework for
               coexistence and protection against the rapidly expanding waves of
               settlement.
             </p>
+            <!-- Image illustrating the negotiation site -->
             <img
               src="images/lower-fort-garry.jpg"
               alt="The limestone walls of Lower Fort Garry, the 1871 negotiation site." />
-          </article>
+          </section>
 
-          <article class="card accent">
-            <h3>The "Outside Promises" Controversy</h3>
+          <!-- Accent card: highlights a key treaty issue -->
+          <section class="card accent">
+            <h3>The "Outside Promises"</h3>
             <p>
               A defining feature of Treaty 1 is the
               <span class="highlight"
                 >discrepancy between verbal and written terms</span
-              >. While the written document focused on land cessation, the First
-              Nations only signed after receiving verbal "Outside Promises" for:
+              >. While the document focused on land cessation, First Nations
+              only signed after receiving verbal promises for:
             </p>
             <ul>
-              <li>
-                Agricultural supplies (plows, harrows, and livestock) to
-                transition their economies.
-              </li>
-              <li>
-                Healthcare provisions and educational support for future
-                generations.
-              </li>
-              <li>A census to ensure accurate annuity payments.</li>
+              <li>Agricultural supplies to transition economies.</li>
+              <li>Healthcare and educational support.</li>
+              <li>A census for accurate annuity payments.</li>
             </ul>
             <p>
               These promises were not formally added to the written treaty until
               1875.
             </p>
-          </article>
+          </section>
         </div>
       </section>
 
-      <section id="geography" class="dark-bg">
+      <!-- Geography section: maps and territorial information -->
+      <section id="geography" class="layer-box">
         <div class="container">
           <h2>Geographic Boundaries</h2>
+          <!-- Two-column map layout -->
           <div class="map-grid">
             <div class="map-box">
               <h3>Treaty 1 Territory</h3>
@@ -142,8 +149,9 @@
                 The territory covers approximately
                 <span class="highlight">16,700 square miles</span>. Its borders
                 extend from the US-Canada border north to the shores of Lake
-                Winnipeg, including the fertile Red River Valley.
+                Winnipeg.
               </p>
+              <!-- Map image showing the exact treaty boundaries -->
               <img
                 src="images/numbered-treaties-1-5-l.jpg"
                 alt="Map defining the 1871 Treaty 1 boundaries." />
@@ -151,10 +159,11 @@
             <div class="map-box context">
               <h3>Provincial Context</h3>
               <p>
-                This map shows Treaty 1 (cyan) in relation to the rest of
-                Manitoba. It is the geographic foundation upon which the city of
-                Winnipeg and its surrounding municipalities were built.
+                This map shows Treaty 1 in relation to the rest of Manitoba. It
+                is the geographic foundation upon which the city of Winnipeg was
+                built.
               </p>
+              <!-- Contextual map of Manitoba with Treaty 1 highlighted -->
               <img
                 src="images/treaty-one-map.png"
                 alt="Manitoba map with Treaty 1 highlighted in context." />
@@ -163,67 +172,73 @@
         </div>
       </section>
 
+      <!-- Communities section: lists participating First Nations -->
       <section id="communities" class="container">
-        <h2>Participating First Nations</h2>
-        <p>
-          The treaty was signed by leaders representing seven distinct nations,
-          primarily of <span class="highlight">Anishinaabe (Ojibway)</span> and
-          <span class="highlight">Cree</span> descent.
-        </p>
         <div
-          class="flex-row"
-          style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px">
-          <div class="community-pill">Brokenhead Ojibway Nation</div>
-          <div class="community-pill">Long Plain First Nation</div>
-          <div class="community-pill">Peguis First Nation</div>
-          <div class="community-pill">Roseau River Anishinabe First Nation</div>
-          <div class="community-pill">Sagkeeng First Nation</div>
-          <div class="community-pill">Sandy Bay Ojibway First Nation</div>
-          <div class="community-pill">Swan Lake First Nation</div>
+          class="card"
+          style="background: var(--bg-1); border-color: var(--border)">
+          <h2>Participating First Nations</h2>
+          <p style="margin-bottom: 2rem">
+            The treaty was signed by leaders representing seven distinct
+            nations, primarily of
+            <span class="highlight">Anishinaabe (Ojibway)</span> and
+            <span class="highlight">Cree</span> descent.
+          </p>
+          <!-- Pills for each community; visual grouping for quick scanning -->
+          <div style="display: flex; flex-wrap: wrap; gap: 15px">
+            <div class="community-pill">Brokenhead Ojibway Nation</div>
+            <div class="community-pill">Long Plain First Nation</div>
+            <div class="community-pill">Peguis First Nation</div>
+            <div class="community-pill">
+              Roseau River Anishinabe First Nation
+            </div>
+            <div class="community-pill">Sagkeeng First Nation</div>
+            <div class="community-pill">Sandy Bay Ojibway First Nation</div>
+            <div class="community-pill">Swan Lake First Nation</div>
+          </div>
         </div>
       </section>
 
+      <!-- Modern section: contemporary relevance and development -->
       <section id="modern" class="container">
-        <h2 id="Treaty-1-in-the-21st-Century">Treaty 1 in the 21st Century</h2>
-        <div
-          class="modern-grid"
-          style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
-          <article class="card">
+        <h2>Treaty 1 in the 21st Century</h2>
+        <div class="map-grid">
+          <section class="card">
             <h3>Naawi-Oodena Urban Reserve</h3>
             <p>
-              The <span class="highlight">Kapyong Barracks</span> redevelopment,
-              known as Naawi-Oodena, is a landmark example of Treaty
-              implementation. It transforms former federal land into a massive
-              multi-use urban reserve, providing a direct economic engine for
-              all seven Treaty 1 nations within the city of Winnipeg.
+              The <span class="highlight">Kapyong Barracks</span> redevelopment
+              transforms former federal land into a massive multi-use urban
+              reserve, providing an economic engine for all seven Treaty 1
+              nations within Winnipeg.
             </p>
-          </article>
-          <article class="card">
+          </section>
+          <section class="card">
             <h3>Economic Sovereignty</h3>
             <p>
               Today, implementation focuses on
-              <span class="highlight">Economic Development Zones</span>.
-              Examples include the Long Plain First Nation urban reserves, which
-              host commercial hubs (like gas stations and office spaces),
+              <span class="highlight">Economic Development Zones</span>,
               allowing Nations to exercise their Treaty rights to trade and land
               use in a modern economy.
             </p>
-          </article>
+          </section>
         </div>
       </section>
     </main>
 
     <footer>
       <div class="container">
-        <p>Links of Official Resources:</p>
+        <p>Official Resources</p>
         <ul class="footer-links">
           <li>
-            <a href="https://trcm.ca/" target="_blank"
+            <a href="https://trcm.ca/" target="_blank" rel="noopener noreferrer"
               >Treaty Relations Commission of Manitoba</a
             >
           </li>
           <li>
-            <a href="https://treaty1.ca/" target="_blank"
+            <a
+              href="https://treaty1.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
               >Treaty One Nations Official Site</a
             >
           </li>

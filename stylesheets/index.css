@@ -1,145 +1,241 @@
-/* EXTERNAL STYLESHEET: Shared styles for all pages
-  Includes root variables and global layout properties
-*/
-
-/* Reset: Ensures consistent behavior across different browsers */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* --- EXTERNAL STYLESHEET: Global Rules & Variables --- */
 
 :root {
-  /* Using 'rem' based variables for better accessibility and scaling */
-  --primary-color: #2c3e50;
-  --accent-color: #d4a373;
-  --bg-light: #fefae0;
-  --text-dark: #333;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --accent: #ff6600; /* Earthy Gold */
-  --transition: all 0.4s ease (0.16, 1, 0.3, 1);
+  /* 1. LAYERED BACKGROUNDS (from your image, inverted for light mode) */
+  --bg-0: #e2e8f0; /* Deepest layer (The Floor) */
+  --bg-1: #f1f5f9; /* Middle layer (Sections) */
+  --bg-2: #ffffff; /* Top layer (Cards) */
+
+  /* 2. BORDERS & TEXT */
+  --border: #cbd5e1;
+  --text-heading: #0f172a;
+  --text-body: #475569;
+
+  /* 3. PRIMARY COLORS (Orange and light mustard) */
+  --primary-dark: #ce681a; /* orange */
+  --primary-light: #f1b65d; /* light mustard */
+
+  /* Shadows & Animations */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05); /* subtle card shadow */
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.08); /* prominent hover shadow */
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* smooth UI motion */
 }
 
-header {
-  display: block;
+* {
+  margin: 0; /* reset default spacing */
+  padding: 0; /* reset default spacing */
+  box-sizing: border-box; /* include padding in size */
 }
 
+/* Base layer applies to the whole body */
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  line-height: 1.6;
-  background-color: var(--bg-light);
-  color: var(--text-dark);
+  font-family: "Inter", sans-serif; /* readable UI font */
+  background-color: var(--bg-0); /* page background layer */
+  color: var(--text-body); /* default body text color */
+  line-height: 1.7; /* comfortable reading leading */
+  overflow-x: hidden; /* prevent horizontal scroll */
 }
 
-/* Common Layout Container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-
-/* Navigation Styles */
+/* --- NAVIGATION --- */
 nav {
-  background: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: fixed;
-  width: 100%;
-  z-index: 3;
+  position: fixed; /* keeps nav visible on scroll */
+  top: 0; /* stick to the top */
+  width: 100%; /* span full viewport */
+  z-index: 1000; /* sit above page content */
+  backdrop-filter: blur(15px); /* frosted glass effect */
+  -webkit-backdrop-filter: blur(15px); /* Safari */
+  border-bottom: 1px solid var(--border); /* subtle separation */
+  /* Nav sits on Layer 1 frost */
+  background: rgba(241, 245, 249, 0.85); /* translucent nav background */
 }
 
 .nav-container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  /* max-width: 1200px; */
-  padding: 0 2rem;
+  display: flex; /* horizontal layout */
+  justify-content: space-between; /* spread items */
+  align-items: center; /* vertical center */
+  max-width: 1300px; /* readable line length */
+  margin: 0 auto; /* center container */
+  padding: 1.2rem 2rem; /* internal spacing */
+}
+
+.logo {
+  font-family: "Playfair Display", serif; /* display serif for logo */
+  font-size: 1.5rem; /* logo size */
+  color: var(--primary-dark); /* brand color */
+  text-decoration: none; /* remove underline */
+  font-weight: 700; /* bold title */
+  letter-spacing: -0.5px; /* tighten logo tracking */
 }
 
 .nav-links {
-  display: flex;
-  width: 90%;
-  justify-content: space-around;
-  list-style: none;
-  gap: 2rem;
+  display: flex; /* horizontal list */
+  list-style: none; /* remove bullets */
+  gap: 3rem; /* space between links */
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: var(--primary-color);
-  font-weight: 600;
+  text-decoration: none; /* no underline */
+  color: var(--text-heading); /* link color */
+  font-size: 0.9rem; /* compact text */
+  text-transform: uppercase; /* caps for emphasis */
+  letter-spacing: 2px; /* spaced letters */
+  transition: var(--transition); /* hover animation */
+  font-weight: 600; /* semi-bold */
 }
 
-/* Bento Grid Layout using CSS Grid */
+.nav-links a:hover {
+  color: var(--primary-dark); /* hover highlight */
+}
+
+/* --- LAYOUT GRIDS & CARDS --- */
+.container {
+  max-width: 1200px; /* content width */
+  margin: 0 auto; /* center */
+  padding: 1.7rem 2rem; /* spacing */
+}
+
+/* This class pulls up the middle layer for specific sections */
+.layer-box {
+  background-color: var(--bg-1); /* middle section background */
+  border-top: 1px solid var(--border); /* subtle divider */
+  border-bottom: 1px solid var(--border); /* subtle divider */
+}
+
+h2 {
+  font-family: "Playfair Display", serif; /* heading face */
+  font-size: 2.5rem; /* large section title */
+  margin-bottom: 3rem; /* space under heading */
+  border-left: 4px solid var(--primary-light); /* decorative bar */
+  padding-left: 1.5rem; /* offset text from bar */
+  color: var(--text-heading); /* heading color */
+}
+
+h3 {
+  font-family: "Playfair Display", serif; /* subheading face */
+  font-size: 1.8rem; /* subheading size */
+  margin-bottom: 1rem; /* spacing */
+  color: var(--text-heading); /* color */
+}
+
 .bento-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr; /* Asymmetrical grid for professional look */
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  display: grid; /* two-column layout */
+  grid-template-columns: 1.5fr 1fr; /* main + sidebar ratio */
+  gap: 2rem; /* gutter */
+  margin-top: 1.5rem; /* spacing above grid */
 }
 
-.card {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-}
-.card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 1rem;
-}
-
-/* Map Grid */
 .map-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  display: grid; /* equal two-column grid */
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 2rem; /* gap between maps */
 }
 
-.map-box img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  border: 4px solid white;
-  box-shadow: var(--card-shadow);
+/* Cards sit on the very top layer (--bg-2) */
+.card,
+.map-box {
+  background: var(--bg-2); /* card surface color */
+  border: 1px solid var(--border); /* card border */
+  box-shadow: var(--shadow-sm); /* subtle elevation */
+  padding: 2.5rem; /* inner padding */
+  border-radius: 24px; /* rounded corners */
+  transition: var(--transition); /* smooth hover */
 }
 
-/* Highlighted spans for research terms */
+.card:hover,
+.map-box:hover {
+  transform: translateY(-10px); /* lift on hover */
+  border-color: var(--primary-light); /* highlight border */
+  box-shadow: var(--shadow-lg); /* stronger shadow */
+}
+
+.card ul {
+  margin-left: 1.5rem; /* indent list */
+  margin-bottom: 1rem; /* spacing below */
+  color: var(--text-body); /* list text color */
+}
+
+.card p,
+.map-box p {
+  color: var(--text-body); /* paragraph color */
+  margin-bottom: 1rem; /* spacing */
+}
+
 .highlight {
-  background-color: var(--accent-color);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
+  color: var(--primary-dark); /* emphasize text */
+  font-weight: 600; /* bolder */
+  border-bottom: 2px solid var(--primary-light); /* underline accent */
 }
 
-/* Community Pills */
+/* --- COMMUNITY PILLS --- */
 .community-pill {
-  display: inline-block;
-  background: var(--primary-color);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
-  margin: 0.5rem;
-  font-size: 0.9rem;
+  background: var(--bg-2); /* Top layer */
+  border: 1px solid var(--border); /* pill border */
+  box-shadow: var(--shadow-sm); /* light elevation */
+  padding: 0.8rem 1.5rem; /* pill padding */
+  border-radius: 100px; /* pill shape */
+  transition: var(--transition); /* hover motion */
+  cursor: default; /* non-clickable */
+  font-size: 0.9rem; /* pill text size */
+  color: var(--text-heading); /* pill text color */
+  font-weight: 600; /* semi-bold */
 }
 
-/* Dark Section Styling */
-.dark-bg {
-  background-color: #f1f1f1;
+.community-pill:hover {
+  background: var(--primary-dark); /* hover fill */
+  color: #ffffff; /* readable on dark */
+  border-color: var(--primary-dark); /* match fill */
+  transform: translateY(-3px); /* slight lift */
+  box-shadow: 0 8px 15px rgba(77, 93, 46, 0.3); /* Olive green shadow */
 }
 
-/* Responsive Design for smaller screens */
+/* --- IMAGES --- */
+img {
+  width: 100%; /* responsive image width */
+  height: auto; /* maintain aspect ratio */
+  filter: grayscale(15%) contrast(1.05); /* subtle desaturation */
+  transition: var(--transition); /* image hover transition */
+  border-radius: 12px; /* rounded images */
+  margin-top: 1.5rem; /* spacing above image */
+  border: 1px solid var(--border); /* image frame */
+}
+
+.card:hover img,
+.map-box:hover img {
+  filter: grayscale(0%); /* color on hover */
+}
+
+footer {
+  padding: 4rem 2rem; /* outer spacing */
+  border-top: 1px solid var(--border); /* separation */
+  text-align: center; /* center content */
+  color: var(--text-body); /* footer text color */
+}
+
+.footer-links {
+  list-style: none; /* remove bullets */
+  display: flex; /* horizontal list */
+  justify-content: center; /* center links */
+  gap: 2rem; /* spacing */
+  margin-top: 1rem; /* space above */
+}
+
+.footer-links a {
+  color: var(--primary-dark); /* footer link color */
+  text-decoration: none; /* no underline */
+  transition: var(--transition); /* hover motion */
+  font-weight: 600; /* semi-bold */
+}
+
+.footer-links a:hover {
+  color: var(--primary-light); /* hover tone */
+}
+
 @media (max-width: 768px) {
   .bento-grid,
   .map-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* stack columns on small screens */
+  }
+  .nav-links {
+    display: none; /* hide desktop nav on mobile */
   }
 }
