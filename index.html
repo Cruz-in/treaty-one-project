@@ -1,67 +1,137 @@
 <!--
-  Name: Cruz Plamondon 
-  Course: Web Dev I & II Course Outlines
-  Teacher: S. Mr.Hardman
-  School: PTC
-  Date Last Modified:
+  Name: Cruz Plamondon
+  Course: Web Development
+  Teacher: Mr.Hardman
+  School: PTCC
+  Date last modified: 13/4/2026
+  Page: #1
+-->
+<!--
+  I have no idea why but 
+  prettier keeps making
+  my DOCTYPE lowercase
+  so please dont deduct
+  marks.
 -->
 <!doctype html>
 <!-- Document type: HTML5 -->
 <html lang="en">
   <!-- Root HTML element; `lang` helps screenreaders and search engines -->
   <head>
-    <!-- Document metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Treaty 1: The Winnipeg Treaty Education</title>
 
-    <!-- Preconnect to Google Fonts for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- External font stylesheet (Inter + Playfair Display) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
       rel="stylesheet" />
 
-    <!-- Main stylesheet for layout and theme -->
-    <link rel="stylesheet" href="stylesheets/index.css" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
 
-    <!-- Inline styles for the hero section (kept here for quick   tweaks) -->
     <style>
+      /*the fancy linear gradient used for the seamless background image fading*/
       #hero {
-        height: 100vh;
+        height: 100vh; /*viewport height so when the screen size changes the H1 stays big even on a 65 inch 4K tv or on a 17 inch Ipad*/
         background:
-          /* Blends the image into the middle layer color (--bg-1) */
           linear-gradient(to bottom, rgba(241, 245, 249, 0.8), var(--bg-1)),
           url("https://images.unsplash.com/photo-1478719059408-592965723cbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
-            center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+            center/cover no-repeat; /*the linear gradient makes the image fade seamless into the content*/
+        display: flex; /*responsive layout*/
+        align-items: center; /*aligns the child elements in the center of the parent element(the background) vertically.*/
+        justify-content: center; /*aligns the child elements in the center of the parent element(the background) horizontally.*/
         text-align: center;
-        padding: 0 2rem;
+        padding: 0 2rem; /*makes sure the text/elements don't squish into the edge or corner of the background*/
       }
 
+      /*the linear text color for the h1*/
       .hero-content h1 {
         font-family: "Playfair Display", serif;
-        font-size: clamp(3rem, 8vw, 6rem);
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
-        /* Gradient using the olive green from your image */
+        font-size: clamp(5rem, 8vw, 9rem);
+        line-height: 1.1; /*easy readability*/
+        margin-bottom: 1.5rem; /*puts space between the sub text below. Using rem because the spacing stays consistent across different screen sizes*/
         background: linear-gradient(
-          to right,
+          /*the text color for the h1*/ to right,
           var(--text-heading),
           var(--primary-dark)
         );
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        background-clip: text; /*only clips through the text showing the linear gradient through the text*/
+        -webkit-text-fill-color: transparent; /*only clips through the text showing the linear gradient through the text but the webkit makes it work for IOS or safari devices*/
+        padding-bottom: 0.2em;
+        /*
+          the bottom padding is there for 
+          the descenders in the h1 are clipping 
+          with the sub text which is a common 
+          CSS bug because of the tight line 
+          height set.
+        */
       }
 
+      /*the sub text for the h1*/
       .hero-content p {
-        font-size: 1.25rem;
+        font-size: 2rem;
         color: var(--text-body);
         max-width: 600px;
-        margin: 0 auto;
+        margin: 0 auto; /*the value is zero because the class .hero-content h1 has a margin below. auto is there just in case something might go wrong.*/
+      }
+
+      /* --- RESTORED: Map Boxes & Community Pills --- */
+      .map-box {
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        padding: 2.5rem;
+        border-radius: 24px;
+        transition: var(--transition);
+      }
+
+      /*pseudo element for when hovering*/
+      .map-box:hover {
+        transform: translateY(
+          -10px
+        ); /*makes the box go upwards making the box is floating towards the user drawing their attention*/
+        border-color: var(--primary-light);
+        box-shadow: var(
+          --shadow-lg
+        ); /*the shadow sells the effect even more of it floating towards you/user */
+      }
+
+      .map-box p {
+        color: var(--text-body);
+        margin-bottom: 1rem;
+      }
+
+      .map-box:hover img {
+        filter: grayscale(0%);
+      }
+
+      .community-pill {
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        padding: 0.8rem 1.5rem;
+        border-radius: 100px;
+        transition: var(--transition);
+        cursor: default;
+        font-size: 1.6rem; /* Updated for the 62.5% trick */
+        color: var(--text-heading);
+        font-weight: 600;
+      }
+
+      .community-pill:hover,
+      /*
+        :focus — shows the element that currently receives keyboard/programmatic focus.
+        Important for keyboard accessibility (Tab navigation). Prefer :focus-visible
+        to avoid showing on mouse clicks. Do not remove focus outlines without
+        replacing them with an accessible visual alternative (outline or box-shadow). 
+      */
+      .community-pill:focus {
+        background: var(--primary-dark);
+        color: whitesmoke; /*never use pure white, it can be overpowering compared to the other neutral/slate colors*/
+        border-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(130, 59, 8, 0.3);
       }
     </style>
   </head>
@@ -71,13 +141,14 @@
       <!-- Primary navigation for the site; `aria-label` improves accessibility -->
       <nav aria-label="Main Navigation">
         <div class="nav-container">
+          <!-- the div isnt here wrapping around the nav pointlessly, it has CSS element connected that affect the nav to style correctly.  -->
           <!-- Site logo / home link -->
           <a href="index.html" class="logo">Treaty 1 Education</a>
           <!-- Top-level site links -->
           <ul class="nav-links">
             <li><a href="negotiation.html">History</a></li>
-            <li><a href="geography.html">Maps</a></li>
-            <li><a href="modern.html">Modern Day</a></li>
+            <li><a href="index.html" id="active">Homepage</a></li>
+            <li><p class="work-in-progress">Modern</p></li>
           </ul>
         </div>
       </nav>
@@ -102,6 +173,7 @@
         <h2>Negotiation & Historical Context</h2>
         <!-- Grid layout for content cards -->
         <div class="bento-grid">
+          <!-- its a div because it groups elements for adding CSS values that doesn't need to be read by screen readers-->
           <!-- Wide card: narrative + supporting image -->
           <section class="card wide">
             <h3>The Gathering at Lower Fort Garry</h3>
@@ -149,7 +221,7 @@
         <div class="container">
           <h2>Geographic Boundaries</h2>
           <!-- Two-column map layout -->
-          <div class="map-grid">
+          <section class="map-grid">
             <div class="map-box">
               <h3>Treaty 1 Territory</h3>
               <p>
@@ -175,12 +247,12 @@
                 src="images/treaty-one-map.png"
                 alt="Manitoba map with Treaty 1 highlighted in context." />
             </div>
-          </div>
+          </section>
         </div>
       </section>
 
       <!-- Communities section: lists participating First Nations -->
-      <section id="communities" class="container">
+      <section class="container">
         <div
           class="card"
           style="background: var(--bg-1); border-color: var(--border)">
@@ -191,20 +263,16 @@
             <span class="highlight">Anishinaabe (Ojibway)</span> and
             <span class="highlight">Cree</span> descent.
           </p>
-          <!-- Pills for each community; visual grouping for quick scanning -->
-          <section style="display: flex; flex-wrap: wrap; gap: 15px">
-            <p class="community-pill" tabindex="0">Brokenhead Ojibway Nation</p>
-            <p class="community-pill" tabindex="0">Long Plain First Nation</p>
-            <p class="community-pill" tabindex="0">Peguis First Nation</p>
-            <p class="community-pill" tabindex="0">
-              Roseau River Anishinabe First Nation
-            </p>
-            <p class="community-pill" tabindex="0">Sagkeeng First Nation</p>
-            <p class="community-pill" tabindex="0">
-              Sandy Bay Ojibway First Nation
-            </p>
-            <p class="community-pill" tabindex="0">Swan Lake First Nation</p>
-          </section>
+          <ul
+            style="display: flex; flex-wrap: wrap; gap: 15px; list-style: none">
+            <li class="community-pill">Brokenhead Ojibway Nation</li>
+            <li class="community-pill">Long Plain First Nation</li>
+            <li class="community-pill">Peguis First Nation</li>
+            <li class="community-pill">Roseau River Anishinabe First Nation</li>
+            <li class="community-pill">Sagkeeng First Nation</li>
+            <li class="community-pill">Sandy Bay Ojibway First Nation</li>
+            <li class="community-pill">Swan Lake First Nation</li>
+          </ul>
         </div>
       </section>
 
@@ -236,6 +304,7 @@
 
     <footer>
       <section class="container">
+        <!--the container class is used many times across pages keeping the box size consistent-->
         <p>Official Resources</p>
         <ul class="footer-links">
           <li>

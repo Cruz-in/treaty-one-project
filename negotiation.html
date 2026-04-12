@@ -1,0 +1,189 @@
+<!--
+  Name: Cruz Plamondon
+  Course: Web Devlopment
+  Teacher: Mr.hardman
+  School: PTEC
+  Date last modified: 13/4/2026
+  Page: #2
+-->
+<!--
+  I have no idea why but 
+  prettier keeps making
+  my DOCTYPE lowercase
+  so please dont deduct
+  marks.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Treaty 1: History & Negotiation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="stylesheets/main.css" />
+
+    <style>
+      #sub-hero {
+        padding: 12rem 2rem 6rem;
+        background-color: var(--bg-1);
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+
+      #sub-hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(
+          4.5rem,
+          6vw,
+          6rem
+        ); /*the clamp is what decides the smallest, default and largest font*/
+        line-height: 1.1; /* OVERRIDES THE BODY AND FIXES THE OVERLAP! */
+        color: var(--text-heading);
+        margin-bottom: 1rem;
+      }
+
+      #sub-hero p {
+        font-size: 2rem;
+        color: var(--text-body);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      #h2-margin {
+        margin-top: clamp(
+          1.25rem,
+          4vw,
+          3.5rem
+        ); /* the spacing is diifrent across diffrent devices so its balance */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main Navigation">
+        <div class="nav-container">
+          <a href="index.html" class="logo">Treaty 1 Education</a>
+          <ul class="nav-links">
+            <li>
+              <a href="negotiation.html" id="active">History</a>
+            </li>
+            <li><a href="index.html">Homepage</a></li>
+            <li><p class="work-in-progress">Modern</p></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="sub-hero">
+        <h1>The Negotiations of 1871</h1>
+        <p>
+          Understanding the tension, the terms, and the eight-day gathering at
+          Lower Fort Garry.
+        </p>
+      </section>
+
+      <section class="container">
+        <h2 id="h2-margin">A Clash of Perspectives</h2>
+        <div class="bento-grid">
+          <section class="card wide">
+            <h3>The Crown vs. First Nations Objectives</h3>
+            <p>
+              On <span class="highlight">July 25, 1871</span>, negotiations
+              officially opened at Lower Fort Garry. The Crown, represented by
+              Lieutenant Governor Adams G. Archibald and Commissioner Wemyss M.
+              Simpson, arrived with a rigid mandate: open the land for mass
+              settlement and secure the territory for the newly formed Dominion
+              of Canada.
+            </p>
+            <p>
+              The First Nations leaders arrived with a vastly different
+              objective. They sought a nation-to-nation relationship that would
+              protect their communities, lands, and ways of life from the
+              inevitable influx of settlers. They viewed the treaty as a peace,
+              friendship, and mutual sharing agreement—not a real estate
+              transaction.
+            </p>
+          </section>
+
+          <section class="card accent">
+            <h3>Key Figures</h3>
+            <ul>
+              <li>
+                <span class="highlight">Chief Mis-koo-kenew (Red Eagle):</span>
+                Represented the Roseau River people and strongly advocated for
+                adequate land reserves.
+              </li>
+              <li>
+                <span class="highlight">Adams G. Archibald:</span> Lieutenant
+                Governor of Manitoba, eager to expedite the process.
+              </li>
+              <li>
+                <span class="highlight">Wemyss M. Simpson:</span> Indian
+                Commissioner tasked with securing the signatures.
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="layer-box">
+        <div class="container">
+          <h2>The "Outside Promises"</h2>
+          <div class="map-grid">
+            <div class="card">
+              <h3>The Disconnect</h3>
+              <p>
+                A massive point of friction occurred because the Crown's
+                negotiators made several
+                <span class="highlight">verbal commitments</span> to secure the
+                signatures of First Nations leaders, who relied heavily on oral
+                tradition. These promises included farm equipment, animals,
+                clothing, and schools to help the communities transition their
+                economies.
+              </p>
+            </div>
+            <div class="card">
+              <h3>The Aftermath</h3>
+              <p>
+                When the formal written document was finalized on
+                <span class="highlight">August 3, 1871</span>, these verbal
+                commitments were completely missing from the text. This led to
+                immediate protests from Indigenous leaders. It wasn't until 1875
+                that the Canadian government formally acknowledged and added
+                these promises to the treaty.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <section class="container">
+        <p>Official Resources</p>
+        <ul class="footer-links">
+          <li>
+            <a href="https://trcm.ca/" target="_blank" rel="noopener noreferrer"
+              >Treaty Relations Commission of Manitoba</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://treaty1.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Treaty One Nations Official Site</a
+            >
+          </li>
+        </ul>
+      </section>
+    </footer>
+  </body>
+</html>
