@@ -20,7 +20,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Treaty 1: The Winnipeg Treaty Education</title>
+    <title>Treaty 1 - The Winnipeg Treaty Education</title>
 
     <link rel="icon" type="image/x-icon" href="/images/Medicine_Wheel.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -108,7 +108,7 @@
         filter: grayscale(0%);
       }
 
-      .community-pill {
+      .community-pill p {
         background: var(--bg-2);
         border: 1px solid var(--border);
         box-shadow: var(--shadow-sm);
@@ -121,7 +121,7 @@
         font-weight: 600;
       }
 
-      .community-pill:hover,
+      .community-pill :hover,
       /*
         :focus — shows the element that currently receives keyboard/programmatic focus.
         Important for keyboard accessibility (Tab navigation). Prefer :focus-visible
@@ -143,7 +143,7 @@
       <!-- Primary navigation for the site; `aria-label` improves accessibility -->
       <nav aria-label="Main Navigation">
         <div class="nav-container">
-          <!-- the div isnt here wrapping around the nav pointlessly, it has CSS element connected that affect the nav to style correctly.  -->
+          <!-- the div isnt here wrapping around the nav pointlessly, it has CSS element connected that affects the nav to style correctly.  -->
           <!-- Site logo / home link -->
           <a href="index.html" class="logo">Treaty 1 Education</a>
           <!-- Top-level site links -->
@@ -197,22 +197,29 @@
 
           <!-- Accent card: highlights a key treaty issue -->
           <section class="card accent">
-            <h3>The "Outside Promises"</h3>
+            <h3>Terms & The "Outside Promises"</h3>
             <p>
-              A defining feature of Treaty 1 is the
-              <span class="highlight"
-                >discrepancy between verbal and written terms</span
-              >. While the document focused on land cessation, First Nations
-              only signed after receiving verbal promises for:
+              Under the official written terms of the Treaty, the Crown agreed
+              to set aside reserve lands calculated at
+              <span class="highlight">160 acres per family of five</span>.
+            </p>
+            <p style="margin-top: 1rem">
+              <!--i added top margin so the paragraph is separated letting the user know the context has changed-->
+              However, a defining feature of Treaty 1 is the discrepancy between
+              these written terms and verbal agreements. First Nations leaders
+              only signed after receiving verbal "Outside Promises" for:
             </p>
             <ul>
-              <li>Agricultural supplies to transition economies.</li>
-              <li>Healthcare and educational support.</li>
-              <li>A census for accurate annuity payments.</li>
+              <li>
+                Agricultural supplies such as ploughs and harrows to transition
+                economies.
+              </li>
+              <li>Livestock, including oxen and cows, for farming needs.</li>
+              <li>Distinguished clothing for Chiefs and their councillors.</li>
             </ul>
             <p>
-              These promises were not formally added to the written treaty until
-              1875.
+              These verbal promises were not formally added to the written
+              treaty until 1875.
             </p>
           </section>
         </div>
@@ -267,13 +274,17 @@
           </p>
           <ul
             style="display: flex; flex-wrap: wrap; gap: 15px; list-style: none">
-            <li class="community-pill">Brokenhead Ojibway Nation</li>
-            <li class="community-pill">Long Plain First Nation</li>
-            <li class="community-pill">Peguis First Nation</li>
-            <li class="community-pill">Roseau River Anishinabe First Nation</li>
-            <li class="community-pill">Sagkeeng First Nation</li>
-            <li class="community-pill">Sandy Bay Ojibway First Nation</li>
-            <li class="community-pill">Swan Lake First Nation</li>
+            <li class="community-pill"><p>Brokenhead Ojibway Nation</p></li>
+            <li class="community-pill"><p>Long Plain First Nation</p></li>
+            <li class="community-pill"><p>Peguis First Nation</p></li>
+            <li class="community-pill">
+              <p>Roseau River Anishinabe First Nation</p>
+            </li>
+            <li class="community-pill"><p>Sagkeeng First Nation</p></li>
+            <li class="community-pill">
+              <p>Sandy Bay Ojibway First Nation</p>
+            </li>
+            <li class="community-pill"><p>Swan Lake First Nation</p></li>
           </ul>
         </div>
       </section>

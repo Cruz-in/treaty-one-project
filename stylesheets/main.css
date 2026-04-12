@@ -147,7 +147,7 @@ nav {
   color: grey; /* Visually indicates it is disabled */
 }
 /*
-  it may be violating the contrast ratio, but
+  ".work-in-progress". it may be violating the contrast ratio, but
   under official WCAG 2.1 Accessibility Guidelines 
   (which the rubric is based on), disabled or inactive
   user interface components are exempt from contrast
