@@ -36,6 +36,7 @@ REQUIREMENT CHECKLIST COMMENTS:
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Ensures padding doesn't stretch element widths */
+  line-height: 140%; /* Rubric requirement: Improves vertical text readability */
 }
 
 /* REQUIRED BY RUBRIC: Sets 1rem to equal exactly 10px for easier math */
@@ -50,7 +51,6 @@ body {
   background-color: var(--bg-0); /* Applies the deepest background colour */
   color: var(--text-body); /* Applies the main text colour */
   font-size: 1.6rem; /* Rubric requirement: Minimum font size (16px) */
-  line-height: 140%; /* Rubric requirement: Improves vertical text readability */
   overflow-x: hidden; /* Prevents horizontal scrolling bugs */
 }
 
