@@ -36,6 +36,7 @@ REQUIREMENT CHECKLIST COMMENTS:
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; /* Ensures padding doesn't stretch element widths */
   line-height: 140%; /* Rubric requirement: Improves vertical text readability */
 }
@@ -71,8 +72,17 @@ nav {
 
 /* Container restricts nav width and aligns items horizontally */
 .nav-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between; /* Pushes logo left, links right */
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center; /* Centers items vertically */
   max-width: 130rem; /* Maximum width of nav content */
   margin: 0 auto; /* Centers the container on the screen */
@@ -91,6 +101,9 @@ nav {
 
 /* Removes bullet points and spaces out the nav links */
 .nav-links {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
   gap: 3rem; /* Spacing between each link */
@@ -111,6 +124,8 @@ nav {
   font-size: 1.6rem; /* Rubric requirement: Min size 16px */
   text-transform: uppercase; /* Creates a clean, blocky look */
   letter-spacing: 2px; /* Improves readability of uppercase text */
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
   transition: var(--transition);
   font-weight: 600; /* Semi-bold for visual hierarchy */
 }
@@ -128,18 +143,38 @@ nav {
   bottom: -4px;
   width: 100%;
   height: 2px;
+  background: -o-linear-gradient(
+    left,
+    var(--primary-dark),
+    var(--primary-light)
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(var(--primary-dark)),
+    to(var(--primary-light))
+  );
   background: linear-gradient(
     to right,
     var(--primary-dark),
     var(--primary-light)
   );
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
   transform: scaleX(0); /* Hides line initially */
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
   transform-origin: left; /* Makes animation wipe from left to right */
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
   transition: var(--transition); /* Applies smooth ease */
 }
 
 /* Triggers the underline animation to expand to full width on hover */
 .nav-links a:hover::after {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -228,17 +263,24 @@ h3 {
 .map-box {
   background: var(--bg-2);
   border: 1px solid var(--border);
+  -webkit-box-shadow: var(--shadow-sm);
   box-shadow: var(--shadow-sm);
   padding: 2.5rem;
+  -webkit-border-radius: 24px;
   border-radius: 24px; /* Softens the UI */
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
   transition: var(--transition);
 }
 
 /* Lifts the card up and changes border colour when mouse hovers */
 .card:hover,
 .map-box:hover {
+  -webkit-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
   transform: translateY(-10px);
   border-color: var(--primary-light);
+  -webkit-box-shadow: var(--shadow-lg);
   box-shadow: var(--shadow-lg);
 }
 
@@ -263,6 +305,7 @@ h3 {
   font-weight: 600;
   background-color: rgba(206, 104, 26, 0.15); /* Faint orange background */
   padding: 0 0.2rem;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -272,8 +315,12 @@ h3 {
 img {
   width: 100%;
   height: auto;
+  -webkit-filter: grayscale(15%) contrast(1.05);
   filter: grayscale(15%) contrast(1.05);
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
   transition: var(--transition);
+  -webkit-border-radius: 12px;
   border-radius: 12px;
   margin-top: 1.5rem;
   border: 1px solid var(--border);
@@ -282,6 +329,7 @@ img {
 /* Restores full colour to the image when its parent card is hovered */
 .card:hover img,
 .map-box:hover img {
+  -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
 
@@ -296,7 +344,13 @@ footer {
 /* Centers the footer links */
 .footer-links {
   list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
   gap: 2rem;
   margin-top: 1rem;
@@ -307,6 +361,8 @@ footer {
   color: var(--primary-dark);
   text-decoration: underline; /* Required for accessibility */
   text-underline-offset: 4px; /* Drops the line slightly below text */
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
   transition: var(--transition);
   font-weight: 600;
   font-size: 1.6rem;
@@ -328,19 +384,38 @@ footer {
 }
 
 /* smooth loading screen */
-@keyframes fadeSlideUp {
+@-webkit-keyframes fadeSlideUp {
   0% {
     /*starting point*/
     /*makes the content invisble*/
     opacity: 0;
+    -webkit-transform: translateY(20px);
     transform: translateY(20px); /*starts downwards*/
   }
   100% {
     /*ending point*/
     opacity: 1; /*makes the content completely visble*/
+    -webkit-transform: translateY(0);
     transform: translateY(
       0
-    ); /*and the ending point within 0.8s it goes upwards*/
+    ); /*and the ending point within 0.8s as it goes upwards*/
+  }
+}
+@keyframes fadeSlideUp {
+  0% {
+    /*starting point*/
+    /*makes the content invisble*/
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px); /*starts downwards*/
+  }
+  100% {
+    /*ending point*/
+    opacity: 1; /*makes the content completely visble*/
+    -webkit-transform: translateY(0);
+    transform: translateY(
+      0
+    ); /*and the ending point within 0.8s as it goes upwards*/
   }
 }
 
@@ -351,5 +426,6 @@ main,
     Uses existing cubic-bezier for a responsive and smooth feel.
     'forwards' ensures it stays at 100% opacity when done.
   */
+  -webkit-animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; /*cubic-bezier is a custom transtion time giving it a premium feel.*/
 }
