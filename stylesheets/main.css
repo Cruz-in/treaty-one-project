@@ -29,6 +29,7 @@ REQUIREMENT CHECKLIST COMMENTS:
   --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05); /* Creates subtle depth on static cards */
   --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.08); /* Creates prominent depth when hovering */
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Ensures all hover states are smooth */
+  /*8*/
 }
 
 /* Universal selector resets default browser spacing to 0 */
@@ -316,10 +317,39 @@ footer {
   color: var(--primary-light);
 }
 
+/*-- advanced CSS -- */
+
 /* Responsive breakpoint: Stacks grids into single columns on mobile devices */
 @media (max-width: 768px) {
   .bento-grid,
   .map-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* smooth loading screen */
+@keyframes fadeSlideUp {
+  0% {
+    /*starting point*/
+    /*makes the content invisble*/
+    opacity: 0;
+    transform: translateY(20px); /*starts downwards*/
+  }
+  100% {
+    /*ending point*/
+    opacity: 1; /*makes the content completely visble*/
+    transform: translateY(
+      0
+    ); /*and the ending point within 0.8s it goes upwards*/
+  }
+}
+
+main,
+#hero,
+#sub-hero {
+  /* Runs the fadeSlideUp animation over 0.8 seconds.
+    Uses existing cubic-bezier for a responsive and smooth feel.
+    'forwards' ensures it stays at 100% opacity when done.
+  */
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; /*cubic-bezier is a custom transtion time giving it a premium feel.*/
 }
