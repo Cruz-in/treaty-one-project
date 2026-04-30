@@ -337,7 +337,7 @@ footer {
   }
   100% {
     /*ending point*/
-    opacity: 1; /*makes the content completely visble*/
+    opacity: 1; /*makes the con    tent completely visble*/
     transform: translateY(
       0
     ); /*and the ending point within 1.0s as it goes upwards*/
