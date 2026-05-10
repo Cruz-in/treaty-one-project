@@ -1,0 +1,220 @@
+<!--
+  Name: Cruz Plamondon
+  Course: Web Development
+  Teacher: Mr. Hardman
+  School: PTCC
+  Date last modified: 2026/05/05
+  Page: #3
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Treaty 1: Modern Implementation</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/Medicine_Wheel.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="stylesheets/main.css" />
+
+    <style>
+      /* choose Sub-hero because its a follow up page from the index */
+      #sub-hero {
+        padding: 12rem 2rem 6rem;
+        background-color: var(--bg-1);
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+
+      #sub-hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(4.5rem, 6vw, 6rem);
+        line-height: 1.1;
+        color: var(--text-heading);
+        margin-bottom: 1rem;
+      }
+
+      #sub-hero p {
+        font-size: 2rem;
+        color: var(--text-body);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      #h2-margin {
+        margin-top: clamp(1.25rem, 4vw, 3.5rem);
+      }
+
+      #madison-reserve-icon {
+        float: right;
+        width: 200px;
+        height: auto;
+        margin: 0 0 1rem 1.5rem;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
+    <script>
+      // 1. Immediately apply the dark theme class if stored in memory
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+      }
+
+      // 2. Wait for the DOM to be ready, then ensure the icon matches the theme [cite: 23]
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeIcon = document.querySelector(".theme-icon");
+        if (document.body.classList.contains("dark-theme") && themeIcon) {
+          themeIcon.innerHTML = "&#9728;"; // Set to Sun [cite: 22]
+        }
+      });
+    </script>
+    <header>
+      <nav aria-label="Main Navigation">
+        <div class="nav-container">
+          <a href="index.html" class="logo">Treaty 1 Education</a>
+
+          <ul class="nav-links">
+            <li><p class="work-in-progress">Coming soon!</p></li>
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="negotiation.html">History</a></li>
+            <li><a href="modern.html" aria-current="page">Modern</a></li>
+          </ul>
+
+          <button class="hamburger" aria-label="Open Mobile Menu">
+            &#9776;
+          </button>
+
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle Dark Mode">
+            <!--label for screen readers-->
+            <span class="theme-icon">&#127769;</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="sub-hero">
+        <div class="hero-content">
+          <h1>Modern Implementation</h1>
+          <p>
+            Exploring urban reserves, economic sovereignty, and how Treaty 1
+            operates today.
+          </p>
+        </div>
+      </section>
+
+      <section class="container">
+        <h2 id="h2-margin">Urban Reserves & Economic Development</h2>
+        <div class="bento-grid">
+          <section class="card wide">
+            <h3>Naawi-Oodena (Kapyong Barracks)</h3>
+            <p>
+              A monumental example of modern Treaty implementation is the
+              <span class="highlight">Kapyong Urban Reserve</span> project. The
+              former military barracks have been reclaimed and are being
+              transformed into <span class="highlight">Naawi-Oodena</span>, a
+              massive multi-use urban reserve right inside Winnipeg's city
+              limits. This historic partnership among the seven Treaty 1 First
+              Nations serves as a powerful economic engine for their
+              communities.
+            </p>
+          </section>
+
+          <section class="card accent">
+            <h3>Long Plain Madison Reserve</h3>
+            <p>
+              <img
+                src="images/arrowhead-dev-corp-building.jpg"
+                alt="Long Plain Madison Reserve Petro-Canada in Winnipeg"
+                id="madison-reserve-icon"
+                loading="lazy" />
+              Another highly successful urban reserve is operated by the
+              <span class="highlight">Long Plain First Nation</span> on Madison
+              Street.
+            </p>
+            <ul>
+              <li>
+                Features the highly successful
+                <span class="highlight"
+                  >Long Plain First Nations Gas Station</span
+                >.
+              </li>
+              <li>
+                Includes a thriving commercial office complex and businesses.
+              </li>
+              <li>
+                Generates independent revenue to support community
+                infrastructure and growth.
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="layer-box">
+        <div class="container">
+          <h2>Unique History & Moving Forward</h2>
+          <div class="map-grid">
+            <div class="card">
+              <h3>What Makes Treaty 1 Different?</h3>
+              <p>
+                As the very first post-Confederation treaty, Treaty 1 set the
+                stage for all others. What makes it incredibly unique is the
+                massive disconnect between the written text and the
+                <span class="highlight">oral "Outside Promises"</span>. Unlike
+                later treaties where terms were more clearly codified, Treaty 1
+                relied heavily on verbal commitments that the Crown initially
+                failed to write down or honor, leading to immediate disputes.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Living the Treaty Today</h3>
+              <p>
+                Treaties are not just history; they are
+                <span class="highlight">living documents</span>. Today,
+                implementing the Treaty means honoring those original promises
+                and ensuring First Nations have the ability to exercise their
+                inherent rights to self-governance and economic development
+                within the modern Canadian economy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <section class="container">
+        <p>Official Resources</p>
+        <ul class="footer-links">
+          <li>
+            <a href="https://trcm.ca/" target="_blank" rel="noopener noreferrer"
+              >Treaty Relations Commission of Manitoba</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://treaty1.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Treaty One Nations Official Site</a
+            >
+          </li>
+        </ul>
+      </section>
+    </footer>
+    <script src="scripts/theme.js"></script>
+  </body>
+</html>

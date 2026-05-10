@@ -29,7 +29,7 @@ REQUIREMENT CHECKLIST COMMENTS:
   --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05); /* Creates subtle depth on static cards */
   --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.08); /* Creates prominent depth when hovering */
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Ensures all hover states are smooth */
-  /*a cubic-bezier is a CSS property making a linear graph of the transition. i made with a fast, short acceleration with a smooth, slow deaceleration at the ending.*/
+  /* A cubic-bezier creates a timing curve for the transition. I designed it with a quick acceleration and a smooth, slow deceleration at the end. */
 }
 
 /* Universal selector resets default browser spacing to 0 */
@@ -37,7 +37,7 @@ REQUIREMENT CHECKLIST COMMENTS:
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Ensures padding doesn't stretch element widths */
-  line-height: 140%; /* Rubric requirement: Improves vertical text readability */
+  line-height: 1.4; /* Rubric requirement: Improves vertical text readability */
 }
 
 /* REQUIRED BY RUBRIC: Sets 1rem to equal exactly 10px for easier math */
@@ -55,6 +55,16 @@ body {
   overflow-x: hidden; /* Prevents horizontal scrolling bugs */
 }
 
+body,
+nav,
+.card {
+  /* This tells the browser: anytime the background or text color changes, take 0.4 seconds to smoothly blend it */
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease,
+    border-color 0.6s ease;
+}
+
 /* --- NAVIGATION STYLING --- */
 
 /* Sticks the navigation bar to the top of the screen */
@@ -66,7 +76,7 @@ nav {
   backdrop-filter: blur(15px); /* Creates a frosted glass effect */
   -webkit-backdrop-filter: blur(15px); /* Safari support for blur */
   border-bottom: 1px solid var(--border); /* Adds a subtle separator line */
-  background: rgba(241, 245, 249, 0.85); /* Slightly transparent background */
+  background: rgba(241, 245, 249, 0.75); /* Slightly transparent background */
 }
 
 /* Container restricts nav width and aligns items horizontally */
@@ -94,10 +104,12 @@ nav {
   display: flex;
   list-style: none;
   gap: 3rem; /* Spacing between each link */
+  margin-left: auto; /* Pushes the links to the right side */
+  margin-right: 3rem; /* Creates a perfect gap before the theme button */
 }
 
 /* Highlights the current active page the user is on */
-#active {
+a[aria-current="page"] {
   color: var(--primary-dark);
   border-bottom: 0.2rem solid var(--primary-dark);
   margin: 0.2rem;
@@ -143,33 +155,62 @@ nav {
   transform: scaleX(1);
 }
 
-/* Disabled link styling for "Modern Day" page */
+/* --- Disabled link styling for 'Coming soon!' P tag displayed as a link --- */
+
+/* 1. Define the shake movement using Keyframes */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  } /* Moves left */
+  50% {
+    transform: translateX(5px);
+  } /* Moves right */
+  75% {
+    transform: translateX(-5px);
+  } /* Moves left again */
+  100% {
+    transform: translateX(0);
+  } /* Returns to center */
+}
+
 .work-in-progress {
-  color: grey; /* Visually indicates it is disabled */
+  color: grey;
+  -webkit-user-select: none;
+  user-select: none; /* Prevents the user from accidentally highlighting the text when they click rapidly */
+}
+
+/* 3. Trigger the animation ONLY when clicked */
+.work-in-progress:active {
+  /* Runs the shake animation for 0.3 seconds */
+  animation: shake 0.15s ease-in-out;
 }
 /*
-  ".work-in-progress". it may be violating the contrast ratio, but
-  under official WCAG 2.1 Accessibility Guidelines 
-  (which the rubric is based on), disabled or inactive
+  The '.work-in-progress' element may violate the contrast ratio, but
+  under the official WCAG 2.1 Accessibility Guidelines
+  (which the rubric references), disabled or inactive
   user interface components are exempt from contrast
-  requirements. Because the link is unclickable and 
+  requirements. Because the text is unclickable and
   serves as a placeholder rather than active information,
-  it is legally allowed to have low contrast to signal
-  to the user that it is "off."
-  
-  https://www.w3.org/TR/WCAG21/#contrast-minimum:~:text=least%204.5%3A1%3B-,Incidental,picture%20that%20contains%20significant%20other%20visual%20content%2C%20have%20no%20contrast%20requirement,-.
-  
+  it is allowed to have lower contrast to signal
+  to the user that it is inactive.
+
+  https://www.w3.org/TR/WCAG21/#contrast-minimum
+
   Under "Success Criterion 1.4.6 Contrast (Enhanced)"
-  it states "Incidental Text or images of text that
+  it states: "Incidental text or images of text that
   are part of an inactive user interface component,
   that are pure decoration, that are not visible to
   anyone, or that are part of a picture that contains
   significant other visual content, have no contrast
   requirement."
 */
+
 /* Changes the mouse to a circle with a slash on hover to tell the user that the page is unavailable */
 .work-in-progress:hover {
-  cursor: not-allowed;
+  cursor: not-allowed; /* Shows the 'disabled' cursor on hover */
 }
 
 /* --- LAYOUT GRIDS & SECTIONS --- */
@@ -257,7 +298,7 @@ h3 {
   word-spacing: 0.1rem; /* Added this back to secure the rubric mark! */
 }
 
-/* Marker-style highlight for important inline text */
+/* Marker-style highlight for important inline text for skimmers*/
 .highlight {
   color: var(--primary-dark);
   font-weight: 600;
@@ -303,18 +344,22 @@ footer {
 }
 
 /* Ensures footer links are clearly identifiable as clickable text */
-.footer-links a {
+.footer-links a:link,
+.footer-links a:visited {
   color: var(--primary-dark);
-  text-decoration: underline; /* Required for accessibility */
-  text-underline-offset: 4px; /* Drops the line slightly below text */
+  text-decoration: underline;
+  text-underline-offset: 4px;
   transition: var(--transition);
   font-weight: 600;
   font-size: 1.6rem;
 }
 
-/* Hover colour change for footer links */
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links a:focus,
+.footer-links a:active {
   color: var(--primary-light);
+  outline: 2px dotted var(--primary-dark); /* Adds focus state for accessibility */
+  outline-offset: 4px;
 }
 
 /*-- advanced CSS -- */
@@ -330,26 +375,155 @@ footer {
 /* smooth loading screen */
 @keyframes fadeSlideUp {
   0% {
-    /*starting point*/
-    /*makes the content invisble*/
+    /* starting point */
+    /* makes the content invisible */
     opacity: 0;
-    transform: translateY(30px); /*starts downwards*/
+    transform: translateY(30px); /* starts downwards */
   }
   100% {
-    /*ending point*/
-    opacity: 1; /*makes the con    tent completely visble*/
+    /* ending point */
+    opacity: 1; /* makes the content completely visible */
     transform: translateY(
       0
-    ); /*and the ending point within 1.0s as it goes upwards*/
+    ); /* and the ending point within 1.0s as it moves upward */
   }
 }
 
 main,
-#hero,
+.hero-content,
 #sub-hero {
   /* Runs the fadeSlideUp animation over 1.0s .
     Uses existing cubic-bezier for a responsive and smooth feel.
     'forwards' ensures it stays at 100% opacity when done.
   */
-  animation: fadeSlideUp 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23) forwards; /*cubic-bezier is a custom transtion time giving it a premium feel.*/
+  animation: fadeSlideUp 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23) forwards;
+}
+
+/* --- DARK MODE THEME & TOGGLE --- */
+
+/* 1. The Global Color Variables */
+body.dark-theme {
+  --bg-0: #141414;
+  --bg-1: hsl(0, 0%, 12%);
+  --bg-2: #383838;
+  --text-heading: #f8fafc;
+  --text-body: #cbd5e1;
+  --border: #475569;
+
+  /* Brightened brand colors for high contrast in dark mode */
+  --primary-dark: #fca560; /* A bright, readable earthy orange */
+  --primary-light: #fed7aa; /* A soft sand/peach color for accents */
+}
+
+/* 2. The Nav Bar Color Override*/
+body.dark-theme nav {
+  background: rgba(20, 20, 20, 0.7);
+}
+
+/* 3. Theme Toggle Button Styling */
+
+.theme-toggle {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-heading);
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.6s ease-in-out;
+}
+
+/* 4. Light Mode Hover (Lifts up) */
+.theme-toggle:hover,
+.theme-toggle:focus {
+  border-color: var(--primary-light);
+  transform: translateY(-3px);
+  outline: 2px solid var(--primary-dark);
+  outline-offset: 2px;
+}
+
+/* 5. The Icon Wrapper */
+.theme-icon {
+  display: inline-block;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* 6. Spin the Icon, not the button */
+body.dark-theme .theme-icon {
+  transform: rotate(360deg);
+}
+
+/* 1. Ensure the icon can physically rotate */
+.theme-icon {
+  display: inline-block; /* REQUIRED: You cannot rotate inline elements! */
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none; /* Prevents the icon from stealing clicks from the button */
+}
+
+/* 2. Apply the rotation when the body has the dark-theme class */
+body.dark-theme .theme-icon {
+  transform: rotate(360deg);
+}
+
+/* --- HAMBURGER MENU (DESKTOP STATE) --- */
+.hamburger {
+  display: none; /* Hidden by default on large screens */
+  background: transparent;
+  border: none;
+  font-size: 2.8rem;
+  color: var(--text-heading);
+  cursor: pointer;
+  margin-left: auto; /* Pushes it next to the dark mode button */
+  margin-right: 2rem;
+}
+
+/* --- MOBILE BREAKPOINT --- */
+@media (max-width: 768px) {
+  /* 1. Show the hamburger button */
+  .hamburger {
+    display: block;
+  }
+
+  /* 2. The Hidden Menu State */
+  .nav-links {
+    /* We removed display: none! Keep it as a flexbox so the layout doesn't break */
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-1);
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 0;
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* --- THE SMOOTH ANIMATION SETUP --- */
+    opacity: 0; /* Makes it completely transparent */
+    visibility: hidden; /* Prevents the user from accidentally clicking invisible links */
+    transform: translateY(
+      -20px
+    ); /* Pulls the menu 20px upward so it can slide down */
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease,
+      visibility 0.5s; /* The magic that smooths it out */
+  }
+
+  /* 3. The Active (Open) State */
+  .nav-links.nav-active {
+    opacity: 1; /* Fades it in */
+    visibility: visible; /* Makes the links clickable again */
+    transform: translateY(0); /* Slides it down into its natural position */
+  }
 }

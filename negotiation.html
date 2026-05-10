@@ -1,18 +1,12 @@
 <!--
   Name: Cruz Plamondon
-  Course: Web Devlopment
-  Teacher: Mr.hardman
-  School: PTEC
-  Date last modified: 14/4/2026
+  Course: Web Development
+  Teacher: Mr. Hardman
+  School: PTCC
+  Date last modified: 2026/05/05
   Page: #2
 -->
-<!--
-  I have no idea why but 
-  prettier keeps making
-  my DOCTYPE lower case
-  so please dont deduct
-  marks.
--->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,7 +37,7 @@
           4.5rem,
           6vw,
           6rem
-        ); /*the clamp is what decides the smallest, default and largest font*/
+        ); /* The clamp sets the minimum, preferred, and maximum font sizes */
         line-height: 1.1; /* OVERRIDES THE BODY AND FIXES THE OVERLAP! */
         color: var(--text-heading);
         margin-bottom: 1rem;
@@ -61,22 +55,39 @@
           1.25rem,
           4vw,
           3.5rem
-        ); /* the spacing is diifrent across diffrent devices so its balance */
+        ); /* The spacing varies across different devices, so this balances it. */
       }
     </style>
   </head>
   <body>
+    <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
+    <script>
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+      }
+    </script>
     <header>
       <nav aria-label="Main Navigation">
         <div class="nav-container">
           <a href="index.html" class="logo">Treaty 1 Education</a>
+
           <ul class="nav-links">
-            <li>
-              <a href="negotiation.html" id="active">History</a>
-            </li>
+            <li><p class="work-in-progress">Coming soon!</p></li>
             <li><a href="index.html">Homepage</a></li>
-            <li><p class="work-in-progress">Modern</p></li>
+            <li><a href="negotiation.html" aria-current="page">History</a></li>
+            <li><a href="modern.html">Modern</a></li>
           </ul>
+
+          <button class="hamburger" aria-label="Open Mobile Menu">
+            &#9776;
+          </button>
+
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle Dark Mode">
+            <span class="theme-icon">&#127769;</span>
+          </button>
         </div>
       </nav>
     </header>
@@ -186,5 +197,6 @@
         </ul>
       </section>
     </footer>
+    <script src="scripts/theme.js"></script>
   </body>
 </html>
