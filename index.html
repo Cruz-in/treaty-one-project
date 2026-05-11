@@ -200,13 +200,40 @@
       <!-- Primary navigation for the site; `aria-label` improves accessibility -->
       <nav aria-label="Main Navigation">
         <div class="nav-container">
-          <a href="index.html" class="logo">Treaty 1 Education</a>
+          <a href="index.html" class="logo" title="Return Home"
+            >Treaty 1 Education</a
+          >
 
           <ul class="nav-links">
-            <li><p class="work-in-progress">Coming soon!</p></li>
-            <li><a href="index.html" aria-current="page">Homepage</a></li>
-            <li><a href="negotiation.html">History</a></li>
-            <li><a href="modern.html">Modern</a></li>
+            <li>
+              <p
+                class="work-in-progress"
+                title="This section is currently under development">
+                Coming soon!
+              </p>
+            </li>
+            <li>
+              <a
+                href="index.html"
+                aria-current="page"
+                title="Return to the Treaty 1 homepage and overview"
+                >Homepage</a
+              >
+            </li>
+            <li>
+              <a
+                href="negotiation.html"
+                title="Learn about the 1871 gathering at Lower Fort Garry"
+                >History</a
+              >
+            </li>
+            <li>
+              <a
+                href="modern.html"
+                title="Return to the Treaty 1 homepage and overview"
+                >Modern</a
+              >
+            </li>
           </ul>
           <!-- i used a p tag for Coming soon! because it just displays info and its not an fuctional link-->
 
@@ -218,7 +245,8 @@
           <button
             id="theme-toggle"
             class="theme-toggle"
-            aria-label="Toggle Dark Mode">
+            aria-label="Toggle Dark Mode"
+            title="Dark/Light mode toggle">
             <span class="theme-icon">&#127769;</span>
             <!-- querySelector JS serchs for theme toggle id  -->
             <!-- class theme-toggle is for CSS -->
