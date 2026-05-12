@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTCC
-  Date last modified: 2026/05/05
+  Date last modified: 2026/05/15
   Page: #2
 -->
 
@@ -138,22 +138,30 @@
         <h2 id="h2-margin">A Clash of Perspectives</h2>
         <div class="bento-grid">
           <section class="card wide">
-            <h3>The Crown vs. First Nations Objectives</h3>
-            <p>
-              On <span class="highlight">July 25, 1871</span>, negotiations
-              officially opened at Lower Fort Garry. The Crown, represented by
+            <h3>Who Was at the Table?</h3>
+            <p class="spaced-paragraph">
+              On <span class="highlight">July 25, 1871</span>, thousands of
+              Indigenous people gathered at Lower Fort Garry. The primary groups
+              involved were the Anishinaabe (Ojibwe) and the Ininiwak (Swampy
+              Cree) Nations. They met with representatives of the Crown, led by
               Lieutenant Governor Adams G. Archibald and Commissioner Wemyss M.
-              Simpson, arrived with a rigid mandate: open the land for mass
-              settlement and secure the territory for the newly formed Dominion
-              of Canada.
+              Simpson.
             </p>
             <p>
-              The First Nations leaders arrived with a vastly different
-              objective. They sought a nation-to-nation relationship that would
-              protect their communities, lands, and ways of life from the
-              inevitable influx of settlers. They viewed the treaty as a peace,
-              friendship, and mutual sharing agreement—not a real estate
-              transaction.
+              The Crown arrived with a rigid mandate: open the land for mass
+              settlement. The First Nations arrived with a vastly different
+              objective: a
+              <span class="highlight"
+                >nation-to-nation peace and sharing agreement</span
+              >.
+            </p>
+            <h3 style="margin-top: 2rem">The 8-Day Stalemate</h3>
+            <p>
+              The negotiations did not go smoothly. For the first several days,
+              First Nations leaders completely rejected the Crown's terms
+              because the amount of reserve land offered was dangerously small.
+              It took <span class="highlight">eight full days</span> of intense,
+              frustrating debate before an agreement was finally reached.
             </p>
           </section>
 
@@ -207,6 +215,94 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="layer-box">
+        <div class="container">
+          <h2 id="h2-margin">Mapping the Territory</h2>
+          <div class="map-grid">
+            <div class="map-box">
+              <h3>Treaty 1 Boundaries</h3>
+              <p class="spaced-paragraph">
+                The specific boundaries of Treaty 1 cover much of southern
+                Manitoba, including modern-day Winnipeg, Brandon, Portage la
+                Prairie, and Selkirk.
+              </p>
+              <img
+                src="images/treaty-1-and-2.jpg"
+                alt="Map showing the specific borders of Treaty 1 in Manitoba"
+                loading="lazy"
+                class="spaced-image-large" />
+              <p>
+                When negotiated in 1871, the Crown sought this specific land
+                first because it was the most fertile agricultural region and
+                the <span class="highlight">gateway to western expansion</span>.
+              </p>
+            </div>
+
+            <div class="map-box">
+              <h3>Regional Context</h3>
+              <p class="spaced-paragraph">
+                To understand the scale of Treaty 1, you have to look at it
+                within the context of the larger Numbered Treaties across
+                Canada.
+              </p>
+              <img
+                src="images/all-treaties-map.png"
+                alt="Map of Canada showing all Numbered Treaties for context"
+                loading="lazy"
+                class="spaced-image-large" />
+              <p>
+                While Treaty 1 holds immense historical significance as the
+                <span class="highlight">first post-Confederation treaty</span>,
+                it covers a relatively small geographic area compared to the
+                massive northern territories covered by Treaties 5, 9, and 11.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz-section">
+        <h2>Knowledge Check</h2>
+        <form id="history-quiz" class="quiz-form">
+          <fieldset>
+            <legend>1. Where were the Treaty 1 negotiations held?</legend>
+            <label
+              ><input type="radio" name="q1" value="wrong" /> The Manitoba
+              Legislative Building</label
+            >
+            <label
+              ><input type="radio" name="q1" value="correct" /> Lower Fort
+              Garry</label
+            >
+            <label
+              ><input type="radio" name="q1" value="wrong" /> The Forks</label
+            >
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              2. What verbal agreements were left out of the final written
+              Treaty 1 text?
+            </legend>
+            <label
+              ><input type="radio" name="q2" value="wrong" /> The Selkirk
+              Treaties</label
+            >
+            <label
+              ><input type="radio" name="q2" value="correct" /> The Outside
+              Promises</label
+            >
+            <label
+              ><input type="radio" name="q2" value="wrong" /> The Kapyong
+              Accords</label
+            >
+          </fieldset>
+
+          <button type="submit" class="quiz-btn">Submit Answers</button>
+          <div id="history-result" class="quiz-result"></div>
+        </form>
       </section>
     </main>
 
