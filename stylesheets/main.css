@@ -413,40 +413,152 @@ img {
   filter: grayscale(0%);
 }
 
-/* --- FOOTER --- */
-footer {
-  padding: 4rem 2rem;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--text-body);
+/* --- FAT FOOTER STYLING --- */
+
+/* 1. This magical line makes the "Back to Top" button glide smoothly instead of snapping */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Centers the footer links */
-.footer-links {
+footer {
+  background-color: var(--bg-1);
+  border-top: 1px solid var(--border);
+  color: var(--text-body);
+  padding: 4rem 0 2rem; /* Generous breathing room */
+}
+
+/* 2. The Main Layout Grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Exact 50/50 split */
+}
+
+/* 3. The Left Side (Holds the Top/Bottom split and the vertical line) */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border); /* THE INSET VERTICAL LINE */
+}
+
+.footer-top-left {
+  padding: 0 3rem 3rem 0;
+  border-bottom: 1px solid var(--border); /* THE INSET HORIZONTAL LINE */
+}
+
+.footer-bottom-left {
+  padding: 3rem 3rem 0 0;
+  position: relative; /* Creates an anchor for the absolute-positioned Back to Top button */
+}
+
+/* 4. The Right Side (The Land Acknowledgment) */
+.footer-right {
+  padding: 0 0 0 3rem;
+}
+
+/* 5. Footer Typography */
+.footer-grid h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  color: var(--text-heading);
+  margin-bottom: 1.5rem;
+}
+
+.footer-grid h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.8rem;
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.footer-links-column {
   list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-/* Ensures footer links are clearly identifiable as clickable text */
-.footer-links a:link,
-.footer-links a:visited {
-  color: var(--primary-dark);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.footer-links-column a {
+  color: var(--text-body);
+  text-decoration: none;
   transition: var(--transition);
-  font-weight: 600;
   font-size: 1.6rem;
 }
 
-.footer-links a:hover,
-.footer-links a:focus,
-.footer-links a:active {
-  color: var(--primary-light);
-  outline: 2px dotted var(--primary-dark); /* Adds focus state for accessibility */
-  outline-offset: 4px;
+.footer-links-column a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 6. The "Back to Top" Arrow Button (Now Fixed!) */
+.back-to-top {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem; /* Anchors it to the bottom right of the screen */
+  z-index: 999; /* Ensures it floats above all other content */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* Made it slightly larger for better clicking */
+  height: 50px;
+  background-color: var(
+    --bg-2
+  ); /* Solid background prevents overlapping text from showing through */
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-heading);
+  text-decoration: none;
+  transition: var(--transition);
+  font-size: 2.4rem;
+  box-shadow: var(--shadow-sm); /* Gives it a slight pop off the page */
+}
+
+.back-to-top:hover {
+  border-color: var(--primary-dark);
+  background-color: var(--primary-dark); /* Fill with brand color on hover */
+  color: whitesmoke;
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 7. The Copyright Bar */
+.footer-copyright {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+/* 8. Mobile Breakpoint (Stacks everything neatly on small screens) */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-left {
+    border-right: none; /* Removes the vertical line on mobile */
+  }
+
+  .footer-top-left {
+    padding: 0 0 3rem 0;
+  }
+
+  .footer-bottom-left {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border); /* Moves the line under the resources on mobile */
+  }
+
+  .footer-right {
+    padding: 3rem 0 0 0;
+  }
+
+  .back-to-top {
+    bottom: 2rem;
+    right: 2rem; /* Brings it slightly closer to the edge on smaller screens */
+    margin-top: 0;
+  }
 }
 
 /*-- advanced CSS -- */
