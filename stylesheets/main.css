@@ -63,6 +63,8 @@ body.dark-theme nav {
 /* Sets 1rem to equal exactly 10px for easier math */
 html {
   font-size: 62.5%;
+  /* 1. This magical line makes the "Back to Top" button glide smoothly instead of snapping */
+  scroll-behavior: smooth;
 }
 
 /* Base body styling applied to the whole document */
@@ -155,6 +157,7 @@ a[aria-current="page"] {
 /* The physical underline element sitting underneath the nav text */
 .nav-links a::after {
   content: "";
+  /* ghost element */
   position: absolute;
   left: 0;
   bottom: -4px;
@@ -347,9 +350,10 @@ h3 {
 .community-pill-list {
   display: flex;
   flex-wrap: wrap;
+  /* its makes the pills on mobile screens stack on top of each other. */
   gap: 1.5rem;
   list-style: none;
-  margin-left: 0 !important; /* Overrides default list indents */
+  margin-left: 0 !important; /* Overrides default list indents and makes sure the system point doesnt affect it */
 }
 
 .community-pill-list li {
@@ -406,6 +410,7 @@ img {
   margin-top: 1.5rem;
   border: 1px solid var(--border);
 }
+/* greyscale 15% makes the image look historical and the contrast makes the colors and shadows still pop */
 
 /* Restores full colour to the image when its parent card is hovered */
 .card:hover img,
@@ -414,11 +419,6 @@ img {
 }
 
 /* --- FAT FOOTER STYLING --- */
-
-/* 1. This magical line makes the "Back to Top" button glide smoothly instead of snapping */
-html {
-  scroll-behavior: smooth;
-}
 
 footer {
   background-color: var(--bg-1);
@@ -431,18 +431,19 @@ footer {
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Exact 50/50 split */
+  /* 1fr is fractional split in the grids*/
 }
 
 /* 3. The Left Side (Holds the Top/Bottom split and the vertical line) */
 .footer-left {
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--border); /* THE INSET VERTICAL LINE */
+  border-right: 1px solid var(--border); /* the subtle vertical line to serprate content */
 }
 
 .footer-top-left {
   padding: 0 3rem 3rem 0;
-  border-bottom: 1px solid var(--border); /* THE INSET HORIZONTAL LINE */
+  border-bottom: 1px solid var(--border); /* the subtle horizontal line to serprate content */
 }
 
 .footer-bottom-left {
@@ -473,13 +474,16 @@ footer {
   color: var(--primary-dark);
   margin-bottom: 1.5rem;
   letter-spacing: -0.5px;
+  /* its adjust the tracking between the letters. */
 }
 
 .footer-links-column {
   list-style: none;
   display: flex;
   flex-direction: column;
+  /* it stacks the link vertaclly */
   gap: 1.2rem;
+  /* added a gap for null space */
 }
 
 .footer-links-column a {
@@ -797,6 +801,7 @@ body.dark-theme .theme-icon {
   color: #590d22;
   border: 1px solid #ff8fa3;
 }
+
 /* dark mode */
 body.dark-theme .quiz-section {
   background-color: #1e1e1e;
