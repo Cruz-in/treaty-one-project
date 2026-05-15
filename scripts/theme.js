@@ -1,13 +1,16 @@
-// dark mode button
+// --- dark mode toggle and system defult
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 const body = document.body;
 
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-theme");
-  themeIcon.innerHTML = "&#9728;";
+// 1. Check what the inline HTML script already decided and set the correct icon
+if (body.classList.contains("dark-theme")) {
+  themeIcon.innerHTML = "&#9728;"; // Sun icon for dark mode
+} else {
+  themeIcon.innerHTML = "&#127769;"; // Moon icon for light mode
 }
 
+// 2. The Toggle Button Logic
 themeToggle.addEventListener("click", () => {
   body.classList.toggle("dark-theme");
 

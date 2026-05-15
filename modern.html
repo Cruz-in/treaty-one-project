@@ -2,7 +2,7 @@
   Name: Cruz Plamondon
   Course: Web Development
   Teacher: Mr. Hardman
-  School: PTCC
+  School: PTC
   Date last modified: 2026/05/15
   Page: #3
 -->
@@ -62,18 +62,15 @@
   <body>
     <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
     <script>
-      // 1. Immediately apply the dark theme class if stored in memory
-      if (localStorage.getItem("theme") === "dark") {
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+
+      // Apply dark mode IF the user manually saved it OR IF they have no saved preference but their OS is dark
+      if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
         document.body.classList.add("dark-theme");
       }
-
-      // 2. Wait for the DOM to be ready, then ensure the icon matches the theme [cite: 23]
-      document.addEventListener("DOMContentLoaded", () => {
-        const themeIcon = document.querySelector(".theme-icon");
-        if (document.body.classList.contains("dark-theme") && themeIcon) {
-          themeIcon.innerHTML = "&#9728;"; // Set to Sun [cite: 22]
-        }
-      });
     </script>
     <header>
       <nav aria-label="Main Navigation">
@@ -333,6 +330,7 @@
         </form>
       </section>
     </main>
+
     <footer>
       <div class="container">
         <div class="footer-grid">
@@ -387,12 +385,11 @@
 
           <div class="footer-right">
             <h3>Treaty 1 Education</h3>
-            <p>
+            <p class="spaced-paragraph">
               We acknowledge that we are gathered on Treaty 1 territory, the
               traditional lands of the Anishinaabe, Cree, Oji-Cree, Dakota, and
               Dene peoples, and on the National Homeland of the Red River Métis.
             </p>
-            <br />
             <p>
               This website is a student project dedicated to educating youth
               about the historic and modern significance of the Winnipeg Treaty.
@@ -402,7 +399,7 @@
 
         <div class="footer-copyright">
           <p>
-            &copy; 2026 Cruz Plamondon - PTCC Web Development. All Rights
+            &copy; 2026 Cruz Plamondon - PTEC Web Development. All Rights
             Reserved.
           </p>
         </div>

@@ -454,6 +454,10 @@ footer {
 .footer-right {
   padding: 0 0 0 3rem;
 }
+/* <br /> tag replacement */
+.spaced-paragraph {
+  margin-bottom: 1.5rem;
+}
 
 /* 5. Footer Typography */
 .footer-grid h4 {
@@ -527,8 +531,10 @@ footer {
   margin-top: 5rem;
   padding-top: 2rem;
   text-align: center;
+
   font-size: 1.4rem;
   opacity: 0.8;
+  color: #435265; /* changed the color for a WCAG AAA contrast ratio*/
 }
 
 /* 8. Mobile Breakpoint (Stacks everything neatly on small screens) */
