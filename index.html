@@ -199,13 +199,8 @@
   <body>
     <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
     <script>
-      const savedTheme = localStorage.getItem("theme");
-      const systemPrefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-
-      // Apply dark mode IF the user manually saved it OR IF they have no saved preference but their OS is dark
-      if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+      // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
+      if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-theme");
       }
     </script>
