@@ -205,10 +205,10 @@ a[aria-current="page"] {
   user-select: none; /* Prevents the user from accidentally highlighting the text when they click rapidly */
 }
 
-/* 3. Trigger the animation ONLY when clicked */
-.work-in-progress:active {
-  /* Runs the shake animation for 0.3 seconds */
-  animation: shake 0.15s ease-in-out;
+/* 3. Trigger the animation via JavaScript */
+.work-in-progress.is-shaking {
+  /* Runs the shake animation for 0.25 seconds (slightly longer so it's visible on mobile) */
+  animation: shake 0.25s ease-in-out;
 }
 /*
   The '.work-in-progress' element may violate the contrast ratio, but

@@ -84,3 +84,18 @@ function setupQuiz(formId, resultId) {
 
 setupQuiz("history-quiz", "history-result");
 setupQuiz("modern-quiz", "modern-result");
+
+// --- "COMING SOON" SHAKE ANIMATION FOR MOBILE ---
+const wipElements = document.querySelectorAll(".work-in-progress");
+
+wipElements.forEach((element) => {
+  element.addEventListener("click", function () {
+    // Add the shaking class
+    this.classList.add("is-shaking");
+
+    // Remove the class after 500ms so it can be clicked/shaken again
+    setTimeout(() => {
+      this.classList.remove("is-shaking");
+    }, 500);
+  });
+});
