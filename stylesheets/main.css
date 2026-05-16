@@ -20,6 +20,7 @@
   --border: #cbd5e1; /* Soft grey for structural lines */
   --text-heading: #0f172a; /* Very dark slate for high contrast headings */
   --text-body: #475569; /* Medium slate for readable body paragraphs */
+  --copyright-bar: #435265;
 
   /* PRIMARY & ACCENT COLOURS (Updated for 7:1 Contrast Ratio) */
   --primary-dark: #823b08; /* Deep rust brown. Draws attention to interactive elements. Passes 7:1 contrast on white. */
@@ -41,7 +42,7 @@ body.dark-theme {
   --text-heading: #f8fafc;
   --text-body: #cbd5e1;
   --border: #475569;
-
+  --copyright-bar: #9daabe;
   /* Brightened brand colors for high contrast in dark mode */
   --primary-dark: #fda35a; /* A bright, readable earthy orange */
   --primary-light: #ffbe73; /* A soft sand/peach color for accents */
@@ -544,7 +545,9 @@ footer {
 
   font-size: 1.4rem;
   opacity: 0.8;
-  color: #435265; /* changed the color for a WCAG AAA contrast ratio*/
+  color: var(
+    --copyright-bar
+  ); /* changed the color for a WCAG AAA contrast ratio*/
 }
 
 /* 8. Mobile Breakpoint (Stacks everything neatly on small screens) */
