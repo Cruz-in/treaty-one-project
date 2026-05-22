@@ -21,6 +21,8 @@
   --text-heading: #0f172a; /* Very dark slate for high contrast headings */
   --text-body: #475569; /* Medium slate for readable body paragraphs */
   --copyright-bar: #435265;
+  --highlight-selector: #823b08;
+  --highlight-text: whitesmoke;
 
   /* PRIMARY & ACCENT COLOURS (Updated for 7:1 Contrast Ratio) */
   --primary-dark: #823b08; /* Deep rust brown. Draws attention to interactive elements. Passes 7:1 contrast on white. */
@@ -37,7 +39,7 @@
 /* 1. The Global Color Variables */
 body.dark-theme {
   --bg-0: #141414;
-  --bg-1: hsl(0, 0%, 12%);
+  --bg-1: #1f1f1f;
   --bg-2: #383838;
   --text-heading: #f8fafc;
   --text-body: #cbd5e1;
@@ -46,6 +48,8 @@ body.dark-theme {
   /* Brightened brand colors for high contrast in dark mode */
   --primary-dark: #fda35a; /* A bright, readable earthy orange */
   --primary-light: #ffbe73; /* A soft sand/peach color for accents */
+  --highlight-selector: #fda35a;
+  --highlight-text: #1f1f1f;
 }
 
 /* 2. The Nav Bar Color Override*/
@@ -66,6 +70,32 @@ html {
   font-size: 62.5%;
   /* 1. This magical line makes the "Back to Top" button glide smoothly instead of snapping */
   scroll-behavior: smooth;
+}
+
+/* --- 1. LIGHT MODE HIGHLIGHT (Default) --- */
+::selection {
+  background-color: var(--highlight-selector); /* Deep Burnt Copper */
+  color: var(--highlight-text); /* White text for high contrast */
+}
+
+::-moz-selection {
+  background-color: var(--highlight-selector);
+  color: var(--highlight-text);
+}
+
+/* --- 2. DARK MODE HIGHLIGHT --- */
+body.dark-theme ::selection {
+  background-color: var(
+    --highlight-selector
+  ); /* Lighter, softer clay orange to pop on dark backgrounds */
+  color: var(
+    --highlight-text
+  ); /* Dark text so it's readable against the light orange */
+}
+
+body.dark-theme ::-moz-selection {
+  background-color: #e68a5c;
+  color: #1f1f1f;
 }
 
 /* Base body styling applied to the whole document */
