@@ -21,8 +21,8 @@
   --text-heading: #0f172a; /* Very dark slate for high contrast headings */
   --text-body: #475569; /* Medium slate for readable body paragraphs */
   --copyright-bar: #435265;
-  --highlight-selector: #823b08;
-  --highlight-text: whitesmoke;
+  --highlight-selector: #823b08d0;
+  --highlight-text: #f1f5f9;
 
   /* PRIMARY & ACCENT COLOURS (Updated for 7:1 Contrast Ratio) */
   --primary-dark: #823b08; /* Deep rust brown. Draws attention to interactive elements. Passes 7:1 contrast on white. */
@@ -48,7 +48,7 @@ body.dark-theme {
   /* Brightened brand colors for high contrast in dark mode */
   --primary-dark: #fda35a; /* A bright, readable earthy orange */
   --primary-light: #ffbe73; /* A soft sand/peach color for accents */
-  --highlight-selector: #fda35a;
+  --highlight-selector: #fda35ad0;
   --highlight-text: #1f1f1f;
 }
 
