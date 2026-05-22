@@ -49,7 +49,6 @@ document.addEventListener("click", (event) => {
   }
 });
 //i added this because the small things that users are used too. being forced click the button to close it can be annyoing.
-
 // ---- quiz logic ----
 function setupQuiz(formId, resultId) {
   const form = document.getElementById(formId);
