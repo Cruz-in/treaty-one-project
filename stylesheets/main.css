@@ -58,6 +58,33 @@ body.dark-theme nav {
   background: rgba(20, 20, 20, 0.7);
 }
 
+/* --- CUSTOM SCROLLBAR --- */
+
+/* This sets the overall width of the entire vertical scrollbar */
+::-webkit-scrollbar {
+  width: auto 16px;
+}
+
+/* This styles the track (the background the scrollbar sits on) using your deepest background variable */
+::-webkit-scrollbar-track {
+  background: var(--bg-0);
+}
+
+/* This styles the draggable handle (thumb) using your soft structural grey */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 10px;
+  /* This border matches the track background, creating invisible padding so the thumb looks like a floating pill */
+  border: 4px solid var(--bg-0);
+}
+
+/* This makes the scrollbar pop to your brand orange when the user hovers over it to drag */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-dark);
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
 /* Universal selector resets default browser spacing to 0 */
 * {
   margin: 0;
@@ -104,26 +131,6 @@ body.dark-theme ::-moz-selection {
 /* This sets the overall width of the entire vertical scrollbar */
 ::-webkit-scrollbar {
   width: 14px;
-}
-
-/* This styles the track (the background the scrollbar sits on) using your deepest background variable */
-::-webkit-scrollbar-track {
-  background: var(--bg-0);
-}
-
-/* This styles the draggable handle (thumb) using your soft structural grey */
-::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
-  border-radius: 10px;
-  /* This border matches the track background, creating invisible padding so the thumb looks like a floating pill */
-  border: 4px solid var(--bg-0);
-}
-
-/* This makes the scrollbar pop to your brand orange when the user hovers over it to drag */
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-dark);
-  -webkit-transition: var(--transition);
-  transition: var(--transition);
 }
 
 /* Base body styling applied to the whole document */
@@ -928,19 +935,26 @@ body.dark-theme .result-fail {
   border-color: #7a2048;
 }
 
-/* --- SCROLL PROGRESS BAR --- */
+/* progress bar */
+
+/* Pushes the website content slightly right so it doesn't clip under the bar */
+body {
+  padding-left: 10px;
+}
+
 #progress-bar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4px;
+  width: 10px; /* Sleek vertical line width */
+  height: 0%; /* Starts at zero, JS will grow this down the screen */
+  /* Gradient flowing smoothly from top to bottom */
   background: linear-gradient(
-    to right,
+    to bottom,
     var(--primary-light),
     var(--primary-dark)
   );
-  width: 0%; /* Starts at zero, JS fills it */
-  z-index: 9999; /* Stays above the nav bar */
+  z-index: 9999; /* Keeps it floating above all layers */
 }
 
 /* --- PRINT STYLESHEET --- */

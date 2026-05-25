@@ -99,24 +99,6 @@ wipElements.forEach((element) => {
   });
 });
 
-// --- READING PROGRESS BAR ---
-window.addEventListener("scroll", () => {
-  // Calculate how far the user has scrolled down the page
-  const scrollTop = document.documentElement.scrollTop;
-  const scrollHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
-
-  // Convert that into a percentage
-  const scrollPercentage = (scrollTop / scrollHeight) * 100;
-
-  // Apply that percentage to the width of the progress bar
-  const progressBar = document.getElementById("progress-bar");
-  if (progressBar) {
-    progressBar.style.width = scrollPercentage + "%";
-  }
-});
-
 // --- SMART BACK TO TOP BUTTON ---
 const backToTopBtn = document.querySelector(".back-to-top");
 
@@ -130,39 +112,44 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// --- MINI SEARCH (CTRL+F EQUIVALENT) ---
+// --- VERTICAL LEFT-SIDE PROGRESS BAR LOGIC ---
+window.addEventListener("scroll", () => {
+  // Calculate how far the user has scrolled down the page
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  // Convert that into a percentage
+  let scrollPercentage =
+    scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+  // Clamp it between 0 and 100 to prevent edge-case glitches
+  scrollPercentage = Math.max(0, Math.min(100, scrollPercentage));
+
+  // Apply that percentage directly to the HEIGHT of the left progress bar
+  const progressBar = document.getElementById("progress-bar");
+  if (progressBar) {
+    progressBar.style.height = scrollPercentage + "%";
+  }
+});
+
+// --- MINI SEARCH (MOBILE SAFE FALLBACK) ---
 const searchForm = document.getElementById("mini-search");
 
 if (searchForm) {
   searchForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevents the page from reloading
+    e.preventDefault();
     const query = document.getElementById("search-input").value;
 
-    // Uses the browser's native find feature to highlight the text
-    window.find(query);
-  });
-}
+    // 1. Try the desktop native find feature
+    const found = window.find(query);
 
-// --- SEARCH DROPDOWN TOGGLE LOGIC ---
-const searchDropdown = document.querySelector(".search-dropdown");
-const searchToggleBtn = document.querySelector(".search-toggle");
-
-if (searchDropdown && searchToggleBtn) {
-  // 1. Toggle the menu when clicking the magnifying glass
-  searchToggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevents the click from instantly closing it
-    searchDropdown.classList.toggle("active");
-
-    // Updates accessibility tag
-    const isExpanded = searchDropdown.classList.contains("active");
-    searchToggleBtn.setAttribute("aria-expanded", isExpanded);
-  });
-
-  // 2. Close the search bar if the user clicks anywhere else on the screen
-  document.addEventListener("click", (e) => {
-    if (!searchDropdown.contains(e.target)) {
-      searchDropdown.classList.remove("active");
-      searchToggleBtn.setAttribute("aria-expanded", "false");
+    // 2. The Mobile Fallback: If window.find is blocked or finds nothing
+    if (!found) {
+      alert(
+        `Could not find "${query}". \n\nPro Tip: Mobile browsers block custom search bars! Please use the "Find on Page" tool located in your phone's browser menu.`,
+      );
     }
   });
 }
