@@ -98,6 +98,8 @@ html {
   font-size: 62.5%;
   /* 1. This magical line makes the "Back to Top" button glide smoothly instead of snapping */
   scroll-behavior: smooth;
+  /* Creates a 100px invisible bumper so your sticky nav doesn't cover headings */
+  scroll-padding-top: 100px;
 }
 
 /* --- 1. LIGHT MODE HIGHLIGHT (Default) --- */
@@ -946,7 +948,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 10px; /* Sleek vertical line width */
+  width: 1rem; /* Sleek vertical line width */
   height: 0%; /* Starts at zero, JS will grow this down the screen */
   /* Gradient flowing smoothly from top to bottom */
   background: linear-gradient(
@@ -955,6 +957,8 @@ body {
     var(--primary-dark)
   );
   z-index: 9999; /* Keeps it floating above all layers */
+  will-change: height;
+  /* Warns the browser this will animate, offloading it to the GPU */
 }
 
 /* --- PRINT STYLESHEET --- */
@@ -1045,6 +1049,7 @@ body {
   background: var(--bg-2);
   color: var(--text-heading);
   font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
 }
 
 .search-form button {
@@ -1095,7 +1100,7 @@ body {
 }
 
 /* --- 2. MOBILE VIEW (Collapsed & Toggleable) --- */
-@media (max-width: 1100px) {
+@media (max-width: 1130px) {
   /* Match the magnifying glass exactly to the theme-toggle button */
   .search-toggle {
     display: flex; /* Flex perfectly centers the emoji inside the circle */

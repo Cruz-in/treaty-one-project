@@ -112,27 +112,38 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// --- VERTICAL LEFT-SIDE PROGRESS BAR LOGIC ---
-window.addEventListener("scroll", () => {
-  // Calculate how far the user has scrolled down the page
-  const scrollTop = document.documentElement.scrollTop;
-  const scrollHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
+// --- BUTTERY SMOOTH VERTICAL PROGRESS BAR ---
+const progressBar = document.getElementById("progress-bar");
 
-  // Convert that into a percentage
-  let scrollPercentage =
-    scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+if (progressBar) {
+  let ticking = false; // The tollbooth to prevent math overload
 
-  // Clamp it between 0 and 100 to prevent edge-case glitches
-  scrollPercentage = Math.max(0, Math.min(100, scrollPercentage));
+  window.addEventListener("scroll", () => {
+    // If a frame isn't already waiting to paint, request one
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        // 1. Calculate the math
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
 
-  // Apply that percentage directly to the HEIGHT of the left progress bar
-  const progressBar = document.getElementById("progress-bar");
-  if (progressBar) {
-    progressBar.style.height = scrollPercentage + "%";
-  }
-});
+        let scrollPercentage =
+          scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        scrollPercentage = Math.max(0, Math.min(100, scrollPercentage));
+
+        // 2. Apply the visual update
+        progressBar.style.height = scrollPercentage + "%";
+
+        // 3. Open the gate for the next frame
+        ticking = false;
+      });
+
+      // Lock the gate until the frame is drawn
+      ticking = true;
+    }
+  });
+}
 
 // --- PART 1: OPENING AND CLOSING THE MAGNIFYING GLASS ---
 const searchDropdown = document.querySelector(".search-dropdown");
