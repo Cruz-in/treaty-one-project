@@ -134,7 +134,31 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// --- MINI SEARCH (MOBILE SAFE FALLBACK) ---
+// --- PART 1: OPENING AND CLOSING THE MAGNIFYING GLASS ---
+const searchDropdown = document.querySelector(".search-dropdown");
+const searchToggleBtn = document.querySelector(".search-toggle");
+
+if (searchDropdown && searchToggleBtn) {
+  // Toggle the menu when clicking the magnifying glass
+  searchToggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevents the click from instantly closing it
+    searchDropdown.classList.toggle("active");
+
+    // Updates accessibility tag
+    const isExpanded = searchDropdown.classList.contains("active");
+    searchToggleBtn.setAttribute("aria-expanded", isExpanded);
+  });
+
+  // Close the search bar if the user clicks anywhere else on the screen
+  document.addEventListener("click", (e) => {
+    if (!searchDropdown.contains(e.target)) {
+      searchDropdown.classList.remove("active");
+      searchToggleBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+// --- PART 2: THE MOBILE-SAFE SEARCH ACTION ---
 const searchForm = document.getElementById("mini-search");
 
 if (searchForm) {
