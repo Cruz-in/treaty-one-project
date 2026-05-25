@@ -71,7 +71,14 @@
     </style>
   </head>
   <body>
+    <!-- subtle bar that shows the user how far they progressed through the page -->
+    <div id="progress-bar"></div>
     <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
+    <!--
+      i added a skip to content link for users using the tab fuction. because it will be
+      annoying for the user to tab through all the links in the nav to get to the content
+    -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <script>
       // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
       if (localStorage.getItem("theme") === "dark") {
@@ -123,6 +130,30 @@
           </button>
           <!--this is the mobile nav button linked toJS and CSS-->
 
+          <div class="search-dropdown">
+            <button
+              class="search-toggle"
+              aria-label="Toggle Search"
+              aria-expanded="false"
+              title="key search words across the page">
+              &#128269;
+            </button>
+
+            <div class="search-content">
+              <form id="mini-search" class="search-form">
+                <label for="search-input" class="sr-only"
+                  >Search keywords on this page</label
+                >
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Find on page..."
+                  required />
+                <button type="submit" aria-label="Submit Search">Go</button>
+              </form>
+            </div>
+          </div>
+
           <button
             id="theme-toggle"
             class="theme-toggle"
@@ -146,134 +177,143 @@
         </p>
       </section>
 
-      <section class="container">
-        <h2 id="h2-margin">Clash of Perspectives</h2>
-        <div class="bento-grid">
-          <section class="card wide">
-            <h3>Who Was at the Table?</h3>
-            <p class="spaced-paragraph">
-              On <span class="highlight">July 25, 1871</span>, thousands of
-              Indigenous people gathered at Lower Fort Garry. The primary groups
-              involved were the Anishinaabe (Ojibwe) and the Ininiwak (Swampy
-              Cree) Nations. They met with representatives of the Crown, led by
-              Lieutenant Governor Adams G. Archibald and Commissioner Wemyss M.
-              Simpson.
-            </p>
-            <p>
-              The Crown arrived with a rigid mandate: open the land for mass
-              settlement. The First Nations arrived with a vastly different
-              objective: a
-              <span class="highlight"
-                >nation-to-nation peace and sharing agreement</span
-              >.
-            </p>
-            <h3 style="margin-top: 2rem">8-Day Stalemate</h3>
-            <p>
-              The negotiations did not go smoothly. For the first several days,
-              First Nations leaders completely rejected the Crown's terms
-              because the amount of reserve land offered was dangerously small.
-              It took <span class="highlight">eight full days</span> of intense,
-              frustrating debate before an agreement was finally reached.
-            </p>
-          </section>
-
-          <section class="card accent">
-            <h3>Key Figures</h3>
-            <ul>
-              <li>
-                <span class="highlight">Chief Mis-koo-kenew (Red Eagle):</span>
-                Represented the Roseau River people and strongly advocated for
-                adequate land reserves.
-              </li>
-              <li>
-                <span class="highlight">Adams G. Archibald:</span> Lieutenant
-                Governor of Manitoba, eager to expedite the process.
-              </li>
-              <li>
-                <span class="highlight">Wemyss M. Simpson:</span> Indian
-                Commissioner tasked with securing the signatures.
-              </li>
-            </ul>
-          </section>
-        </div>
-      </section>
-
-      <section class="layer-box">
-        <div class="container">
-          <h2>"Outside Promises"</h2>
-          <div class="map-grid">
-            <div class="card">
-              <h3>The Disconnect</h3>
-              <p>
-                A massive point of friction occurred because the Crown's
-                negotiators made several
-                <span class="highlight">verbal commitments</span> to secure the
-                signatures of First Nations leaders, who relied heavily on oral
-                tradition. These promises included farm equipment, animals,
-                clothing, and schools to help the communities transition their
-                economies.
+      <div id="main-content">
+        <section class="container">
+          <h2 id="h2-margin">Clash of Perspectives</h2>
+          <div class="bento-grid">
+            <section class="card wide">
+              <h3>Who Was at the Table?</h3>
+              <p class="spaced-paragraph">
+                On <span class="highlight">July 25, 1871</span>, thousands of
+                Indigenous people gathered at Lower Fort Garry. The primary
+                groups involved were the Anishinaabe (Ojibwe) and the Ininiwak
+                (Swampy Cree) Nations. They met with representatives of the
+                Crown, led by
+                <abbr title="Lieutenant Governor">Lt. Gov.</abbr> Adams G.
+                Archibald and <abbr title="Commissioner">Comm.</abbr> Wemyss M.
+                Simpson.
               </p>
-            </div>
-            <div class="card">
-              <h3>The Aftermath</h3>
               <p>
-                When the formal written document was finalized on
-                <span class="highlight">August 3, 1871</span>, these verbal
-                commitments were completely missing from the text. This led to
-                immediate protests from Indigenous leaders. It wasn't until 1875
-                that the Canadian government formally acknowledged and added
-                these promises to the treaty.
+                The Crown arrived with a rigid mandate: open the land for mass
+                settlement. The First Nations arrived with a vastly different
+                objective: a
+                <span class="highlight"
+                  >nation-to-nation peace and sharing agreement</span
+                >.
               </p>
+              <h3 style="margin-top: 2rem">8-Day Stalemate</h3>
+              <p>
+                The negotiations did not go smoothly. For the first several
+                days, First Nations leaders completely rejected the Crown's
+                terms because the amount of reserve land offered was dangerously
+                small. It took <span class="highlight">eight full days</span> of
+                intense, frustrating debate before an agreement was finally
+                reached.
+              </p>
+            </section>
+
+            <section class="card accent">
+              <h3>Key Figures</h3>
+              <ul>
+                <li>
+                  <span class="highlight"
+                    >Chief Mis-koo-kenew (Red Eagle):</span
+                  >
+                  Represented the Roseau River people and strongly advocated for
+                  adequate land reserves.
+                </li>
+                <li>
+                  <span class="highlight">Adams G. Archibald:</span> Lieutenant
+                  Governor of Manitoba, eager to expedite the process.
+                </li>
+                <li>
+                  <span class="highlight">Wemyss M. Simpson:</span> Indian
+                  Commissioner tasked with securing the signatures.
+                </li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="layer-box">
+          <div class="container">
+            <h2>"Outside Promises"</h2>
+            <div class="map-grid">
+              <div class="card">
+                <h3>The Disconnect</h3>
+                <p>
+                  A massive point of friction occurred because the Crown's
+                  negotiators made several
+                  <span class="highlight">verbal commitments</span> to secure
+                  the signatures of First Nations leaders, who relied heavily on
+                  oral tradition. These promises included farm equipment,
+                  animals, clothing, and schools to help the communities
+                  transition their economies.
+                </p>
+              </div>
+              <div class="card">
+                <h3>The Aftermath</h3>
+                <p>
+                  When the formal written document was finalized on
+                  <span class="highlight">August 3, 1871</span>, these verbal
+                  commitments were completely missing from the text. This led to
+                  immediate protests from Indigenous leaders. It wasn't until
+                  1875 that the Canadian government formally acknowledged and
+                  added these promises to the treaty.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="layer-box">
-        <div class="container">
-          <h2 id="h2-margin">Mapping the Territory</h2>
-          <div class="map-grid">
-            <div class="map-box">
-              <h3>Treaty 1 Boundaries</h3>
-              <p class="spaced-paragraph">
-                The specific boundaries of Treaty 1 cover much of southern
-                Manitoba, including modern-day Winnipeg, Brandon, Portage la
-                Prairie, and Selkirk.
-              </p>
-              <img
-                src="images/treaty-1-and-2.jpg"
-                alt="Map showing the specific borders of Treaty 1 in Manitoba"
-                loading="lazy"
-                class="spaced-image-large" />
-              <p>
-                When negotiated in 1871, the Crown sought this specific land
-                first because it was the most fertile agricultural region and
-                the <span class="highlight">gateway to western expansion</span>.
-              </p>
-            </div>
+        <section class="layer-box">
+          <div class="container">
+            <h2 id="h2-margin">Mapping the Territory</h2>
+            <div class="map-grid">
+              <div class="map-box">
+                <h3>Treaty 1 Boundaries</h3>
+                <p class="spaced-paragraph">
+                  The specific boundaries of Treaty 1 cover much of southern
+                  Manitoba, including modern-day Winnipeg, Brandon, Portage la
+                  Prairie, and Selkirk.
+                </p>
+                <img
+                  src="images/treaty-1-and-2.jpg"
+                  alt="Map showing the specific borders of Treaty 1 in Manitoba"
+                  loading="lazy"
+                  class="spaced-image-large" />
+                <p>
+                  When negotiated in 1871, the Crown sought this specific land
+                  first because it was the most fertile agricultural region and
+                  the
+                  <span class="highlight">gateway to western expansion</span>.
+                </p>
+              </div>
 
-            <div class="map-box">
-              <h3>Regional Context</h3>
-              <p class="spaced-paragraph">
-                To understand the scale of Treaty 1, you have to look at it
-                within the context of the larger Numbered Treaties across
-                Canada.
-              </p>
-              <img
-                src="images/all-treaties-map.png"
-                alt="Map of Canada showing all Numbered Treaties for context"
-                loading="lazy"
-                class="spaced-image-large" />
-              <p>
-                While Treaty 1 holds immense historical significance as the
-                <span class="highlight">first post-Confederation treaty</span>,
-                it covers a relatively small geographic area compared to the
-                massive northern territories covered by Treaties 5, 9, and 11.
-              </p>
+              <div class="map-box">
+                <h3>Regional Context</h3>
+                <p class="spaced-paragraph">
+                  To understand the scale of Treaty 1, you have to look at it
+                  within the context of the larger Numbered Treaties across
+                  Canada.
+                </p>
+                <img
+                  src="images/all-treaties-map.png"
+                  alt="Map of Canada showing all Numbered Treaties for context"
+                  loading="lazy"
+                  class="spaced-image-large" />
+                <p>
+                  While Treaty 1 holds immense historical significance as the
+                  <span class="highlight">first post-Confederation treaty</span
+                  >, it covers a relatively small geographic area compared to
+                  the massive northern territories covered by Treaties 5, 9, and
+                  11.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <section class="quiz-section">
         <h2>Knowledge Check</h2>
@@ -326,7 +366,11 @@
               <h4>Quick Links</h4>
               <ul class="footer-links-column">
                 <li><a href="index.html">Homepage Overview</a></li>
-                <li><a href="negotiation.html">History & Negotiations</a></li>
+                <li>
+                  <a href="negotiation.html" id="active-footer-link"
+                    >History & Negotiations</a
+                  >
+                </li>
                 <li><a href="modern.html">Modern Implementation</a></li>
               </ul>
             </div>

@@ -71,6 +71,13 @@
     </style>
   </head>
   <body>
+    <!-- subtle bar that shows the user how far they progressed through the page -->
+    <div id="progress-bar"></div>
+    <!--
+      i added a skip to content link for users using the tab fuction. because it will be
+      annoying for the user to tab through all the links in the nav to get to the content
+    -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
     <script>
       // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
@@ -123,6 +130,30 @@
           </button>
           <!--this is the mobile nav button linked toJS and CSS-->
 
+          <div class="search-dropdown">
+            <button
+              class="search-toggle"
+              aria-label="Toggle Search"
+              aria-expanded="false"
+              title="key search words across the page">
+              &#128269;
+            </button>
+
+            <div class="search-content">
+              <form id="mini-search" class="search-form">
+                <label for="search-input" class="sr-only"
+                  >Search keywords on this page</label
+                >
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Find on page..."
+                  required />
+                <button type="submit" aria-label="Submit Search">Go</button>
+              </form>
+            </div>
+          </div>
+
           <button
             id="theme-toggle"
             class="theme-toggle"
@@ -148,148 +179,172 @@
         </div>
       </section>
 
-      <section class="container">
-        <h2 id="h2-margin">Urban Reserves & Economic Development</h2>
-        <div class="bento-grid">
-          <section class="card wide">
-            <h3>Naawi-Oodena (Kapyong Barracks)</h3>
-            <p>
-              A monumental example of modern Treaty implementation is the
-              <span class="highlight">Kapyong Urban Reserve</span> project. The
-              former military barracks have been reclaimed and are being
-              transformed into <span class="highlight">Naawi-Oodena</span>, a
-              massive multi-use urban reserve right inside Winnipeg's city
-              limits. This historic partnership among the seven Treaty 1 First
-              Nations serves as a powerful economic engine for their
-              communities.
-            </p>
-          </section>
-
-          <section class="card accent">
-            <h3>Long Plain Madison Reserve</h3>
-            <p>
-              <img
-                src="images/arrowhead-dev-corp-building.jpg"
-                alt="Long Plain Madison Reserve Petro-Canada in Winnipeg"
-                id="madison-reserve-icon"
-                loading="lazy" />
-              Another highly successful urban reserve is operated by the
-              <span class="highlight">Long Plain First Nation</span> on Madison
-              Street.
-            </p>
-            <ul>
-              <li>
-                Features the highly successful
-                <span class="highlight"
-                  >Long Plain First Nations Gas Station</span
-                >.
-              </li>
-              <li>
-                Includes a thriving commercial office complex and businesses.
-              </li>
-              <li>
-                Generates independent revenue to support community
-                infrastructure and growth.
-              </li>
-            </ul>
-          </section>
-        </div>
-      </section>
-
-      <section class="layer-box">
-        <div class="container">
-          <h2>Unique History & Moving Forward</h2>
-          <div class="map-grid">
-            <div class="card">
-              <h3>What Makes Treaty 1 Different?</h3>
+      <div id="main-content">
+        <section class="container">
+          <h2 id="h2-margin">Urban Reserves & Economic Development</h2>
+          <div class="bento-grid">
+            <section class="card wide">
+              <h3>Naawi-Oodena (Kapyong Barracks)</h3>
               <p>
-                As the very first post-Confederation treaty, Treaty 1 set the
-                stage for all others. What makes it incredibly unique is the
-                massive disconnect between the written text and the
-                <span class="highlight">oral "Outside Promises"</span>. Unlike
-                later treaties where terms were more clearly codified, Treaty 1
-                relied heavily on verbal commitments that the Crown initially
-                failed to write down or honor, leading to immediate disputes.
+                A monumental example of modern Treaty implementation is the
+                <span class="highlight">Kapyong Urban Reserve</span> project.
+                The former military barracks have been reclaimed and are being
+                transformed into <span class="highlight">Naawi-Oodena</span>, a
+                massive multi-use urban reserve right inside Winnipeg's city
+                limits. This historic partnership among the seven Treaty 1 First
+                Nations serves as a powerful economic engine for their
+                communities.
               </p>
-            </div>
+            </section>
 
-            <div class="card">
-              <h3>Living the Treaty Today</h3>
+            <section class="card accent">
+              <h3>Long Plain Madison Reserve</h3>
               <p>
-                Treaties are not just history; they are
-                <span class="highlight">living documents</span>. Today,
-                implementing the Treaty means honoring those original promises
-                and ensuring First Nations have the ability to exercise their
-                inherent rights to self-governance and economic development
-                within the modern Canadian economy.
+                <img
+                  src="images/arrowhead-dev-corp-building.jpg"
+                  alt="Long Plain Madison Reserve Petro-Canada in Winnipeg"
+                  id="madison-reserve-icon"
+                  loading="lazy" />
+                Another highly successful urban reserve is operated by the
+                <span class="highlight">Long Plain First Nation</span> on
+                Madison Street.
               </p>
+              <ul>
+                <li>
+                  Features the highly successful
+                  <span class="highlight"
+                    >Long Plain First Nations Gas Station</span
+                  >.
+                </li>
+                <li>
+                  Includes a thriving commercial office complex and businesses.
+                </li>
+                <li>
+                  Generates independent revenue to support community
+                  infrastructure and growth.
+                </li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="layer-box">
+          <div class="container">
+            <h2>Unique History & Moving Forward</h2>
+            <div class="map-grid">
+              <div class="card">
+                <h3>What Makes Treaty 1 Different?</h3>
+                <p>
+                  As the very first post-Confederation treaty, Treaty 1 set the
+                  stage for all others. What makes it incredibly unique is the
+                  massive disconnect between the written text and the
+                  <span class="highlight">oral "Outside Promises"</span>. Unlike
+                  later treaties where terms were more clearly codified, Treaty
+                  1 relied heavily on verbal commitments that the Crown
+                  initially failed to write down or honor, leading to immediate
+                  disputes.
+                </p>
+              </div>
+
+              <div class="card">
+                <h3>Living the Treaty Today</h3>
+                <p>
+                  Treaties are not just history; they are
+                  <span class="highlight">living documents</span>. Today,
+                  implementing the Treaty means honoring those original promises
+                  and ensuring First Nations have the ability to exercise their
+                  inherent rights to self-governance and economic development
+                  within the modern Canadian economy.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="container">
-        <h2 id="h2-margin">The Nations & The Land Today</h2>
-        <div class="bento-grid">
-          <section class="card accent">
-            <h3>The Seven Nations</h3>
-            <p class="spaced-paragraph">
-              The <span class="highlight">Treaty One Nation</span> is a unified
-              government body representing the seven original First Nations that
-              signed the treaty. By working collectively, they possess
-              significant
-              <span class="highlight">political and economic leverage</span>.
-            </p>
+        <section class="container">
+          <h2 id="h2-margin">The Nations & The Land Today</h2>
+          <div class="bento-grid">
+            <section class="card accent">
+              <h3>The Seven Nations</h3>
+              <p class="spaced-paragraph">
+                The <span class="highlight">Treaty One Nation</span> is a
+                unified government body representing the seven original First
+                Nations that signed the treaty. By working collectively, they
+                possess significant
+                <span class="highlight">political and economic leverage</span>.
+              </p>
 
-            <img
-              src="images/treaty-1-and-2.jpg"
-              alt="Map of Treaty 1 Territory"
-              loading="lazy"
-              class="spaced-image" />
+              <img
+                src="images/treaty-1-and-2.jpg"
+                alt="Map of Treaty 1 Territory"
+                loading="lazy"
+                class="spaced-image" />
 
-            <ul class="community-pill-list">
-              <li>Brokenhead Ojibway Nation</li>
-              <li>Long Plain First Nation</li>
-              <li>Peguis First Nation</li>
-              <li>Roseau River Anishinaabe First Nation</li>
-              <li>Sagkeeng Anicinabe</li>
-              <li>Sandy Bay Ojibway First Nation</li>
-              <li>Swan Lake First Nation</li>
-            </ul>
-          </section>
+              <ul class="community-pill-list">
+                <li
+                  title="Located northeast of Winnipeg along the banks of the Brokenhead River">
+                  Brokenhead Ojibway Nation
+                </li>
+                <li
+                  title="Operates the highly successful Madison Urban Reserve in Winnipeg">
+                  Long Plain First Nation
+                </li>
+                <li
+                  title="The largest First Nation community in Manitoba, historically the St. Peter's Band">
+                  Peguis First Nation
+                </li>
+                <li
+                  title="Situated in southern Manitoba near the United States border">
+                  Roseau River Anishinaabe First Nation
+                </li>
+                <li
+                  title="Historically known as Fort Alexander, located at the mouth of the Winnipeg River">
+                  Sagkeeng Anicinabe
+                </li>
+                <li
+                  title="Located along the scenic western shores of Lake Manitoba">
+                  Sandy Bay Ojibway First Nation
+                </li>
+                <li
+                  title="Operates multiple land bases, including an urban reserve in Headingley">
+                  Swan Lake First Nation
+                </li>
+              </ul>
+            </section>
 
-          <section class="card wide">
-            <h3>Commemorating the Treaty</h3>
-            <p class="spaced-paragraph">
-              The physical presence of Treaty 1 is increasingly visible in
-              Winnipeg's modern landscape, serving as a reminder that
-              <span class="highlight">we are all Treaty people</span>.
-            </p>
+            <section class="card wide">
+              <h3>Commemorating the Treaty</h3>
+              <p class="spaced-paragraph">
+                The physical presence of Treaty 1 is increasingly visible in
+                Winnipeg's modern landscape, serving as a reminder that
+                <span class="highlight">we are all Treaty people</span>.
+              </p>
 
-            <img
-              src="images/forks-oodena-circle.jpg"
-              alt="Oodena Celebration Circle at The Forks"
-              loading="lazy"
-              class="spaced-image-large" />
+              <img
+                src="images/forks-oodena-circle.jpg"
+                alt="Oodena Celebration Circle at The Forks"
+                loading="lazy"
+                class="spaced-image-large" />
 
-            <h4 class="sub-heading-accent">The Oodena Celebration Circle</h4>
-            <p class="spaced-paragraph">
-              Located at <span class="highlight">The Forks</span>—a historic
-              meeting place for thousands of years—this natural amphitheater
-              serves as a modern gathering space for ceremonies, drumming, and
-              celebrations.
-            </p>
+              <h4 class="sub-heading-accent">The Oodena Celebration Circle</h4>
+              <p class="spaced-paragraph">
+                Located at <span class="highlight">The Forks</span>—a historic
+                meeting place for thousands of years—this natural amphitheater
+                serves as a modern gathering space for ceremonies, drumming, and
+                celebrations.
+              </p>
 
-            <h4 class="sub-heading-accent">The Legislative Grounds</h4>
-            <p>
-              A permanent commemorative marker stands at the
-              <span class="highlight">Manitoba Legislative Building</span>. It
-              acknowledges the territory and the ongoing relationship between
-              the Crown and Indigenous peoples.
-            </p>
-          </section>
-        </div>
-      </section>
+              <h4 class="sub-heading-accent">The Legislative Grounds</h4>
+              <p>
+                A permanent commemorative marker stands at the
+                <span class="highlight">Manitoba Legislative Building</span>. It
+                acknowledges the territory and the ongoing relationship between
+                the Crown and Indigenous peoples.
+              </p>
+            </section>
+          </div>
+        </section>
+      </div>
 
       <section class="quiz-section">
         <h2>Knowledge Check</h2>
@@ -346,7 +401,11 @@
               <ul class="footer-links-column">
                 <li><a href="index.html">Homepage Overview</a></li>
                 <li><a href="negotiation.html">History & Negotiations</a></li>
-                <li><a href="modern.html">Modern Implementation</a></li>
+                <li>
+                  <a href="modern.html" id="active-footer-link"
+                    >Modern Implementation</a
+                  >
+                </li>
               </ul>
             </div>
 

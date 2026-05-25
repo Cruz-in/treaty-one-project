@@ -418,7 +418,8 @@ h3 {
   /* its makes the pills on mobile screens stack on top of each other. */
   gap: 1.5rem;
   list-style: none;
-  margin-left: 0 !important; /* Overrides default list indents and makes sure the system point doesnt affect it */
+  margin-left: 0 !important;
+  /* Overrides default list indents and makes sure the system point doesnt affect it */
 }
 
 .community-pill-list li {
@@ -553,7 +554,7 @@ footer {
 
 .footer-links-column a {
   color: var(--text-body);
-  text-decoration: none;
+  text-decoration: underline;
   transition: var(--transition);
   font-size: 1.6rem;
 }
@@ -564,7 +565,18 @@ footer {
   text-underline-offset: 4px;
 }
 
-/* 6. The "Back to Top" Arrow Button (Now Fixed!) */
+a[target="_blank"]::after {
+  content: "\2197"; /* Unicode for a small North-East arrow */
+  font-size: 0.8em;
+  margin-left: 0.4rem;
+  color: var(--primary-light);
+}
+
+#active-footer-link {
+  color: var(--primary-light);
+}
+
+/* 6. The "Back to Top" Arrow Button */
 .back-to-top {
   position: fixed;
   bottom: 3rem;
@@ -585,6 +597,13 @@ footer {
   transition: var(--transition);
   font-size: 2.4rem;
   box-shadow: var(--shadow-sm); /* Gives it a slight pop off the page */
+  opacity: 0;
+  pointer-events: none; /* Prevents clicking while invisible */
+}
+
+.back-to-top.show-btn {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .back-to-top:hover {
@@ -741,7 +760,7 @@ body.dark-theme .theme-icon {
 }
 
 /* --- MOBILE BREAKPOINT --- */
-@media (max-width: 768px) {
+@media (max-width: 868px) {
   /* 1. Show the hamburger button */
   .hamburger {
     display: block;
@@ -907,4 +926,209 @@ body.dark-theme .result-fail {
   background-color: #4a154b;
   color: #ffb3c1;
   border-color: #7a2048;
+}
+
+/* --- SCROLL PROGRESS BAR --- */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--primary-light),
+    var(--primary-dark)
+  );
+  width: 0%; /* Starts at zero, JS fills it */
+  z-index: 9999; /* Stays above the nav bar */
+}
+
+/* --- PRINT STYLESHEET --- */
+
+/* Formats the page for physical printing or PDF saving to save ink */
+@media print {
+  /* Hides UI elements that are useless on a piece of paper */
+  nav,
+  footer,
+  .theme-toggle,
+  .hamburger,
+  .back-to-top,
+  .particles,
+  .quiz-section {
+    display: none !important;
+  }
+
+  /* Strips out backgrounds and shadows, forcing black text on white paper */
+  body,
+  .card,
+  .map-box,
+  .layer-box,
+  .bento-grid {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: none !important;
+    display: block; /* prevents grid breaks on paper */
+    margin-bottom: 2rem;
+  }
+
+  /* Pro-tip: This reveals the actual URL of your links next to the text! */
+  .footer-links-column a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #333;
+  }
+}
+
+/* 1. Skip to Main Content Link (For Screen Readers & Keyboard Users) */
+.skip-link {
+  position: absolute;
+  top: -100px; /* Hides it off-screen by default */
+  left: 0;
+  background: var(--primary-dark);
+  color: whitesmoke;
+  padding: 1rem 2rem;
+  z-index: 10000;
+  transition: top var(--transition);
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom-right-radius: 8px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Snaps the button into view ONLY when the user presses 'Tab' on page load */
+.skip-link:focus {
+  top: 0px;
+  outline: 3px solid;
+  outline-offset: 4px;
+}
+
+/* 2. Custom Focus Rings for Keyboard Navigation */
+/* :focus-visible ensures the ring only shows for keyboard users, not mouse clicks */
+*:focus-visible {
+  outline: 3px dashed var(--primary-light);
+  outline-offset: 4px;
+  border-radius: 4px;
+  transition: outline-offset 0.1s ease;
+}
+
+/* Removes the ugly default browser outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* --- MINI SEARCH BAR --- */
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 1.5rem;
+}
+
+.search-form input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--bg-2);
+  color: var(--text-heading);
+  font-family: "Inter", sans-serif;
+}
+
+.search-form button {
+  background: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-form button:hover {
+  background: var(--primary-light);
+  transform: scale(1.05);
+}
+
+/* Hides the label visually but keeps it for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- 1. DESKTOP VIEW (Full-Sized & Visible) --- */
+.search-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Adds breathing room between the search bar and your nav links */
+  margin-right: 2rem;
+}
+
+/* Hide the magnifying glass toggle on large screens */
+.search-toggle {
+  display: none;
+}
+
+/* Force the search form to be visible inline */
+.search-content {
+  display: block;
+}
+
+/* --- 2. MOBILE VIEW (Collapsed & Toggleable) --- */
+@media (max-width: 1100px) {
+  /* Match the magnifying glass exactly to the theme-toggle button */
+  .search-toggle {
+    display: flex; /* Flex perfectly centers the emoji inside the circle */
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-heading);
+    box-shadow: var(--shadow-sm);
+    transition:
+      background-color 0.4s ease,
+      border-color 0.4s ease,
+      transform 0.6s ease-in-out;
+  }
+
+  /* Match the hover and focus state of the theme button (the lift and outline) */
+  .search-toggle:hover,
+  .search-toggle:focus {
+    border-color: var(--primary-light);
+    transform: translateY(-3px);
+    outline: 2px solid var(--primary-dark);
+    outline-offset: 2px;
+  }
+
+  /* Hide the search form by default and turn it into a popup box */
+  .search-content {
+    display: none;
+    position: absolute;
+    top: 130%;
+    left: auto;
+    right: 0;
+    background: var(--bg-1);
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1001;
+  }
+
+  /* The Active State (Triggered by your JavaScript) */
+  .search-dropdown.active .search-content {
+    display: block;
+    animation: fadeSlideUp 0.3s ease forwards;
+  }
 }

@@ -222,6 +222,13 @@
     </style>
   </head>
   <body>
+    <!-- subtle bar that shows the user how far they progressed through the page -->
+    <div id="progress-bar"></div>
+    <!--
+      i added a skip to content link for users using the tab fuction. because it will be
+      annoying for the user to tab through all the links in the nav to get to the content
+    -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
     <script>
       // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
@@ -274,7 +281,31 @@
           <button class="hamburger" aria-label="Open Mobile Menu">
             &#9776;
           </button>
-          <!--this is the mobile nav button linked toJS and CSS-->
+          <!--this is the mobile nav button linked to JS and CSS-->
+
+          <div class="search-dropdown">
+            <button
+              class="search-toggle"
+              aria-label="Toggle Search"
+              aria-expanded="false"
+              title="key search words across the page">
+              &#128269;
+            </button>
+
+            <div class="search-content">
+              <form id="mini-search" class="search-form">
+                <label for="search-input" class="sr-only"
+                  >Search keywords on this page</label
+                >
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Find on page..."
+                  required />
+                <button type="submit" aria-label="Submit Search">Go</button>
+              </form>
+            </div>
+          </div>
 
           <button
             id="theme-toggle"
@@ -306,148 +337,176 @@
     </header>
 
     <main>
-      <!-- Negotiation section: historical background and key events -->
-      <section id="negotiation" class="container">
-        <h2>Negotiation & Historical Context</h2>
-        <!-- Grid layout for content cards -->
-        <div class="bento-grid">
-          <!-- It's a div because it groups elements for CSS styling; it doesn't need to be read by screen readers. -->
-          <!-- Wide card: narrative + supporting image -->
-          <section class="card wide">
-            <h3>The Gathering at Lower Fort Garry</h3>
-            <p>
-              In <span class="highlight">August 1871</span>, over 1,000
-              Anishinaabe and Muskego-Cree people gathered at Lower Fort Garry
-              to negotiate with the Crown. The atmosphere was tense; the First
-              Nations leaders, including
-              <span class="highlight">Chief Mis-koo-kenew (Red Eagle)</span>,
-              were not merely "surrendering" land but seeking a framework for
-              coexistence and protection against the rapidly expanding waves of
-              settlement.
-            </p>
-            <!-- Image illustrating the negotiation site -->
-            <img
-              src="images/lower-fort-garry.jpg"
-              alt="The limestone walls of Lower Fort Garry, the 1871 negotiation site."
-              loading="lazy" />
-          </section>
-
-          <!-- Accent card: highlights a key treaty issue -->
-          <section class="card accent">
-            <h3>Terms & The "Outside Promises"</h3>
-            <p>
-              Under the official written terms of the Treaty, the Crown agreed
-              to set aside reserve lands calculated at
-              <span class="highlight">160 acres per family of five</span>.
-            </p>
-            <p>
-              However, a defining feature of Treaty 1 is the discrepancy between
-              these written terms and verbal agreements. First Nations leaders
-              only signed after receiving verbal "Outside Promises" for:
-            </p>
-            <ul>
-              <li>
-                Agricultural supplies such as ploughs and harrows to transition
-                economies.
-              </li>
-              <li>Livestock, including oxen and cows, for farming needs.</li>
-              <li>Distinguished clothing for Chiefs and their councillors.</li>
-            </ul>
-            <p>
-              These verbal promises were not formally added to the written
-              treaty until 1875.
-            </p>
-          </section>
-        </div>
-      </section>
-
-      <!-- Geography section: maps and territorial information -->
-      <section id="geography" class="layer-box">
-        <div class="container">
-          <h2>Geographic Boundaries</h2>
-          <!-- Two-column map layout -->
-          <section class="map-grid">
-            <div class="map-box">
-              <h3>Treaty 1 Territory</h3>
+      <div id="main-content">
+        <!-- Negotiation section: historical background and key events -->
+        <section id="negotiation" class="container">
+          <h2>Negotiation & Historical Context</h2>
+          <!-- Grid layout for content cards -->
+          <div class="bento-grid">
+            <!-- It's a div because it groups elements for CSS styling; it doesn't need to be read by screen readers. -->
+            <!-- Wide card: narrative + supporting image -->
+            <section class="card wide">
+              <h3>The Gathering at Lower Fort Garry</h3>
               <p>
-                The territory covers approximately
-                <span class="highlight">16,700 square miles</span>. Its borders
-                extend from the US-Canada border north to the shores of Lake
-                Winnipeg.
+                In <span class="highlight">August 1871</span>, over 1,000
+                Anishinaabe and Muskego-Cree people gathered at Lower Fort Garry
+                to negotiate with the Crown. The atmosphere was tense; the First
+                Nations leaders, including
+                <span class="highlight">Chief Mis-koo-kenew (Red Eagle)</span>,
+                were not merely "surrendering" land but seeking a framework for
+                coexistence and protection against the rapidly expanding waves
+                of settlement.
               </p>
-              <!-- Map image showing the exact treaty boundaries -->
+              <!-- Image illustrating the negotiation site -->
               <img
-                src="images/numbered-treaties-1-5-l.jpg"
-                alt="Map defining the 1871 Treaty 1 boundaries."
+                src="images/lower-fort-garry.jpg"
+                alt="The limestone walls of Lower Fort Garry, the 1871 negotiation site."
                 loading="lazy" />
-            </div>
-            <div class="map-box context">
-              <h3>Provincial Context</h3>
-              <p>
-                This map shows Treaty 1 in relation to the rest of Manitoba. It
-                is the geographic foundation upon which the city of Winnipeg was
-                built.
-              </p>
-              <!-- Contextual map of Manitoba with Treaty 1 highlighted -->
-              <img
-                src="images/treaty-one-map.png"
-                alt="Manitoba map with Treaty 1 highlighted in context."
-                loading="lazy" />
-            </div>
-          </section>
-        </div>
-      </section>
+            </section>
 
-      <!-- Communities section: lists participating First Nations -->
-      <section class="container">
-        <div
-          class="card"
-          style="background: var(--bg-1); border-color: var(--border)">
-          <!-- inline for invidual styling -->
-          <h2>Participating First Nations</h2>
-          <p style="margin-bottom: 2rem">
+            <!-- Accent card: highlights a key treaty issue -->
+            <section class="card accent">
+              <h3>Terms & The "Outside Promises"</h3>
+              <p>
+                Under the official written terms of the Treaty, the Crown agreed
+                to set aside reserve lands calculated at
+                <span class="highlight">160 acres per family of five</span>.
+              </p>
+              <p>
+                However, a defining feature of Treaty 1 is the discrepancy
+                between these written terms and verbal agreements. First Nations
+                leaders only signed after receiving verbal "Outside Promises"
+                for:
+              </p>
+              <ul>
+                <li>
+                  Agricultural supplies such as ploughs and harrows to
+                  transition economies.
+                </li>
+                <li>Livestock, including oxen and cows, for farming needs.</li>
+                <li>
+                  Distinguished clothing for Chiefs and their councillors.
+                </li>
+              </ul>
+              <p>
+                These verbal promises were not formally added to the written
+                treaty until 1875.
+              </p>
+            </section>
+          </div>
+        </section>
+
+        <!-- Geography section: maps and territorial information -->
+        <section id="geography" class="layer-box">
+          <div class="container">
+            <h2>Geographic Boundaries</h2>
+            <!-- Two-column map layout -->
+            <section class="map-grid">
+              <div class="map-box">
+                <h3>Treaty 1 Territory</h3>
+                <p>
+                  The territory covers approximately
+                  <span class="highlight">16,700 square miles</span>. Its
+                  borders extend from the
+                  <abbr title="United States">US</abbr>-Canada border north to
+                  the shores of Lake Winnipeg.
+                </p>
+                <!-- Map image showing the exact treaty boundaries -->
+                <img
+                  src="images/numbered-treaties-1-5-l.jpg"
+                  alt="Map defining the 1871 Treaty 1 boundaries."
+                  loading="lazy" />
+              </div>
+              <div class="map-box context">
+                <h3>Provincial Context</h3>
+                <p>
+                  This map shows Treaty 1 in relation to the rest of Manitoba.
+                  It is the geographic foundation upon which the city of
+                  Winnipeg was built.
+                </p>
+                <!-- Contextual map of Manitoba with Treaty 1 highlighted -->
+                <img
+                  src="images/treaty-one-map.png"
+                  alt="Manitoba map with Treaty 1 highlighted in context."
+                  loading="lazy" />
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Communities section: lists participating First Nations -->
+        <section class="container">
+          <div
+            class="card"
+            style="background: var(--bg-1); border-color: var(--border)">
             <!-- inline for invidual styling -->
-            The treaty was signed by leaders representing seven distinct
-            nations, primarily of
-            <span class="highlight">Anishinaabe (Ojibway)</span> and
-            <span class="highlight">Cree</span> descent.
-          </p>
-          <ul class="community-pill-list">
-            <li>Brokenhead Ojibway Nation</li>
-            <li>Long Plain First Nation</li>
-            <li>Peguis First Nation</li>
-            <li>Roseau River Anishinabe First Nation</li>
-            <li>Sagkeeng First Nation</li>
-            <li>Sandy Bay Ojibway First Nation</li>
-            <li>Swan Lake First Nation</li>
-          </ul>
-        </div>
-      </section>
+            <h2>Participating First Nations</h2>
+            <p style="margin-bottom: 2rem">
+              <!-- inline for invidual styling -->
+              The treaty was signed by leaders representing seven distinct
+              nations, primarily of
+              <span class="highlight">Anishinaabe (Ojibway)</span> and
+              <span class="highlight">Cree</span> descent.
+            </p>
+            <ul class="community-pill-list">
+              <li
+                title="Located northeast of Winnipeg along the banks of the Brokenhead River">
+                Brokenhead Ojibway Nation
+              </li>
+              <li
+                title="Operates the highly successful Madison Urban Reserve in Winnipeg">
+                Long Plain First Nation
+              </li>
+              <li
+                title="The largest First Nation community in Manitoba, historically the St. Peter's Band">
+                Peguis First Nation
+              </li>
+              <li
+                title="Situated in southern Manitoba near the United States border">
+                Roseau River Anishinabe First Nation
+              </li>
+              <li
+                title="Historically known as Fort Alexander, located at the mouth of the Winnipeg River">
+                Sagkeeng First Nation
+              </li>
+              <li
+                title="Located along the scenic western shores of Lake Manitoba">
+                Sandy Bay Ojibway First Nation
+              </li>
+              <li
+                title="Operates multiple land bases, including an urban reserve in Headingley">
+                Swan Lake First Nation
+              </li>
+            </ul>
+          </div>
+        </section>
 
-      <!-- Modern section: contemporary relevance and development -->
-      <section id="modern" class="container">
-        <h2>Treaty 1 in the 21st Century</h2>
-        <div class="map-grid">
-          <section class="card">
-            <h3>Naawi-Oodena Urban Reserve</h3>
-            <p>
-              The <span class="highlight">Kapyong Barracks</span> redevelopment
-              transforms former federal land into a massive multi-use urban
-              reserve, providing an economic engine for all seven Treaty 1
-              nations within Winnipeg.
-            </p>
-          </section>
-          <section class="card">
-            <h3>Economic Sovereignty</h3>
-            <p>
-              Today, implementation focuses on
-              <span class="highlight">Economic Development Zones</span>,
-              allowing Nations to exercise their Treaty rights to trade and land
-              use in a modern economy.
-            </p>
-          </section>
-        </div>
-      </section>
+        <!-- Modern section: contemporary relevance and development -->
+        <section id="modern" class="container">
+          <h2>Treaty 1 in the 21st Century</h2>
+          <div class="map-grid">
+            <section class="card">
+              <h3>Naawi-Oodena Urban Reserve</h3>
+              <p>
+                The
+                <span class="highlight">Kapyong Barracks</span> redevelopment
+                transforms former federal land into a massive multi-use urban
+                reserve, providing an economic engine for all seven Treaty 1
+                nations within Winnipeg.
+              </p>
+            </section>
+            <section class="card">
+              <h3>Economic Sovereignty</h3>
+              <p>
+                Today, implementation focuses on
+                <span class="highlight">Economic Development Zones</span>,
+                allowing Nations to exercise their Treaty rights to trade and
+                land use in a modern economy.
+              </p>
+            </section>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer>
@@ -457,7 +516,11 @@
             <div class="footer-top-left">
               <h4>Quick Links</h4>
               <ul class="footer-links-column">
-                <li><a href="index.html">Homepage Overview</a></li>
+                <li>
+                  <a href="index.html" id="active-footer-link"
+                    >Homepage Overview</a
+                  >
+                </li>
                 <li><a href="negotiation.html">History & Negotiations</a></li>
                 <li><a href="modern.html">Modern Implementation</a></li>
               </ul>
