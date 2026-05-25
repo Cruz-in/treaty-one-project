@@ -11,8 +11,33 @@
 <html lang="en">
   <!--Root HTML element; `lang` helps screen readers and search engines-->
   <head>
+    <!--
+      Standard HTML meta tags are designed to talk to search engines like Google
+      for SEO. But as a developer, I also have to think about distribution—how
+      users actually share the site with each other. By implementing the Open
+      Graph (OG) protocol here in the <head>, I took control of the off-site User
+      Experience (UX). Specifically, these OG tags control the process of "link
+      unfurling." Instead of a social media platform or messaging app scraping
+      random text and images from the DOM when a link is pasted, these tags
+      explicitly serve up predetermined assets (like og:image, og:title, and
+      og:description). The result is that even before a user clicks the link,
+      they get a polished, branded, rich-card preview of the Treaty 1 Education
+      Platform, ensuring consistency and professionalism across all external
+      platforms.
+    -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Treaty 1 Education Platform" />
+    <meta
+      property="og:description"
+      content="An educational student project exploring the historic and modern significance of the Winnipeg Treaty." />
+    <meta
+      property="og:url"
+      content="https://cruz-in.github.io/treaty-one-project/" />
+    <meta
+      property="og:image"
+      content="https://cruz-in.github.io/treaty-one-project//images/preview-card-homepage.png " />
+    <meta property="og:type" content="website" />
     <title>Treaty 1 - The Winnipeg Treaty Education</title>
 
     <link rel="icon" type="image/x-icon" href="/images/Medicine_Wheel.png" />
@@ -270,9 +295,7 @@
         <div class="particles"></div>
 
         <div class="hero-content">
-          <h1>
-            Treaty 1: <span class="title-break">The Winnipeg Treaty</span>
-          </h1>
+          <h1>Treaty 1:<span class="title-break">The Winnipeg Treaty</span></h1>
 
           <p>
             Educating youth on the foundation of Manitoba's first Numbered
