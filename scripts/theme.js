@@ -231,3 +231,18 @@ const observer = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll(".reveal-on-scroll").forEach((element) => {
   observer.observe(element);
 });
+
+// ======================================================================
+// 9. DEVELOPER SIGNATURE (CONSOLE EASTER EGG)
+// ======================================================================
+const signatureText =
+  "%c  Built by Cruz Plamondon | PTEC Web Dev 2026 \n Treaty 1 Education Platform ";
+const signatureStyle =
+  "font-size: 13px; font-weight: 600; color: #f1f5f9; background: #5a8bfd; padding: 10px; border-radius: 6px; line-height: 1.5;";
+console.log(signatureText, signatureStyle);
+console.log(
+  "Welcome to the 3,000 Lines of Code Club! I have poured my heart and soul into this project refining every single line of element!",
+);
+console.log(
+  "thank you for being an amazing teacher Mr.Hardman. I would never been able to achieve this mastercraft of websites without your support and help",
+);
