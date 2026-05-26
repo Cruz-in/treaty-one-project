@@ -62,7 +62,7 @@ body.dark-theme nav {
 
 /* This sets the overall width oof the entire vertical scrollbar */
 ::-webkit-scrollbar {
-  width: 16px; /* THE FIX: Removed the word 'auto' so the browser can read it! */
+  width: 16px;
 }
 
 /* This styles the track (the background the scrollbar sits on) */
@@ -89,7 +89,7 @@ body.dark-theme nav {
   opacity: 0;
   transform: translateY(60px);
 
-  /* THE FIX: Only one !important at the very end of the entire declaration */
+  /* Only one !important at the very end of the entire declaration */
   transition:
     opacity 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23),
     transform 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23) !important;
@@ -805,7 +805,7 @@ body.dark-theme .theme-icon {
 
 /* --- CUSTOM MORPHING HAMBURGER (DESKTOP STATE) --- */
 .hamburger {
-  display: none; /* THE FIX: Keeps it hidden on desktop screens! */
+  display: none; /* Keeps it hidden on desktop screens! */
   flex-direction: column;
   justify-content: space-around;
   width: 32px;
