@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTC
-  Date last modified: 2026/05/15
+  Date last modified: 2026/05/26
   Page: #3
 -->
 <!doctype html>
@@ -57,7 +57,7 @@
         margin: 0 auto;
       }
 
-      #h2-margin {
+      .h2-margin {
         margin-top: clamp(1.25rem, 4vw, 3.5rem);
       }
 
@@ -87,7 +87,7 @@
     </script>
     <header>
       <nav aria-label="Main Navigation">
-        <div class="nav-container">
+        <div class="nav-container reveal-on-scroll">
           <a href="index.html" class="logo" title="Return Home"
             >Treaty 1 Education</a
           >
@@ -125,8 +125,13 @@
           </ul>
           <!-- i used a p tag for Coming soon! because it just displays info and its not an fuctional link-->
 
-          <button class="hamburger" aria-label="Open Mobile Menu">
-            &#9776;
+          <button
+            class="hamburger"
+            aria-label="Toggle Mobile Menu"
+            aria-expanded="false">
+            <div class="burger-line top"></div>
+            <div class="burger-line middle"></div>
+            <div class="burger-line bottom"></div>
           </button>
           <!--this is the mobile nav button linked toJS and CSS-->
 
@@ -182,10 +187,10 @@
       </section>
 
       <div id="main-content">
-        <section class="container">
-          <h2 id="h2-margin">Urban Reserves & Economic Development</h2>
+        <section class="container reveal-on-scroll">
+          <h2 class="h2-margin">Urban Reserves & Economic Development</h2>
           <div class="bento-grid">
-            <section class="card wide">
+            <section class="card wide reveal-on-scroll">
               <h3>Naawi-Oodena (Kapyong Barracks)</h3>
               <p>
                 A monumental example of modern Treaty implementation is the
@@ -199,7 +204,7 @@
               </p>
             </section>
 
-            <section class="card accent">
+            <section class="card accent reveal-on-scroll">
               <h3>Long Plain Madison Reserve</h3>
               <p>
                 <img
@@ -231,10 +236,10 @@
         </section>
 
         <section class="layer-box">
-          <div class="container">
+          <div class="container reveal-on-scroll">
             <h2>Unique History & Moving Forward</h2>
             <div class="map-grid">
-              <div class="card">
+              <div class="card reveal-on-scroll">
                 <h3>What Makes Treaty 1 Different?</h3>
                 <p>
                   As the very first post-Confederation treaty, Treaty 1 set the
@@ -248,7 +253,7 @@
                 </p>
               </div>
 
-              <div class="card">
+              <div class="card reveal-on-scroll">
                 <h3>Living the Treaty Today</h3>
                 <p>
                   Treaties are not just history; they are
@@ -263,10 +268,10 @@
           </div>
         </section>
 
-        <section class="container">
-          <h2 id="h2-margin">The Nations & The Land Today</h2>
+        <section class="container reveal-on-scroll">
+          <h2 class="h2-margin">The Nations & The Land Today</h2>
           <div class="bento-grid">
-            <section class="card accent">
+            <section class="card accent reveal-on-scroll">
               <h3>The Seven Nations</h3>
               <p class="spaced-paragraph">
                 The <span class="highlight">Treaty One Nation</span> is a
@@ -314,7 +319,7 @@
               </ul>
             </section>
 
-            <section class="card wide">
+            <section class="card wide reveal-on-scroll">
               <h3>Commemorating the Treaty</h3>
               <p class="spaced-paragraph">
                 The physical presence of Treaty 1 is increasingly visible in
@@ -395,7 +400,7 @@
     </main>
 
     <footer>
-      <div class="container">
+      <div class="container reveal-on-scroll">
         <div class="footer-grid">
           <div class="footer-left">
             <div class="footer-top-left">

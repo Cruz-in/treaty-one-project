@@ -1,55 +1,66 @@
-// --- dark mode toggle and system defult
+// 1. DARK MODE TOGGLE & SYSTEM DEFAULT
+
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 const body = document.body;
 
-// 1. Check what the inline HTML script already decided and set the correct icon
-if (body.classList.contains("dark-theme")) {
-  themeIcon.innerHTML = "&#9728;"; // Sun icon for dark mode
-} else {
-  themeIcon.innerHTML = "&#127769;"; // Moon icon for light mode
+if (themeToggle && themeIcon) {
+  if (body.classList.contains("dark-theme")) {
+    themeIcon.innerHTML = "&#9728;"; // Sun icon
+  } else {
+    themeIcon.innerHTML = "&#127769;"; // Moon icon
+  }
+
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-theme");
+
+    if (body.classList.contains("dark-theme")) {
+      localStorage.setItem("theme", "dark");
+      themeIcon.innerHTML = "&#9728;";
+    } else {
+      localStorage.setItem("theme", "light");
+      themeIcon.innerHTML = "&#127769;";
+    }
+  });
 }
 
-// 2. The Toggle Button Logic
-themeToggle.addEventListener("click", () => {
-  body.classList.toggle("dark-theme");
+// 2. MOBILE HAMBURGER MENU
 
-  if (body.classList.contains("dark-theme")) {
-    localStorage.setItem("theme", "dark");
-    themeIcon.innerHTML = "&#9728;";
-  } else {
-    localStorage.setItem("theme", "light");
-    themeIcon.innerHTML = "&#127769;";
-  }
-});
-
-// --- hamburger button for mobile nav or smaller screens ---
-
+// ======================================================================
+// 2. MOBILE HAMBURGER MENU (WITH MORPH ANIMATION & ARIA)
+// ======================================================================
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 
-// 1. Toggle menu when the hamburger is clicked
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("nav-active");
-});
-// i did not like the instant snap when opening the menu. so i made the menu opacity zero so when pressed it changes the value to 100% and i made a transtion to make smooth.
+if (hamburger && navLinks) {
+  hamburger.addEventListener("click", () => {
+    // 1. Toggle the menu visibility
+    navLinks.classList.toggle("nav-active");
 
-// 2. Close menu when clicking outside of it
-document.addEventListener("click", (event) => {
-  // Check if the menu is currently open
-  const isMenuOpen = navLinks.classList.contains("nav-active");
+    // 2. Toggle the "X" morphing animation
+    hamburger.classList.toggle("is-active");
 
-  // Check if the click happened OUTSIDE the menu and OUTSIDE the hamburger button
-  const clickOutsideMenu = !navLinks.contains(event.target);
-  const clickOutsideHamburger = !hamburger.contains(event.target);
+    // 3. Accessibility: Tell screen readers if the menu is open or closed
+    const isExpanded = hamburger.classList.contains("is-active");
+    hamburger.setAttribute("aria-expanded", isExpanded);
+  });
 
-  // If the menu is open, and the user clicked away from it, it closes.
-  if (isMenuOpen && clickOutsideMenu && clickOutsideHamburger) {
-    navLinks.classList.remove("nav-active");
-  }
-});
-//i added this because the small things that users are used too. being forced click the button to close it can be annyoing.
-// ---- quiz logic ----
+  document.addEventListener("click", (event) => {
+    const isMenuOpen = navLinks.classList.contains("nav-active");
+    const clickOutsideMenu = !navLinks.contains(event.target);
+    const clickOutsideHamburger = !hamburger.contains(event.target);
+
+    // If they click away, close the menu AND reverse the "X" animation
+    if (isMenuOpen && clickOutsideMenu && clickOutsideHamburger) {
+      navLinks.classList.remove("nav-active");
+      hamburger.classList.remove("is-active");
+      hamburger.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+// 3. SCALABLE QUIZ LOGIC
+
 function setupQuiz(formId, resultId) {
   const form = document.getElementById(formId);
   const resultContainer = document.getElementById(resultId);
@@ -59,17 +70,39 @@ function setupQuiz(formId, resultId) {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const q1 = form.querySelector('input[name="q1"]:checked');
-    const q2 = form.querySelector('input[name="q2"]:checked');
+    //   I use the spread operator [...] to convert the raw NodeList of HTML inputs
+    //   into a standard JavaScript Array. Then, we use the .reduce() method to automatically
+    //   group the radio buttons together based on their 'name' attribute (q1, q2, etc.) so we
+    //   don't have to hardcode them!
+    const questions = [...form.querySelectorAll('input[type="radio"]')].reduce(
+      (groups, input) => {
+        groups[input.name] = groups[input.name] || [];
+        groups[input.name].push(input);
+        return groups;
+      },
+      {},
+    );
 
-    if (!q1 || !q2) {
+    /*
+      .every() checks if ALL question groups meet a condition. 
+      .some() checks if AT LEAST ONE radio button in that group was checked by the user.
+    */
+    const allAnswered = Object.values(questions).every((group) =>
+      group.some((input) => input.checked),
+    );
+
+    if (!allAnswered) {
       resultContainer.textContent =
         "Please answer all questions before submitting.";
       resultContainer.className = "quiz-result result-fail";
       return;
     }
 
-    if (q1.value === "correct" && q2.value === "correct") {
+    const allCorrect = Object.values(questions).every(
+      (group) => group.find((input) => input.checked)?.value === "correct",
+    );
+
+    if (allCorrect) {
       resultContainer.textContent =
         "100% - Great job! You know your Treaty 1 facts.";
       resultContainer.className = "quiz-result result-pass";
@@ -84,45 +117,43 @@ function setupQuiz(formId, resultId) {
 setupQuiz("history-quiz", "history-result");
 setupQuiz("modern-quiz", "modern-result");
 
-// --- "COMING SOON" SHAKE ANIMATION FOR MOBILE ---
+// 4. "COMING SOON" SHAKE ANIMATION FOR MOBILE
+
 const wipElements = document.querySelectorAll(".work-in-progress");
 
 wipElements.forEach((element) => {
   element.addEventListener("click", function () {
-    // Add the shaking class
     this.classList.add("is-shaking");
-
-    // Remove the class after 500ms so it can be clicked/shaken again
     setTimeout(() => {
       this.classList.remove("is-shaking");
     }, 500);
   });
 });
 
-// --- SMART BACK TO TOP BUTTON ---
+// 5. SMART BACK TO TOP BUTTON
+
 const backToTopBtn = document.querySelector(".back-to-top");
 
-window.addEventListener("scroll", () => {
-  // If the user scrolls down more than 300 pixels, show the button
-  if (window.scrollY > 300) {
-    backToTopBtn.classList.add("show-btn");
-  } else {
-    // Otherwise, hide it
-    backToTopBtn.classList.remove("show-btn");
-  }
-});
+if (backToTopBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show-btn");
+    } else {
+      backToTopBtn.classList.remove("show-btn");
+    }
+  });
+}
 
-// --- BUTTERY SMOOTH VERTICAL PROGRESS BAR ---
+// 6. BUTTERY SMOOTH VERTICAL PROGRESS BAR
+
 const progressBar = document.getElementById("progress-bar");
 
 if (progressBar) {
-  let ticking = false; // The tollbooth to prevent math overload
+  let ticking = false;
 
   window.addEventListener("scroll", () => {
-    // If a frame isn't already waiting to paint, request one
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        // 1. Calculate the math
         const scrollTop = document.documentElement.scrollTop;
         const scrollHeight =
           document.documentElement.scrollHeight -
@@ -132,35 +163,27 @@ if (progressBar) {
           scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         scrollPercentage = Math.max(0, Math.min(100, scrollPercentage));
 
-        // 2. Apply the visual update
         progressBar.style.height = scrollPercentage + "%";
-
-        // 3. Open the gate for the next frame
         ticking = false;
       });
-
-      // Lock the gate until the frame is drawn
       ticking = true;
     }
   });
 }
 
-// --- PART 1: OPENING AND CLOSING THE MAGNIFYING GLASS ---
+// 7. SEARCH BAR LOGIC
+
 const searchDropdown = document.querySelector(".search-dropdown");
 const searchToggleBtn = document.querySelector(".search-toggle");
 
 if (searchDropdown && searchToggleBtn) {
-  // Toggle the menu when clicking the magnifying glass
   searchToggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevents the click from instantly closing it
+    e.stopPropagation();
     searchDropdown.classList.toggle("active");
-
-    // Updates accessibility tag
     const isExpanded = searchDropdown.classList.contains("active");
     searchToggleBtn.setAttribute("aria-expanded", isExpanded);
   });
 
-  // Close the search bar if the user clicks anywhere else on the screen
   document.addEventListener("click", (e) => {
     if (!searchDropdown.contains(e.target)) {
       searchDropdown.classList.remove("active");
@@ -169,18 +192,18 @@ if (searchDropdown && searchToggleBtn) {
   });
 }
 
-// --- PART 2: THE MOBILE-SAFE SEARCH ACTION ---
 const searchForm = document.getElementById("mini-search");
 
 if (searchForm) {
   searchForm.addEventListener("submit", function (e) {
+    /*
+      EXPLANATION: Prevents the default HTML form behavior which automatically 
+      refreshes the entire webpage when a user clicks the submit button.
+    */
     e.preventDefault();
     const query = document.getElementById("search-input").value;
-
-    // 1. Try the desktop native find feature
     const found = window.find(query);
 
-    // 2. The Mobile Fallback: If window.find is blocked or finds nothing
     if (!found) {
       alert(
         `Could not find "${query}". \n\nPro Tip: Mobile browsers block custom search bars! Please use the "Find on Page" tool located in your phone's browser menu.`,
@@ -188,3 +211,23 @@ if (searchForm) {
     }
   });
 }
+
+// 8. INTERSECTION OBSERVER (SCROLL REVEAL)
+
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll(".reveal-on-scroll").forEach((element) => {
+  observer.observe(element);
+});

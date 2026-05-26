@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTEC
-  Date last modified: 2026/05/15
+  Date last modified: 2026/05/26
   Page: #2
 -->
 
@@ -68,6 +68,10 @@
           3.5rem
         ); /* The spacing varies across different devices, so this balances it. */
       }
+
+      #margin-top {
+        margin-top: 2rem;
+      }
     </style>
   </head>
   <body>
@@ -125,8 +129,13 @@
           </ul>
           <!-- i used a p tag for Coming soon! because it just displays info and its not an fuctional link-->
 
-          <button class="hamburger" aria-label="Open Mobile Menu">
-            &#9776;
+          <button
+            class="hamburger"
+            aria-label="Toggle Mobile Menu"
+            aria-expanded="false">
+            <div class="burger-line top"></div>
+            <div class="burger-line middle"></div>
+            <div class="burger-line bottom"></div>
           </button>
           <!--this is the mobile nav button linked toJS and CSS-->
 
@@ -182,7 +191,7 @@
         <section class="container">
           <h2 id="h2-margin">Clash of Perspectives</h2>
           <div class="bento-grid">
-            <section class="card wide">
+            <section class="card wide reveal-on-scroll">
               <h3>Who Was at the Table?</h3>
               <p class="spaced-paragraph">
                 On <span class="highlight">July 25, 1871</span>, thousands of
@@ -202,7 +211,7 @@
                   >nation-to-nation peace and sharing agreement</span
                 >.
               </p>
-              <h3 style="margin-top: 2rem">8-Day Stalemate</h3>
+              <h3 id="margin-top">8-Day Stalemate</h3>
               <p>
                 The negotiations did not go smoothly. For the first several
                 days, First Nations leaders completely rejected the Crown's
@@ -213,7 +222,7 @@
               </p>
             </section>
 
-            <section class="card accent">
+            <section class="card accent reveal-on-scroll">
               <h3>Key Figures</h3>
               <ul>
                 <li>
@@ -240,7 +249,7 @@
           <div class="container">
             <h2>"Outside Promises"</h2>
             <div class="map-grid">
-              <div class="card">
+              <div class="card reveal-on-scroll">
                 <h3>The Disconnect</h3>
                 <p>
                   A massive point of friction occurred because the Crown's
@@ -252,7 +261,7 @@
                   transition their economies.
                 </p>
               </div>
-              <div class="card">
+              <div class="card reveal-on-scroll">
                 <h3>The Aftermath</h3>
                 <p>
                   When the formal written document was finalized on
@@ -271,7 +280,7 @@
           <div class="container">
             <h2 id="h2-margin">Mapping the Territory</h2>
             <div class="map-grid">
-              <div class="map-box">
+              <div class="map-box reveal-on-scroll">
                 <h3>Treaty 1 Boundaries</h3>
                 <p class="spaced-paragraph">
                   The specific boundaries of Treaty 1 cover much of southern
@@ -291,7 +300,7 @@
                 </p>
               </div>
 
-              <div class="map-box">
+              <div class="map-box reveal-on-scroll">
                 <h3>Regional Context</h3>
                 <p class="spaced-paragraph">
                   To understand the scale of Treaty 1, you have to look at it

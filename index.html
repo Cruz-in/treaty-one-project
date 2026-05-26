@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTEC
-  Date last modified: 2026/05/15
+  Date last modified: 2026/05/26
   Page: #1
 -->
 <!doctype html>
@@ -46,7 +46,7 @@
       content="https://cruz-in.github.io/treaty-one-project/" />
     <meta
       property="og:image"
-      content="https://cruz-in.github.io/treaty-one-project//images/preview-card-homepage.png " />
+      content="https://cruz-in.github.io/treaty-one-project/images/preview-card-homepage.png " />
     <meta property="og:type" content="website" />
 
     <title>Treaty 1 - The Winnipeg Treaty Education</title>
@@ -163,7 +163,7 @@
         font-weight: 600;
       }
 
-      .community-pill :hover,
+      .community-pill:hover,
       /*
         :focus — shows the element that currently receives keyboard/programmatic focus.
         Important for keyboard accessibility (Tab navigation). Prefer :focus-visible
@@ -230,6 +230,15 @@
       .title-break {
         display: block;
       }
+
+      #div-background {
+        background: var(--bg-1);
+        border-color: var(--border);
+      }
+
+      .margin-bottom {
+        margin-bottom: 2rem;
+      }
     </style>
   </head>
   <body>
@@ -289,8 +298,13 @@
           </ul>
           <!-- i used a p tag for Coming soon! because it just displays info and its not an fuctional link-->
 
-          <button class="hamburger" aria-label="Open Mobile Menu">
-            &#9776;
+          <button
+            class="hamburger"
+            aria-label="Toggle Mobile Menu"
+            aria-expanded="false">
+            <div class="burger-line top"></div>
+            <div class="burger-line middle"></div>
+            <div class="burger-line bottom"></div>
           </button>
           <!--this is the mobile nav button linked to JS and CSS-->
 
@@ -357,7 +371,7 @@
           <div class="bento-grid">
             <!-- It's a div because it groups elements for CSS styling; it doesn't need to be read by screen readers. -->
             <!-- Wide card: narrative + supporting image -->
-            <section class="card wide">
+            <section class="card wide reveal-on-scroll">
               <h3>The Gathering at Lower Fort Garry</h3>
               <p>
                 In <span class="highlight">August 1871</span>, over 1,000
@@ -377,7 +391,7 @@
             </section>
 
             <!-- Accent card: highlights a key treaty issue -->
-            <section class="card accent">
+            <section class="card accent reveal-on-scroll">
               <h3>Terms & The "Outside Promises"</h3>
               <p>
                 Under the official written terms of the Treaty, the Crown agreed
@@ -414,7 +428,7 @@
             <h2>Geographic Boundaries</h2>
             <!-- Two-column map layout -->
             <section class="map-grid">
-              <div class="map-box">
+              <div class="map-box reveal-on-scroll">
                 <h3>Treaty 1 Territory</h3>
                 <p>
                   The territory covers approximately
@@ -429,7 +443,7 @@
                   alt="Map defining the 1871 Treaty 1 boundaries."
                   loading="lazy" />
               </div>
-              <div class="map-box context">
+              <div class="map-box context reveal-on-scroll">
                 <h3>Provincial Context</h3>
                 <p>
                   This map shows Treaty 1 in relation to the rest of Manitoba.
@@ -448,13 +462,10 @@
 
         <!-- Communities section: lists participating First Nations -->
         <section class="container">
-          <div
-            class="card"
-            style="background: var(--bg-1); border-color: var(--border)">
+          <div class="card reveal-on-scroll" id="background">
             <!-- inline for invidual styling -->
             <h2>Participating First Nations</h2>
-            <p style="margin-bottom: 2rem">
-              <!-- inline for invidual styling -->
+            <p class="margin-bottom">
               The treaty was signed by leaders representing seven distinct
               nations, primarily of
               <span class="highlight">Anishinaabe (Ojibway)</span> and
@@ -497,7 +508,7 @@
         <section id="modern" class="container">
           <h2>Treaty 1 in the 21st Century</h2>
           <div class="map-grid">
-            <section class="card">
+            <section class="card reveal-on-scroll">
               <h3>Naawi-Oodena Urban Reserve</h3>
               <p>
                 The
@@ -507,7 +518,7 @@
                 nations within Winnipeg.
               </p>
             </section>
-            <section class="card">
+            <section class="card reveal-on-scroll">
               <h3>Economic Sovereignty</h3>
               <p>
                 Today, implementation focuses on
