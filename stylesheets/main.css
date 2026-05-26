@@ -60,7 +60,7 @@ body.dark-theme nav {
 
 /* --- CUSTOM SCROLLBAR --- */
 
-/* This sets the overall width of the entire vertical scrollbar */
+/* This sets the overall width oof the entire vertical scrollbar */
 ::-webkit-scrollbar {
   width: 16px; /* THE FIX: Removed the word 'auto' so the browser can read it! */
 }
@@ -650,6 +650,37 @@ a[target="_blank"]::after {
   color: var(
     --copyright-bar
   ); /* changed the color for a WCAG AAA contrast ratio*/
+}
+
+/* 1. Unvisited link state */
+.footer-links-column a:link {
+  color: var(--text-body);
+}
+/* 2. Visited link state (subtle change so users know they've clicked it before) */
+.footer-links-column a:visited {
+  color: #828282;
+}
+/* 3. Focus state for keyboard accessibility */
+.footer-links-column a:focus {
+  outline: 2px dashed var(--primary-light);
+  outline-offset: 4px;
+}
+/* 4. Hover state for mouse users */
+.footer-links-column a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* 5. Active state (the exacso t millisecond the user clicks down) */
+.footer-links-column a:active {
+  transform: scale(0.95); /* Slight click 'squish' effect */
+  color: var(--primary-light);
+}
+
+.footer-links-column a[aria-current="page"] {
+  color: var(--primary-light);
+  font-weight: 600; /* Makes it pop a bit more */
+  text-decoration: none; /* Removes the underline so it stands out from the rest */
 }
 
 /* 8. Mobile Breakpoint (Stacks everything neatly on small screens) */
