@@ -62,10 +62,10 @@ body.dark-theme nav {
 
 /* This sets the overall width of the entire vertical scrollbar */
 ::-webkit-scrollbar {
-  width: auto 16px;
+  width: 16px; /* THE FIX: Removed the word 'auto' so the browser can read it! */
 }
 
-/* This styles the track (the background the scrollbar sits on) using your deepest background variable */
+/* This styles the track (the background the scrollbar sits on) */
 ::-webkit-scrollbar-track {
   background: var(--bg-0);
 }
