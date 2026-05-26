@@ -24,11 +24,8 @@ if (themeToggle && themeIcon) {
   });
 }
 
-// 2. MOBILE HAMBURGER MENU
-
-// ======================================================================
 // 2. MOBILE HAMBURGER MENU (WITH MORPH ANIMATION & ARIA)
-// ======================================================================
+
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 
@@ -216,7 +213,7 @@ if (searchForm) {
 
 const observerOptions = {
   root: null,
-  rootMargin: "0px",
+  rootMargin: "0px 0px -100px 0px",
 };
 
 const observer = new IntersectionObserver((entries, observer) => {
@@ -232,9 +229,7 @@ document.querySelectorAll(".reveal-on-scroll").forEach((element) => {
   observer.observe(element);
 });
 
-// ======================================================================
 // 9. DEVELOPER SIGNATURE (CONSOLE EASTER EGG)
-// ======================================================================
 const signatureText =
   "%c  Built by Cruz Plamondon | PTEC Web Dev 2026 \n Treaty 1 Education Platform ";
 const signatureStyle =

@@ -112,6 +112,13 @@ body.dark-theme nav {
   transition-delay: 0.6s !important;
 }
 
+/* 
+  the nth child css elements work by choosing the parent element like
+  container and making the child sections like bento-grid, nth 1 and
+  making card acent nth 2. there is a delay between each child, making
+  them appear side by side as you scroll downwards.
+*/
+
 /* Universal selector resets default browser spacing to 0 */
 * {
   margin: 0;
@@ -163,6 +170,12 @@ body {
   color: var(--text-body); /* Applies the main text colour */
   font-size: 1.6rem; /* Minimum font size (16px) */
   overflow-x: hidden; /* Prevents horizontal scrolling bugs */
+}
+
+main {
+  /* Forces the main content to be at least the height of the whole screen, 
+     minus roughly 200px to account for the header and footer */
+  min-height: calc(100vh - 200px);
 }
 
 body,
@@ -826,21 +839,24 @@ body.dark-theme .theme-icon {
   background-color: var(--text-heading);
   border-radius: 10px;
   transition: all 0.3s linear;
-  transform-origin: 1px; /* Anchors the spin to the left edge */
+  transform-origin: center !important;
 }
 
 /* --- THE 'X' ACTIVE STATE --- */
+/* Pushes the top line down 8 pixels into the center, then rotates it */
 .hamburger.is-active .top {
-  transform: rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
+/* Fades the middle line out and slides it away */
 .hamburger.is-active .middle {
   opacity: 0;
   transform: translateX(20px);
 }
 
+/* Pushes the bottom line up 8 pixels into the center, then rotates it */
 .hamburger.is-active .bottom {
-  transform: rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* --- MOBILE BREAKPOINT --- */
@@ -965,6 +981,9 @@ body.dark-theme .theme-icon {
   padding: 1rem;
   border-radius: 4px;
   display: none;
+  /* made it display: none because when JS sees
+  the user selecting both opstions, it changes
+  the property to defult */
 }
 
 /* Light Mode Result Colors */
