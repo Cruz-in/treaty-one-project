@@ -24,7 +24,7 @@
   --highlight-selector: #823b08d0;
   --highlight-text: #f1f5f9;
   --scrollbar-thumb: #475569;
-  --hambuger-hover: #823b08;
+  --hamburger-hover: #ff9245;
   /* PRIMARY & ACCENT COLOURS (Updated for 7:1 Contrast Ratio) */
   --primary-dark: #823b08; /* Deep rust brown. Draws attention to interactive elements. Passes 7:1 contrast on white. */
   --primary-light: #ce681a; /* Lighter orange. Used for subtle accents and highlights. */
@@ -839,31 +839,55 @@ body.dark-theme .theme-icon {
   height: 3px;
   background-color: var(--text-heading);
   border-radius: 10px;
-  transition: all 0.3s linear;
-  transform-origin: center !important;
-  border: var(--text-heading);
+  border: 2px solid transparent;
+  transform-origin: center;
+
+  /* THE FIX: This transition forces the smooth morph in BOTH directions */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.hamburger:hover .burger-line {
-  transition: 0.2s linear;
-  box-shadow: 0px 2px 2px var(--hambuger-hover);
-  border: solid 2px var(--text-heading);
-  will-change: auto;
+/* --- 2. THE WAVE ANIMATION (USING TRANSLATE) --- */
+@keyframes waveBob {
+  0%,
+  100% {
+    /* THE FIX: We use the standalone 'translate' property instead of 'transform' 
+       so it doesn't fight with the "X" rotation! */
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -2px; /* Subtle 2px float */
+  }
 }
 
-/* --- THE 'X' ACTIVE STATE --- */
-/* Pushes the top line down 8 pixels into the center, then rotates it */
+/* Triggers the animation on all lines when hovered */
+.hamburger:not(.is-active):hover .burger-line {
+  animation: waveBob 1.5s ease-in-out infinite;
+  box-shadow: 0px 0px 6px var(--hamburger-hover);
+}
+
+/* Staggers the start times */
+.hamburger:not(.is-active):hover .top {
+  animation-delay: 0s;
+}
+
+.hamburger:not(.is-active):hover .middle {
+  animation-delay: 0.2s;
+}
+
+.hamburger:not(.is-active):hover .bottom {
+  animation-delay: 0.4s;
+}
+
+/* --- 3. THE 'X' ACTIVE STATE --- */
 .hamburger.is-active .top {
   transform: translateY(8px) rotate(45deg);
 }
 
-/* Fades the middle line out and slides it away */
 .hamburger.is-active .middle {
   opacity: 0;
   transform: translateX(20px);
 }
 
-/* Pushes the bottom line up 8 pixels into the center, then rotates it */
 .hamburger.is-active .bottom {
   transform: translateY(-8px) rotate(-45deg);
 }
