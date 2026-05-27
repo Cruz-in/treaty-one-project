@@ -24,6 +24,7 @@
   --highlight-selector: #823b08d0;
   --highlight-text: #f1f5f9;
   --scrollbar-thumb: #475569;
+  --hambuger-hover: #823b08;
   /* PRIMARY & ACCENT COLOURS (Updated for 7:1 Contrast Ratio) */
   --primary-dark: #823b08; /* Deep rust brown. Draws attention to interactive elements. Passes 7:1 contrast on white. */
   --primary-light: #ce681a; /* Lighter orange. Used for subtle accents and highlights. */
@@ -840,6 +841,14 @@ body.dark-theme .theme-icon {
   border-radius: 10px;
   transition: all 0.3s linear;
   transform-origin: center !important;
+  border: var(--text-heading);
+}
+
+.hamburger:hover .burger-line {
+  transition: 0.2s linear;
+  box-shadow: 0px 2px 2px var(--hambuger-hover);
+  border: solid 2px var(--text-heading);
+  will-change: auto;
 }
 
 /* --- THE 'X' ACTIVE STATE --- */
