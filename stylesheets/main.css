@@ -901,7 +901,7 @@ body.dark-theme .theme-icon {
 }
 
 /* --- MOBILE BREAKPOINT --- */
-@media (max-width: 868px) {
+@media (max-width: 940px) {
   /* 1. Show the hamburger button */
   .hamburger {
     display: flex; /* Must be flex so the three lines align properly! */
@@ -910,470 +910,441 @@ body.dark-theme .theme-icon {
   /* 2. THE UPGRADED PREMIUM MENU DRAWER */
   .nav-links {
     display: flex;
-    position: fixed; /* Pins it to the user's screen, not the website header */
+    position: fixed;
     top: 0;
-    right: 0; /* Anchors it to the right side of the screen */
-    height: 100vh; /* Takes up 100% of the screen height */
-    width: 75vw; /* Takes up 75% of the screen width */
-    max-width: 350px; /* Ensures it doesn't get too wide on tablets */
-    background: var(--bg-1);
+    right: 0;
+    height: 100vh;
+    width: 75vw;
+    max-width: 350px;
     flex-direction: column;
-    align-items: flex-start; /* Aligns links cleanly to the left */
-
-    /* Massive top padding so the links sit underneath your "X" close button */
+    align-items: flex-start;
     padding: 10rem 3rem 3rem;
     margin: 0;
     border-left: 1px solid var(--border);
-    box-shadow: -15px 0 30px rgba(0, 0, 0, 0.15); /* Casts a shadow onto the main website */
-    background: rgba(
-      241,
-      245,
-      249,
-      0.85
-    ); /* Semi-transparent light background */
+    box-shadow: -15px 0 30px rgba(0, 0, 0, 0.15);
+
+    /* Frosted Glass */
+    background: rgba(241, 245, 249, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 
     /* The Side-Slide Animation */
-    transform: translateX(
-      100%
-    ); /* Hides the drawer completely off-screen to the right */
+    transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1004; /* Keeps the drawer underneath the Hamburger "X" button */
+    z-index: 1004;
+  }
+
+  /* Dark mode override for the glass drawer */
+  body.dark-theme .nav-links {
+    background: rgba(31, 31, 31, 0.85);
+  }
+
+  .nav-links a,
+  .nav-links .work-in-progress {
+    font-size: 2.4rem; /* Only turns massive on mobile screens */
+    display: inline-block;
+    padding: 0.5rem 0;
   }
 
   /* 3. The Active (Open) State */
   .nav-links.nav-active {
-    transform: translateX(0); /* Slides it beautifully into view */
+    transform: translateX(0);
   }
 
-  /* 4. Make the mobile links larger and spaced out for easy thumb-tapping */
+  /* 4. List Item Spacing & Default Waterfall State */
   .nav-links li {
     margin-bottom: 2.5rem;
     width: 100%;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* 2. Clean Mobile Text Links (Restored Classic Look) */
-  .nav-links a,
-  .nav-links .work-in-progress {
-    font-size: 2.4rem; /* Big enough for thumbs */
-    display: inline-block; /* Keeps the underline hugging the text */
-    padding: 0.5rem 0; /* A little breathing room */
+  /* 5. Clean Mobile Text Links (Restored Classic Look) */
+  .nav-links li a,
+  .nav-links li .work-in-progress {
+    font-size: 2.4rem !important;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
   }
 
-  /* 3. The Active Page Indicator (Classic Underline) */
+  /* 6. The Active Page Indicator (Classic Underline) */
   .nav-links a[aria-current="page"] {
     background-color: transparent;
     border-bottom: 3px solid var(--primary-dark);
     box-shadow: none;
   }
 
-  /* 3. The Hover/Tap State (Lifts off the drawer) */
-  .nav-links a:hover,
-  .nav-links a:focus {  
-    background-color: var(--bg-2);
-    box-shadow: var(--shadow-sm);
-    transform: translateX(10px); /* Slides slightly to the right */
-    color: var(--primary-dark);
-  }
-
-  /* --- THE KILL SWITCH --- */
-  /* Forces the wave animation to instantly stop when the menu is open */
-  .hamburger.is-active .burger-line {
-  animation: none !important;
-  }
-
-  /* Dark mode override for the glass drawer */
-  body.dark-theme .nav-links {
-    background: rgba(31, 31, 31, 0.85); /* Semi-transparent dark background */
-  }
-
-  /* 4. The Active Page Indicator (Restored OG Underline) */
-  .nav-links a[aria-current="page"] {
-    background-color: transparent;
-    border-left: none; /* Removes the side bar */
-    border-bottom: 3px solid var(--primary-dark); /* Brings back the bottom line */
-    box-shadow: none;
-    display: inline-block; /* Hugs the text so the line doesn't stretch across the whole screen! */
-  }
-
-  /* 5. Staggered Waterfall Load */
-  /* Hide the list items by default and push them to the right */
-  .nav-links li {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* When the drawer gets the 'nav-active' class, reveal them! */
+  /* 7. Staggered Waterfall Load Trigger */
   .nav-links.nav-active li {
     opacity: 1;
     transform: translateX(0);
   }
 
-  /* Stagger the timing so they load 1-2-3-4 */
-  .nav-links.nav-active li:nth-child(1) { transition-delay: 0.1s; }
-  .nav-links.nav-active li:nth-child(2) { transition-delay: 0.2s; }
-  .nav-links.nav-active li:nth-child(3) { transition-delay: 0.3s; }
-  .nav-links.nav-active li:nth-child(4) { transition-delay: 0.4s; }
+  .nav-links.nav-active li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav-links.nav-active li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav-links.nav-active li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .nav-links.nav-active li:nth-child(4) {
+    transition-delay: 0.4s;
+  }
 }
 
-  /* 4. The Active Page Indicator (A sleek side-bar instead of an underline) */
-  .nav-links a[aria-current="page"] {
-    background-color: var(--bg-2);
-    border-bottom: none; /* Kills the old underline */
-    border-left: 4px solid var(--primary-dark); /* Adds a premium side-highlight */
-    box-shadow: var(--shadow-sm);
-  }
+/* quiz section styling */
+.quiz-section {
+  background-color: #f4f4f4;
+  color: #121212;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  .nav-links a,
-  .nav-links .work-in-progress {
-    font-size: 2.4rem; /* Big, premium typography */
-    display: block;
-  }
+.quiz-form fieldset {
+  border: none;
+  margin-bottom: 2rem;
+  padding: 0;
+}
 
-  /* quiz section styling */
-  .quiz-section {
-    background-color: #f4f4f4;
-    color: #121212;
-    padding: 2.5rem;
-    margin: 3rem 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.quiz-form legend {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primary-light);
+}
 
-  .quiz-form fieldset {
-    border: none;
-    margin-bottom: 2rem;
-    padding: 0;
-  }
+.quiz-form label {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
 
-  .quiz-form legend {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--primary-light);
-  }
+.quiz-form label:hover {
+  background-color: #e0e0e0;
+  transform: translateX(8px);
+}
 
-  .quiz-form label {
-    display: block;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition:
-      background-color 0.3s ease,
-      transform 0.2s ease;
-  }
+.quiz-form input[type="radio"] {
+  margin-right: 12px;
+  transform: scale(1.2);
+}
 
-  .quiz-form label:hover {
-    background-color: #e0e0e0;
-    transform: translateX(8px);
-  }
+.quiz-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
 
-  .quiz-form input[type="radio"] {
-    margin-right: 12px;
-    transform: scale(1.2);
-  }
+.quiz-btn:hover {
+  background-color: var(--primary-light);
+  transition: var(--transition);
+}
 
-  .quiz-btn {
-    padding: 0.8rem 1.5rem;
-    background-color: var(--primary-dark);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color var(--transition);
-  }
-
-  .quiz-btn:hover {
-    background-color: var(--primary-light);
-    transition: var(--transition);
-  }
-
-  .quiz-result {
-    margin-top: 1.5rem;
-    font-weight: bold;
-    font-size: 1.1rem;
-    padding: 1rem;
-    border-radius: 4px;
-    display: none;
-    /* made it display: none because when JS sees
+.quiz-result {
+  margin-top: 1.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  display: none;
+  /* made it display: none because when JS sees
   the user selecting both opstions, it changes
   the property to defult */
+}
+
+/* Light Mode Result Colors */
+.result-pass {
+  display: block;
+  background-color: #d8f3dc;
+  color: #081c15;
+  border: 1px solid #74c69d;
+}
+
+.result-fail {
+  display: block;
+  background-color: #ffcad4;
+  color: #590d22;
+  border: 1px solid #ff8fa3;
+}
+
+/* dark mode */
+body.dark-theme .quiz-section {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .quiz-form legend {
+  color: var(--primary-dark);
+}
+
+body.dark-theme .quiz-form label {
+  background-color: #2d2d2d;
+  border: 1px solid #444444;
+}
+
+body.dark-theme .quiz-form label:hover {
+  background-color: #3d3d3d;
+}
+
+body.dark-theme .quiz-btn {
+  background-color: var(--primary-dark);
+}
+
+body.dark-theme .quiz-btn:hover {
+  background-color: var(--primary-light);
+}
+
+body.dark-theme .result-pass {
+  background-color: #1b4332;
+  color: #95d5b2;
+  border-color: #2d6a4f;
+}
+
+body.dark-theme .result-fail {
+  background-color: #4a154b;
+  color: #ffb3c1;
+  border-color: #7a2048;
+}
+
+/* progress bar */
+
+/* Pushes the website content slightly right so it doesn't clip under the bar */
+body {
+  padding-left: 10px;
+}
+
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1rem; /* Sleek vertical line width */
+  height: 0%; /* Starts at zero, JS will grow this down the screen */
+  /* Gradient flowing smoothly from top to bottom */
+  background: linear-gradient(
+    to bottom,
+    var(--primary-light),
+    var(--primary-dark)
+  );
+  z-index: 9999; /* Keeps it floating above all layers */
+  will-change: height;
+  /* Warns the browser this will animate, offloading it to the GPU */
+}
+
+/* --- PRINT STYLESHEET --- */
+
+/* Formats the page for physical printing or PDF saving to save ink */
+@media print {
+  /* Hides UI elements that are useless on a piece of paper */
+  nav,
+  footer,
+  .theme-toggle,
+  .hamburger,
+  .back-to-top,
+  .particles,
+  .quiz-section {
+    display: none !important;
   }
 
-  /* Light Mode Result Colors */
-  .result-pass {
-    display: block;
-    background-color: #d8f3dc;
-    color: #081c15;
-    border: 1px solid #74c69d;
+  /* Strips out backgrounds and shadows, forcing black text on white paper */
+  body,
+  .card,
+  .map-box,
+  .layer-box,
+  .bento-grid {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: none !important;
+    display: block; /* prevents grid breaks on paper */
+    margin-bottom: 2rem;
   }
 
-  .result-fail {
-    display: block;
-    background-color: #ffcad4;
-    color: #590d22;
-    border: 1px solid #ff8fa3;
+  /* Pro-tip: This reveals the actual URL of your links next to the text! */
+  .footer-links-column a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #333;
   }
+}
 
-  /* dark mode */
-  body.dark-theme .quiz-section {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-  }
+/* 1. Skip to Main Content Link (For Screen Readers & Keyboard Users) */
+.skip-link {
+  position: absolute;
+  top: -100px; /* Hides it off-screen by default */
+  left: 0;
+  background: var(--primary-dark);
+  color: whitesmoke;
+  padding: 1rem 2rem;
+  z-index: 10000;
+  transition: top var(--transition);
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom-right-radius: 8px;
+  box-shadow: var(--shadow-lg);
+}
 
-  body.dark-theme .quiz-form legend {
-    color: var(--primary-dark);
-  }
+/* Snaps the button into view ONLY when the user presses 'Tab' on page load */
+.skip-link:focus {
+  top: 0px;
+  outline: 3px solid;
+  outline-offset: 4px;
+}
 
-  body.dark-theme .quiz-form label {
-    background-color: #2d2d2d;
-    border: 1px solid #444444;
-  }
+/* 2. Custom Focus Rings for Keyboard Navigation */
+/* :focus-visible ensures the ring only shows for keyboard users, not mouse clicks */
+*:focus-visible {
+  outline: 3px dashed var(--primary-light);
+  outline-offset: 4px;
+  border-radius: 4px;
+  transition: outline-offset 0.1s ease;
+}
 
-  body.dark-theme .quiz-form label:hover {
-    background-color: #3d3d3d;
-  }
+/* Removes the ugly default browser outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
 
-  body.dark-theme .quiz-btn {
-    background-color: var(--primary-dark);
-  }
+/* --- MINI SEARCH BAR --- */
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 1.5rem;
+}
 
-  body.dark-theme .quiz-btn:hover {
-    background-color: var(--primary-light);
-  }
+.search-form input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--bg-2);
+  color: var(--text-heading);
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+}
 
-  body.dark-theme .result-pass {
-    background-color: #1b4332;
-    color: #95d5b2;
-    border-color: #2d6a4f;
-  }
+.search-form button {
+  background: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: var(--transition);
+}
 
-  body.dark-theme .result-fail {
-    background-color: #4a154b;
-    color: #ffb3c1;
-    border-color: #7a2048;
-  }
+.search-form button:hover {
+  background: var(--primary-light);
+  transform: scale(1.05);
+}
 
-  /* progress bar */
+/* Hides the label visually but keeps it for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
-  /* Pushes the website content slightly right so it doesn't clip under the bar */
-  body {
-    padding-left: 10px;
-  }
+/* --- 1. DESKTOP VIEW (Full-Sized & Visible) --- */
+.search-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Adds breathing room between the search bar and your nav links */
+  margin-right: 2rem;
+}
 
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 1rem; /* Sleek vertical line width */
-    height: 0%; /* Starts at zero, JS will grow this down the screen */
-    /* Gradient flowing smoothly from top to bottom */
-    background: linear-gradient(
-      to bottom,
-      var(--primary-light),
-      var(--primary-dark)
-    );
-    z-index: 9999; /* Keeps it floating above all layers */
-    will-change: height;
-    /* Warns the browser this will animate, offloading it to the GPU */
-  }
+/* --- DESKTOP NAV LINKS --- */
+.nav-links a,
+.nav-links .work-in-progress {
+  font-size: 1.8rem; /* Forces desktop to stay a normal, professional size! */
+  text-decoration: none;
+  /* ... your other desktop rules ... */
+}
 
-  /* --- PRINT STYLESHEET --- */
+/* Hide the magnifying glass toggle on large screens */
+.search-toggle {
+  display: none;
+}
 
-  /* Formats the page for physical printing or PDF saving to save ink */
-  @media print {
-    /* Hides UI elements that are useless on a piece of paper */
-    nav,
-    footer,
-    .theme-toggle,
-    .hamburger,
-    .back-to-top,
-    .particles,
-    .quiz-section {
-      display: none !important;
-    }
+/* Force the search form to be visible inline */
+.search-content {
+  display: block;
+}
 
-    /* Strips out backgrounds and shadows, forcing black text on white paper */
-    body,
-    .card,
-    .map-box,
-    .layer-box,
-    .bento-grid {
-      background: white !important;
-      color: black !important;
-      box-shadow: none !important;
-      border: none !important;
-      display: block; /* prevents grid breaks on paper */
-      margin-bottom: 2rem;
-    }
-
-    /* Pro-tip: This reveals the actual URL of your links next to the text! */
-    .footer-links-column a::after {
-      content: " (" attr(href) ")";
-      font-size: 0.8em;
-      color: #333;
-    }
-  }
-
-  /* 1. Skip to Main Content Link (For Screen Readers & Keyboard Users) */
-  .skip-link {
-    position: absolute;
-    top: -100px; /* Hides it off-screen by default */
-    left: 0;
-    background: var(--primary-dark);
-    color: whitesmoke;
-    padding: 1rem 2rem;
-    z-index: 10000;
-    transition: top var(--transition);
-    text-decoration: none;
-    font-weight: bold;
-    border-bottom-right-radius: 8px;
-    box-shadow: var(--shadow-lg);
-  }
-
-  /* Snaps the button into view ONLY when the user presses 'Tab' on page load */
-  .skip-link:focus {
-    top: 0px;
-    outline: 3px solid;
-    outline-offset: 4px;
-  }
-
-  /* 2. Custom Focus Rings for Keyboard Navigation */
-  /* :focus-visible ensures the ring only shows for keyboard users, not mouse clicks */
-  *:focus-visible {
-    outline: 3px dashed var(--primary-light);
-    outline-offset: 4px;
-    border-radius: 4px;
-    transition: outline-offset 0.1s ease;
-  }
-
-  /* Removes the ugly default browser outline for mouse users */
-  *:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  /* --- MINI SEARCH BAR --- */
-  .search-form {
-    display: flex;
-    gap: 0.5rem;
-    margin: 0 1.5rem;
-  }
-
-  .search-form input {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    background: var(--bg-2);
-    color: var(--text-heading);
-    font-family: "Inter", sans-serif;
-    font-size: 1.6rem;
-  }
-
-  .search-form button {
-    background: var(--primary-dark);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-
-  .search-form button:hover {
-    background: var(--primary-light);
-    transform: scale(1.05);
-  }
-
-  /* Hides the label visually but keeps it for screen readers */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
-
-  /* --- 1. DESKTOP VIEW (Full-Sized & Visible) --- */
-  .search-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-    /* Adds breathing room between the search bar and your nav links */
-    margin-right: 2rem;
-  }
-
-  /* Hide the magnifying glass toggle on large screens */
+/* --- 2. MOBILE VIEW (Collapsed & Toggleable) --- */
+@media (max-width: 1180px) {
+  /* Match the magnifying glass exactly to the theme-toggle button */
   .search-toggle {
-    display: none;
+    display: flex; /* Flex perfectly centers the emoji inside the circle */
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-heading);
+    box-shadow: var(--shadow-sm);
+    transition:
+      background-color 0.4s ease,
+      border-color 0.4s ease,
+      transform 0.6s ease-in-out;
   }
 
-  /* Force the search form to be visible inline */
+  /* Match the hover and focus state of the theme button (the lift and outline) */
+  .search-toggle:hover,
+  .search-toggle:focus {
+    border-color: var(--primary-light);
+    transform: translateY(-3px);
+    outline: 2px solid var(--primary-dark);
+    outline-offset: 2px;
+  }
+
+  /* Hide the search form by default and turn it into a popup box */
   .search-content {
-    display: block;
+    display: none;
+    position: absolute;
+    top: 130%;
+    left: auto;
+    right: 0;
+    background: var(--bg-1);
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1001;
   }
 
-  /* --- 2. MOBILE VIEW (Collapsed & Toggleable) --- */
-  @media (max-width: 1130px) {
-    /* Match the magnifying glass exactly to the theme-toggle button */
-    .search-toggle {
-      display: flex; /* Flex perfectly centers the emoji inside the circle */
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 2rem;
-      cursor: pointer;
-      color: var(--text-heading);
-      box-shadow: var(--shadow-sm);
-      transition:
-        background-color 0.4s ease,
-        border-color 0.4s ease,
-        transform 0.6s ease-in-out;
-    }
-
-    /* Match the hover and focus state of the theme button (the lift and outline) */
-    .search-toggle:hover,
-    .search-toggle:focus {
-      border-color: var(--primary-light);
-      transform: translateY(-3px);
-      outline: 2px solid var(--primary-dark);
-      outline-offset: 2px;
-    }
-
-    /* Hide the search form by default and turn it into a popup box */
-    .search-content {
-      display: none;
-      position: absolute;
-      top: 130%;
-      left: auto;
-      right: 0;
-      background: var(--bg-1);
-      padding: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      box-shadow: var(--shadow-lg);
-      z-index: 1001;
-    }
-
-    /* The Active State (Triggered by your JavaScript) */
-    .search-dropdown.active .search-content {
-      display: block;
-      animation: fadeSlideUp 0.3s ease forwards;
-    }
+  /* The Active State (Triggered by your JavaScript) */
+  .search-dropdown.active .search-content {
+    display: block;
+    animation: fadeSlideUp 0.3s ease forwards;
   }
 }
