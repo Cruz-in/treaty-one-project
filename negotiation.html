@@ -88,6 +88,16 @@
       if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-theme");
       }
+
+      // Apply saved theme immediately to avoid flash of wrong theme
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.body.classList.add("dark-theme");
+      }
     </script>
     <header>
       <nav aria-label="Main Navigation">
@@ -282,6 +292,7 @@
           </div>
         </section>
 
+        w
         <section class="layer-box">
           <div class="container">
             <h2 id="h2-margin">Mapping the Territory</h2>
@@ -327,13 +338,14 @@
                 </p>
               </div>
             </div>
+            w
           </div>
         </section>
       </div>
 
       <section class="quiz-section">
         <h2>Knowledge Check</h2>
-        <form id="history-quiz" class="quiz-form reveal-on-scroll">
+        <form id="history-quiz" class="quiz-form reveal-on-scroll skeleton">
           <fieldset>
             <legend>1. Where were the Treaty 1 negotiations held?</legend>
             <label

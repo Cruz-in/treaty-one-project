@@ -255,6 +255,16 @@
       if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-theme");
       }
+
+      // Apply saved theme immediately to avoid flash of wrong theme
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.body.classList.add("dark-theme");
+      }
     </script>
     <!-- Page header containing the main navigation and hero banner -->
     <header>

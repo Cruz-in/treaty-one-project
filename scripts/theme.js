@@ -209,7 +209,7 @@ if (searchForm) {
   });
 }
 
-// 8. INTERSECTION OBSERVER (SCROLL REVEAL)
+// 8. INTERSECTION OBSERVER (SCROLL REVEAL & FAKE SKELETON LOAD)
 
 const observerOptions = {
   root: null,
@@ -219,7 +219,24 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
+      // 1. Trigger the standard CSS slide-up animation
       entry.target.classList.add("is-visible");
+
+      // 2. FAKE DATA FETCH: If the card has a skeleton, remove it after 1.5 seconds!
+      if (entry.target.classList.contains("skeleton")) {
+        setTimeout(() => {
+          // Strips the shimmering background away
+          entry.target.classList.remove("skeleton");
+
+          // Smoothly fades the text and images back in
+          const children = entry.target.querySelectorAll("*");
+          children.forEach((child) => {
+            child.style.transition = "opacity 0.4s ease";
+            child.style.opacity = "1";
+          });
+        }, 1500); // 1500 milliseconds = 1.5 seconds of fake loading time
+      }
+
       observer.unobserve(entry.target);
     }
   });

@@ -1130,7 +1130,7 @@ body.dark-theme .result-fail {
 
 /* Pushes the website content slightly right so it doesn't clip under the bar */
 body {
-  padding-left: 10px;
+  padding-left: 0;
 }
 
 #progress-bar {
@@ -1148,6 +1148,16 @@ body {
   z-index: 9999; /* Keeps it floating above all layers */
   will-change: height;
   /* Warns the browser this will animate, offloading it to the GPU */
+}
+
+#progress-bar {
+  transition:
+    height 0.1s linear,
+    opacity 0.3s ease;
+  opacity: 100%;
+}
+body.scrolled #progress-bar {
+  opacity: 1;
 }
 
 /* --- PRINT STYLESHEET --- */
@@ -1239,6 +1249,12 @@ body {
   color: var(--text-heading);
   font-family: "Inter", sans-serif;
   font-size: 1.6rem;
+}
+
+/* soft ring glow around the border when the user clicked on the input */
+.search-form input:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px var(--primary-light);
 }
 
 .search-form button {
@@ -1347,4 +1363,34 @@ body {
     display: block;
     animation: fadeSlideUp 0.3s ease forwards;
   }
+}
+
+/* --- SKELETON LOADER UTILITY --- */
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  /* Using !important to guarantee the shimmer overrides the card's standard background */
+  background: linear-gradient(
+    90deg,
+    var(--bg-1) 25%,
+    var(--bg-2) 50%,
+    var(--bg-1) 75%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: shimmer 0.1s infinite linear !important;
+  pointer-events: none; /* Prevents users from clicking the card while it's "loading" */
+}
+
+/* THE MAGIC TRICK: 
+  This targets every single element (*) inside the skeleton and turns it invisible! 
+*/
+.skeleton * {
+  opacity: 0 !important;
 }
