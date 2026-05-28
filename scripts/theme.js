@@ -168,48 +168,106 @@ if (progressBar) {
   });
 }
 
-// 7. SEARCH BAR LOGIC
+// search bar logic
+// 7. PREMIUM SEARCH DRAWER LOGIC
 
-const searchDropdown = document.querySelector(".search-dropdown");
-const searchToggleBtn = document.querySelector(".search-toggle");
+const openSearchBtn = document.getElementById("openSearchBtn");
+const closeSearchBtn = document.getElementById("closeSearchBtn");
+const searchDrawer = document.getElementById("searchDrawer");
+const searchOverlay = document.getElementById("searchOverlay");
 
-if (searchDropdown && searchToggleBtn) {
-  searchToggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    searchDropdown.classList.toggle("active");
-    const isExpanded = searchDropdown.classList.contains("active");
-    searchToggleBtn.setAttribute("aria-expanded", isExpanded);
-  });
+const drawerSearchInput = document.getElementById("drawer-search-input");
+const drawerResultsList = document.getElementById("drawer-results-list");
+const drawerHeading = document.getElementById("drawer-heading");
 
-  document.addEventListener("click", (e) => {
-    if (!searchDropdown.contains(e.target)) {
-      searchDropdown.classList.remove("active");
-      searchToggleBtn.setAttribute("aria-expanded", "false");
+if (openSearchBtn && searchDrawer) {
+  // --- 1. OPEN / CLOSE DRAWER LOGIC ---
+
+  function openDrawer() {
+    searchDrawer.classList.add("active");
+    searchOverlay.classList.add("active");
+
+    //Locks the main website from scrolling!
+    document.body.style.overflow = "hidden";
+
+    // Small delay to let the drawer slide in before focusing the keyboard
+    setTimeout(() => drawerSearchInput.focus(), 100);
+    renderList(siteDirectory, "Quick Links");
+  }
+
+  function closeDrawer() {
+    searchDrawer.classList.remove("active");
+    searchOverlay.classList.remove("active");
+
+    //Unlocks the background scroll when closed
+    document.body.style.overflow = "";
+
+    drawerSearchInput.value = "";
+  }
+
+  openSearchBtn.addEventListener("click", openDrawer);
+  closeSearchBtn.addEventListener("click", closeDrawer);
+  searchOverlay.addEventListener("click", closeDrawer); // Close if clicking the dark overlay
+
+  // Allow 'Escape' key to close the drawer
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && searchDrawer.classList.contains("active")) {
+      closeDrawer();
     }
   });
-}
 
-const searchForm = document.getElementById("mini-search");
+  // --- 2. THE RENDER LOGIC (Builds the clickable links) ---
 
-if (searchForm) {
-  searchForm.addEventListener("submit", function (e) {
-    /*
-      EXPLANATION: Prevents the default HTML form behavior which automatically 
-      refreshes the entire webpage when a user clicks the submit button.
-    */
-    e.preventDefault();
-    const query = document.getElementById("search-input").value;
-    const found = window.find(query);
+  function renderList(items, headingText) {
+    drawerResultsList.innerHTML = ""; // Clear old links
+    drawerHeading.textContent = headingText;
 
-    if (!found) {
-      alert(
-        `Could not find "${query}". \n\nPro Tip: Mobile browsers block custom search bars! Please use the "Find on Page" tool located in your phone's browser menu.`,
-      );
+    if (items.length === 0) {
+      drawerResultsList.innerHTML = `<li style="pointer-events: none; color: var(--text-body);">No results found...</li>`;
+      return;
     }
+
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item.title;
+      li.addEventListener("click", () => {
+        closeDrawer(); // Close the drawer
+        window.location.href = item.url; // Teleport the user
+      });
+      drawerResultsList.appendChild(li);
+    });
+  }
+
+  // --- 3. THE LIVE SEARCH AUTOFILL ---
+
+  drawerSearchInput.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase().trim();
+
+    // If input is empty, reset back to Quick Links
+    if (query === "") {
+      renderList(siteDirectory, "Quick Links");
+      return;
+    }
+
+    // Filter the database array for matches
+    const matches = siteDirectory.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query) ||
+        item.keywords.some((kw) => kw.includes(query)),
+    );
+
+    renderList(matches, "Search Results");
   });
+
+  // Stop the form from refreshing the page if they press 'Enter'
+  document
+    .getElementById("drawer-search-form")
+    .addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
 }
 
-// 8. INTERSECTION OBSERVER (SCROLL REVEAL & FAKE SKELETON LOAD)
+/// 8. INTERSECTION OBSERVER (SCROLL REVEAL)
 
 const observerOptions = {
   root: null,
@@ -219,24 +277,7 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // 1. Trigger the standard CSS slide-up animation
       entry.target.classList.add("is-visible");
-
-      // 2. FAKE DATA FETCH: If the card has a skeleton, remove it after 1.5 seconds!
-      if (entry.target.classList.contains("skeleton")) {
-        setTimeout(() => {
-          // Strips the shimmering background away
-          entry.target.classList.remove("skeleton");
-
-          // Smoothly fades the text and images back in
-          const children = entry.target.querySelectorAll("*");
-          children.forEach((child) => {
-            child.style.transition = "opacity 0.4s ease";
-            child.style.opacity = "1";
-          });
-        }, 1500); // 1500 milliseconds = 1.5 seconds of fake loading time
-      }
-
       observer.unobserve(entry.target);
     }
   });

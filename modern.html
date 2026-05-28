@@ -97,19 +97,12 @@
     </script>
     <header>
       <nav aria-label="Main Navigation">
-        <div class="nav-container reveal-on-scroll">
+        <div class="nav-container">
           <a href="index.html" class="logo" title="Return Home"
             >Treaty 1 Education</a
           >
 
           <ul class="nav-links">
-            <!-- 
-              <li>
-                <a href="assignment4.html">Final Project</a>
-              </li>
-              for the foruth assignment in the future
-            -->
-
             <li>
               <p
                 class="work-in-progress"
@@ -127,6 +120,7 @@
             <li>
               <a
                 href="negotiation.html"
+                aria-current="page"
                 title="Learn about the 1871 gathering at Lower Fort Garry"
                 >History</a
               >
@@ -134,13 +128,11 @@
             <li>
               <a
                 href="modern.html"
-                aria-current="page"
                 title="Return to the Treaty 1 homepage and overview"
                 >Modern</a
               >
             </li>
           </ul>
-          <!-- i used a p tag for Coming soon! because it just displays info and its not an fuctional link-->
 
           <button
             class="hamburger"
@@ -150,33 +142,14 @@
             <div class="burger-line middle"></div>
             <div class="burger-line bottom"></div>
           </button>
-          <!--this is the mobile nav button linked toJS and CSS-->
 
-          <div class="search-dropdown">
-            <button
-              class="search-toggle"
-              aria-label="Toggle Search"
-              aria-expanded="false"
-              title="key search words across the page">
-              &#128269;
-            </button>
-
-            <div class="search-content">
-              <form id="mini-search" class="search-form">
-                <label for="search-input" class="sr-only"
-                  >Search keywords on this page</label
-                >
-                <input
-                  type="text"
-                  id="search-input"
-                  placeholder="Find on page..."
-                  required
-                  enterkeyhint="search" />
-
-                <button type="submit" aria-label="Submit Search">Go</button>
-              </form>
-            </div>
-          </div>
+          <button
+            class="search-toggle"
+            id="openSearchBtn"
+            aria-label="Open Search"
+            title="Search the site">
+            Search
+          </button>
 
           <button
             id="theme-toggle"
@@ -184,12 +157,35 @@
             aria-label="Toggle Dark Mode"
             title="Dark/Light mode toggle">
             <span class="theme-icon">&#127769;</span>
-            <!-- querySelector JS serchs for theme toggle id  -->
-            <!-- class theme-toggle is for CSS -->
-            <!--theme-icon class is for JS and CSS  -->
           </button>
         </div>
       </nav>
+
+      <div class="search-overlay" id="searchOverlay"></div>
+
+      <div class="search-drawer" id="searchDrawer">
+        <div class="search-drawer-header">
+          <form id="drawer-search-form" class="drawer-form">
+            <label for="drawer-search-input" class="sr-only">Search</label>
+            <input
+              type="text"
+              id="drawer-search-input"
+              placeholder="Search Treaty 1..."
+              autocomplete="off" />
+          </form>
+          <button
+            class="close-search-btn"
+            id="closeSearchBtn"
+            aria-label="Close Search">
+            &#10005;
+          </button>
+        </div>
+
+        <div class="search-drawer-content">
+          <h4 id="drawer-heading" class="drawer-heading">Quick Links</h4>
+          <ul id="drawer-results-list" class="drawer-link-list"></ul>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -497,5 +493,6 @@
     <!-- smart back to top button -->
 
     <script src="scripts/theme.js"></script>
+    <script src="scripts/searchData.js"></script>
   </body>
 </html>
