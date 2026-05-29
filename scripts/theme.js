@@ -1,3 +1,11 @@
+// prevents flashing of the wrong theme
+const savedTheme = localStorage.getItem("theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+  document.body.classList.add("dark-theme");
+}
+
 // 1. DARK MODE TOGGLE & SYSTEM DEFAULT
 
 const themeToggle = document.getElementById("theme-toggle");
@@ -54,6 +62,14 @@ if (hamburger && navLinks) {
       hamburger.setAttribute("aria-expanded", "false");
     }
   });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("nav-active");
+      hamburger.classList.remove("is-active");
+      hamburger.setAttribute("aria-expanded", "false");
+    });
+  });
 }
 
 // 3. SCALABLE QUIZ LOGIC
@@ -105,7 +121,7 @@ function setupQuiz(formId, resultId) {
       resultContainer.className = "quiz-result result-pass";
     } else {
       resultContainer.textContent =
-        "Not quite. Review the content above and try again.";
+        "50% correct. Review the content above and try again.";
       resultContainer.className = "quiz-result result-fail";
     }
   });
@@ -219,7 +235,7 @@ if (openSearchBtn && searchDrawer) {
   // --- 2. THE RENDER LOGIC (Builds the clickable links) ---
 
   function renderList(items, headingText) {
-    drawerResultsList.innerHTML = ""; // Clear old links
+    drawerResultsList.innerHTML = "";
     drawerHeading.textContent = headingText;
 
     if (items.length === 0) {
@@ -227,13 +243,23 @@ if (openSearchBtn && searchDrawer) {
       return;
     }
 
+    const query = drawerSearchInput.value.trim();
+
     items.forEach((item) => {
       const li = document.createElement("li");
-      li.textContent = item.title;
+
+      if (query) {
+        const regex = new RegExp(`(${query})`, "gi");
+        li.innerHTML = item.title.replace(regex, `<mark>$1</mark>`);
+      } else {
+        li.textContent = item.title;
+      }
+
       li.addEventListener("click", () => {
-        closeDrawer(); // Close the drawer
-        window.location.href = item.url; // Teleport the user
+        closeDrawer();
+        window.location.href = item.url;
       });
+
       drawerResultsList.appendChild(li);
     });
   }
@@ -267,11 +293,12 @@ if (openSearchBtn && searchDrawer) {
     });
 }
 
-/// 8. INTERSECTION OBSERVER (SCROLL REVEAL)
+// 8. INTERSECTION OBSERVER (SCROLL REVEAL)
 
 const observerOptions = {
   root: null,
-  rootMargin: "0px 0px -100px 0px",
+  rootMargin: "0px 0px -50px 0px", // Triggers slightly earlier for mobile users
+  threshold: 0.1, // Forces the browser to trigger when 10% of the card is visible
 };
 
 const observer = new IntersectionObserver((entries, observer) => {

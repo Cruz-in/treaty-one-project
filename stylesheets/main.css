@@ -25,6 +25,16 @@
   --highlight-text: #f1f5f9;
   --scrollbar-thumb: #475569;
   --hamburger-hover: #ff9245;
+  /* QUIZ COLORS */
+  --quiz-label-bg: #ffffff;
+  --quiz-label-border: #cccccc;
+  --quiz-label-hover: #e0e0e0;
+  --quiz-result-pass-bg: #d8f3dc;
+  --quiz-result-pass-text: #081c15;
+  --quiz-result-pass-border: #74c69d;
+  --quiz-result-fail-bg: #ffcad4;
+  --quiz-result-fail-text: #590d22;
+  --quiz-result-fail-border: #ff8fa3;
   /* PRIMARY & ACCENT COLOURS (Updated for 7:1 Contrast Ratio) */
   --primary-dark: #823b08; /* Deep rust brown. Draws attention to interactive elements. Passes 7:1 contrast on white. */
   --primary-light: #ce681a; /* Lighter orange. Used for subtle accents and highlights. */
@@ -52,6 +62,16 @@ body.dark-theme {
   --highlight-selector: #fda35ad0;
   --highlight-text: #1f1f1f;
   --scrollbar-thumb: #475569;
+  /* QUIZ COLORS */
+  --quiz-label-bg: #383838;
+  --quiz-label-border: #141414;
+  --quiz-label-hover: #141414;
+  --quiz-result-pass-bg: #1a3a2a;
+  --quiz-result-pass-text: #a7f3c1;
+  --quiz-result-pass-border: #2d6a4f;
+  --quiz-result-fail-bg: #3a1a1f;
+  --quiz-result-fail-text: #ffb3c1;
+  --quiz-result-fail-border: #c9184a;
 }
 
 /* 2. The Nav Bar Color Override*/
@@ -84,33 +104,6 @@ body.dark-theme nav {
   background-color: var(--primary-dark);
   -webkit-transition: var(--transition);
   transition: var(--transition);
-}
-
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(60px);
-
-  /* Only one !important at the very end of the entire declaration */
-  transition:
-    opacity 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23),
-    transform 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23) !important;
-
-  will-change: opacity, transform;
-}
-
-.reveal-on-scroll.is-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-.reveal-on-scroll:nth-child(2) {
-  transition-delay: 0.2s !important;
-}
-.reveal-on-scroll:nth-child(3) {
-  transition-delay: 0.4s !important;
-}
-.reveal-on-scroll:nth-child(4) {
-  transition-delay: 0.6s !important;
 }
 
 /* 
@@ -480,6 +473,18 @@ h3 {
   font-size: 2.2rem;
   color: var(--primary-dark);
   margin-bottom: 0.5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* --- UNIVERSAL COMMUNITY PILLS --- */
@@ -1027,8 +1032,8 @@ body.dark-theme .theme-icon {
 
 /* quiz section styling */
 .quiz-section {
-  background-color: #f4f4f4;
-  color: #121212;
+  background-color: var(--bg-1);
+  color: var(--text-heading);
   padding: 2.5rem;
   margin: 3rem 0;
   border-radius: 8px;
@@ -1050,8 +1055,9 @@ body.dark-theme .theme-icon {
 
 .quiz-form label {
   display: block;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
+  background-color: var(--quiz-label-bg);
+  border: 1px solid var(--quiz-label-border);
+  color: var(--text-body);
   padding: 1rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;
@@ -1062,13 +1068,15 @@ body.dark-theme .theme-icon {
 }
 
 .quiz-form label:hover {
-  background-color: #e0e0e0;
+  background-color: var(--quiz-label-hover);
+  color: var(--text-heading);
   transform: translateX(8px);
 }
 
 .quiz-form input[type="radio"] {
   margin-right: 12px;
   transform: scale(1.2);
+  accent-color: var(--primary-dark);
 }
 
 .quiz-btn {
@@ -1096,72 +1104,25 @@ body.dark-theme .theme-icon {
   border-radius: 4px;
   display: none;
   /* made it display: none because when JS sees
-  the user selecting both opstions, it changes
-  the property to defult */
+  the user selecting both options, it changes
+  the property to default */
 }
 
-/* Light Mode Result Colors */
 .result-pass {
   display: block;
-  background-color: #d8f3dc;
-  color: #081c15;
-  border: 1px solid #74c69d;
+  background-color: var(--quiz-result-pass-bg);
+  color: var(--quiz-result-pass-text);
+  border: 1px solid var(--quiz-result-pass-border);
 }
 
 .result-fail {
   display: block;
-  background-color: #ffcad4;
-  color: #590d22;
-  border: 1px solid #ff8fa3;
-}
-
-/* dark mode */
-body.dark-theme .quiz-section {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-theme .quiz-form legend {
-  color: var(--primary-dark);
-}
-
-body.dark-theme .quiz-form label {
-  background-color: #2d2d2d;
-  border: 1px solid #444444;
-}
-
-body.dark-theme .quiz-form label:hover {
-  background-color: #3d3d3d;
-}
-
-body.dark-theme .quiz-btn {
-  background-color: var(--primary-dark);
-}
-
-body.dark-theme .quiz-btn:hover {
-  background-color: var(--primary-light);
-}
-
-body.dark-theme .result-pass {
-  background-color: #1b4332;
-  color: #95d5b2;
-  border-color: #2d6a4f;
-}
-
-body.dark-theme .result-fail {
-  background-color: #4a154b;
-  color: #ffb3c1;
-  border-color: #7a2048;
+  background-color: var(--quiz-result-fail-bg);
+  color: var(--quiz-result-fail-text);
+  border: 1px solid var(--quiz-result-fail-border);
 }
 
 /* progress bar */
-
-/* Pushes the website content slightly right so it doesn't clip under the bar */
-body {
-  padding-left: 0;
-}
-
 #progress-bar {
   position: fixed;
   top: 0;
@@ -1427,4 +1388,47 @@ body.dark-theme .search-drawer {
   background: var(--primary-dark);
   color: whitesmoke;
   transform: translateX(10px);
+}
+
+.drawer-link-list mark {
+  background: transparent;
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  -webkit-text-decoration-color: var(--primary-light);
+  text-decoration-color: var(--primary-light);
+  text-underline-offset: 2px;
+}
+
+.drawer-link-list li:hover mark {
+  color: whitesmoke;
+  -webkit-text-decoration-color: rgba(255, 255, 255, 0.6);
+  text-decoration-color: rgba(255, 255, 255, 0.6);
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+
+  /* Only one !important at the very end of the entire declaration */
+  transition:
+    opacity 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23),
+    transform 1.3s cubic-bezier(0.19, 1.84, 0.45, 1.23) !important;
+
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.reveal-on-scroll:nth-child(2) {
+  transition-delay: 0.2s !important;
+}
+.reveal-on-scroll:nth-child(3) {
+  transition-delay: 0.4s !important;
+}
+.reveal-on-scroll:nth-child(4) {
+  transition-delay: 0.6s !important;
 }

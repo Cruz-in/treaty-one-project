@@ -242,13 +242,6 @@
     </style>
   </head>
   <body>
-    <!-- subtle bar that shows the user how far they progressed through the page -->
-    <div id="progress-bar"></div>
-    <!--
-      i added a skip to content link for users using the tab fuction. because it will be
-      annoying for the user to tab through all the links in the nav to get to the content
-    -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
     <script>
       // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
@@ -256,16 +249,21 @@
         document.body.classList.add("dark-theme");
       }
 
-      // Apply saved theme immediately to avoid flash of wrong theme
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-
-      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-        document.body.classList.add("dark-theme");
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark-theme");
       }
     </script>
+    <!-- subtle bar that shows the user how far they progressed through the page -->
+    <div id="progress-bar"></div>
+    <!--
+      i added a skip to content link for users using the tab fuction. because it will be
+      annoying for the user to tab through all the links in the nav to get to the content
+    -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Page header containing the main navigation and hero banner -->
     <header>
       <!-- Primary navigation for the site; `aria-label` improves accessibility -->

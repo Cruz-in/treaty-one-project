@@ -75,31 +75,26 @@
     </style>
   </head>
   <body>
-    <!-- subtle bar that shows the user how far they progressed through the page -->
-    <div id="progress-bar"></div>
-    <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
-    <!--
-      i added a skip to content link for users using the tab fuction. because it will be
-      annoying for the user to tab through all the links in the nav to get to the content
-    -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <script>
-      // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
-      if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-theme");
-      }
-
-      // Apply saved theme immediately to avoid flash of wrong theme
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
+      // Apply saved theme or system default immediately to avoid white flash (FOUC)
+      const localTheme = localStorage.getItem("theme");
+      const systemDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
       ).matches;
 
-      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      if (localTheme === "dark" || (!localTheme && systemDark)) {
         document.body.classList.add("dark-theme");
       }
     </script>
     <header>
+      <!-- subtle bar that shows the user how far they progressed through the page -->
+      <div id="progress-bar"></div>
+      <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
+      <!--
+      i added a skip to content link for users using the tab fuction. because it will be
+      annoying for the user to tab through all the links in the nav to get to the content
+    -->
+      <a href="#main-content" class="skip-link">Skip to main content</a>
       <nav aria-label="Main Navigation">
         <div class="nav-container">
           <a href="index.html" id="logo" title="Return Home"
@@ -461,7 +456,7 @@
       >&#8593;</a
     >
 
-    <script src="scripts/theme.js"></script>
     <script src="scripts/searchData.js"></script>
+    <script src="scripts/theme.js"></script>
   </body>
 </html>

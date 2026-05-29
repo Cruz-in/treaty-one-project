@@ -71,6 +71,18 @@
     </style>
   </head>
   <body>
+    <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
+    <script>
+      // Apply saved theme or system default immediately to avoid white flash (FOUC)
+      const localTheme = localStorage.getItem("theme");
+      const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+
+      if (localTheme === "dark" || (!localTheme && systemDark)) {
+        document.body.classList.add("dark-theme");
+      }
+    </script>
     <!-- subtle bar that shows the user how far they progressed through the page -->
     <div id="progress-bar"></div>
     <!--
@@ -78,28 +90,14 @@
       annoying for the user to tab through all the links in the nav to get to the content
     -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <!-- it pervents FOUC white flashing when opening a new page in dark mode-->
-    <script>
-      // Only apply dark mode if the user explicitly clicked the moon icon on a previous visit
-      if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-theme");
-      }
-
-      // Apply saved theme immediately to avoid flash of wrong theme
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-
-      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-        document.body.classList.add("dark-theme");
-      }
-    </script>
     <header>
       <nav aria-label="Main Navigation">
         <div class="nav-container">
-          <a href="index.html" id="mini-logo" title="Return Home"
-            ><img src="images/Medicine_Wheel.png" alt="return home"
+          <a href="index.html" title="Return Home"
+            ><img
+              src="images/Medicine_Wheel.png"
+              alt="return home"
+              id="mini-logo"
           /></a>
 
           <a href="index.html" id="logo" title="Return Home"
@@ -510,7 +508,7 @@
     >
     <!-- smart back to top button -->
 
-    <script src="scripts/theme.js"></script>
     <script src="scripts/searchData.js"></script>
+    <script src="scripts/theme.js"></script>
   </body>
 </html>
