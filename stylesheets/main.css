@@ -71,7 +71,7 @@ body.dark-theme nav {
   background: var(--bg-0);
 }
 
-/* This styles the draggable handle (thumb) using your soft structural grey */
+/* This styles the draggable handle (thumb) using soft structural grey */
 ::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb);
   border-radius: 10px;
@@ -79,7 +79,7 @@ body.dark-theme nav {
   border: 4px solid var(--bg-0);
 }
 
-/* This makes the scrollbar pop to your brand orange when the user hovers over it to drag */
+/* This makes the scrollbar pop to my brand orange when the user hovers over it to drag */
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--primary-dark);
   -webkit-transition: var(--transition);
@@ -133,7 +133,7 @@ html {
   font-size: 62.5%;
   /* 1. This magical line makes the "Back to Top" button glide smoothly instead of snapping */
   scroll-behavior: smooth;
-  /* Creates a 100px invisible bumper so your sticky nav doesn't cover headings */
+  /* Creates a 100px invisible bumper so the sticky nav doesn't cover headings */
   scroll-padding-top: 100px;
 }
 
@@ -214,7 +214,7 @@ nav {
 }
 
 /* Logo styling uses the serif heading font for a historic feel */
-.logo {
+#logo {
   font-family: "Playfair Display", serif;
   font-size: 2.4rem; /* Adjusted for 62.5% html size */
   color: var(--primary-dark);
@@ -223,12 +223,12 @@ nav {
   letter-spacing: -0.5px; /* Pulls letters slightly closer together */
 }
 
-.mini-logo {
+#mini-logo {
   display: none;
 }
 
 @media (max-width: 357px) {
-  .mini-logo {
+  #mini-logo {
     display: flex;
     height: 7rem;
     flex-shrink: 0px;
@@ -237,22 +237,18 @@ nav {
     margin-top: 0.7rem;
   }
 
-  .logo {
+  #logo {
     display: none;
   }
 }
 
 @media (max-width: 306px) {
-  .mini-logo {
+  #mini-logo {
     display: none;
   }
 
-  .logo {
+  #logo {
     display: none;
-  }
-
-  .nav-links {
-    justify-items: center;
   }
 }
 
@@ -336,8 +332,6 @@ a[aria-current="page"] {
 
 .work-in-progress {
   color: grey;
-
-  /* Vendor prefixes added here to satisfy Assessment 3 compatibility rubric */
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
@@ -842,7 +836,7 @@ body.dark-theme .theme-icon {
 
 /* 1. Ensure the icon can physically rotate */
 .theme-icon {
-  display: inline-block; /* REQUIRED: You cannot rotate inline elements! */
+  display: inline-block; /* it cannot rotate inline elements*/
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none; /* Prevents the icon from stealing clicks from the button */
 }
@@ -854,7 +848,7 @@ body.dark-theme .theme-icon {
 
 /* --- CUSTOM MORPHING HAMBURGER (DESKTOP STATE) --- */
 .hamburger {
-  display: none; /* Keeps it hidden on desktop screens! */
+  display: none; /* Keeps it hidden on desktop screens */
   flex-direction: column;
   justify-content: space-around;
   width: 32px;
@@ -888,7 +882,7 @@ body.dark-theme .theme-icon {
   100% {
     /* 
       use the standalone 'translate' property instead of 'transform' 
-      so it doesn't fight with the "X" rotation! 
+      so it doesn't fight with the "X" rotation
     */
     translate: 0 0;
   }
@@ -939,7 +933,7 @@ body.dark-theme .theme-icon {
 @media (max-width: 940px) {
   /* 1. Show the hamburger button */
   .hamburger {
-    display: flex; /* Must be flex so the three lines align properly! */
+    display: flex; /* Must be flex so the three lines align properly */
   }
 
   /* 2. THE UPGRADED PREMIUM MENU DRAWER */
@@ -1224,7 +1218,7 @@ body.scrolled #progress-bar {
     margin-bottom: 2rem;
   }
 
-  /* Pro-tip: This reveals the actual URL of your links next to the text! */
+  /* This reveals the actual URL of my links next to the text */
   .footer-links-column a::after {
     content: " (" attr(href) ")";
     font-size: 0.8em;
@@ -1295,7 +1289,7 @@ body.scrolled #progress-bar {
   margin-right: 1.5rem;
 }
 
-/* Match the theme-toggle hover state exactly! (Lift + Outline) */
+/* Match the theme-toggle hover state exactly (Lift + Outline) */
 .search-toggle:hover,
 .search-toggle:focus {
   border-color: var(--primary-light);

@@ -1,5 +1,5 @@
 // searchData.js
-// A clean, separated database of your website's content
+// A clean, separated database of my website's content
 
 const siteDirectory = [
   {
@@ -13,7 +13,7 @@ const siteDirectory = [
       "education",
       "start",
     ],
-    url: "index.html#hero",
+    url: "index.html#main-content",
   },
   {
     title: "The Gathering at Lower Fort Garry",
@@ -26,7 +26,7 @@ const siteDirectory = [
       "stone fort",
       "gathering",
     ],
-    url: "negotiation.html#negotiation",
+    url: "negotiation.html#at-the-table",
   },
   {
     title: "Chief Mis-koo-kenew (Red Eagle)",
@@ -39,7 +39,7 @@ const siteDirectory = [
       "muskego-cree",
       "indigenous",
     ],
-    url: "negotiation.html#negotiation",
+    url: "negotiation.html#key-figures",
   },
   {
     title: "Terms & The 'Outside Promises'",
@@ -54,7 +54,7 @@ const siteDirectory = [
       "clothing",
       "verbal agreements",
     ],
-    url: "negotiation.html#negotiation",
+    url: "negotiation.html#outside-promises",
   },
   {
     title: "Treaty 1 Territory & Maps",
@@ -88,7 +88,7 @@ const siteDirectory = [
       "st. peter's",
       "fort alexander",
     ],
-    url: "index.html#background",
+    url: "index.html#first-nations",
   },
   {
     title: "Naawi-Oodena & Kapyong Barracks",
@@ -102,7 +102,7 @@ const siteDirectory = [
       "city",
       "winnipeg",
     ],
-    url: "modern.html#modern",
+    url: "modern.html#naawi-oodena",
   },
   {
     title: "Economic Sovereignty",
@@ -115,7 +115,7 @@ const siteDirectory = [
       "business",
       "money",
     ],
-    url: "modern.html#modern",
+    url: "modern.html#economic-sovereignty",
   },
   {
     title: "History Knowledge Quiz",

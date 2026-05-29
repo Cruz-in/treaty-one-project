@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTC
-  Date last modified: 2026/05/26
+  Date last modified: 2026/05/29
   Page: #3
 -->
 <!doctype html>
@@ -98,7 +98,11 @@
     <header>
       <nav aria-label="Main Navigation">
         <div class="nav-container">
-          <a href="index.html" class="logo" title="Return Home"
+          <a href="index.html" id="mini-logo" title="Return Home"
+            ><img src="images/Medicine_Wheel.png" alt="return home"
+          /></a>
+
+          <a href="index.html" id="logo" title="Return Home"
             >Treaty 1 Education</a
           >
 
@@ -120,7 +124,6 @@
             <li>
               <a
                 href="negotiation.html"
-                aria-current="page"
                 title="Learn about the 1871 gathering at Lower Fort Garry"
                 >History</a
               >
@@ -128,6 +131,7 @@
             <li>
               <a
                 href="modern.html"
+                aria-current="page"
                 title="Return to the Treaty 1 homepage and overview"
                 >Modern</a
               >
@@ -204,16 +208,30 @@
           <h2 class="h2-margin">Urban Reserves & Economic Development</h2>
           <div class="bento-grid">
             <section class="card wide reveal-on-scroll">
-              <h3>Naawi-Oodena (Kapyong Barracks)</h3>
+              <h3 id="naawi-oodena">Naawi-Oodena (Kapyong Barracks)</h3>
+              <p class="spaced-paragraph">
+                The <span class="highlight">Naawi-Oodena</span> development at
+                the former Kapyong Barracks is a historic milestone for the
+                seven Treaty 1 First Nations. It transforms over 160 acres of
+                prime Winnipeg real estate into the largest multi-use urban
+                reserve in Manitoba's history, representing a physical return to
+                traditional lands within the city.
+              </p>
+
+              <h3 class="h2-margin" id="economic-sovereignty">
+                Economic Sovereignty
+              </h3>
               <p>
-                A monumental example of modern Treaty implementation is the
-                <span class="highlight">Kapyong Urban Reserve</span> project.
-                The former military barracks have been reclaimed and are being
-                transformed into <span class="highlight">Naawi-Oodena</span>, a
-                massive multi-use urban reserve right inside Winnipeg's city
-                limits. This historic partnership among the seven Treaty 1 First
-                Nations serves as a powerful economic engine for their
-                communities.
+                At its core, this project is a powerful assertion of
+                <span class="highlight">Economic Sovereignty</span>. By
+                establishing an Urban Economic Development Zone, the Treaty 1
+                Nations are actively reclaiming their historical rights to
+                trade, commerce, and self-determination. This initiative
+                generates independent, own-source revenue that will directly
+                fund community infrastructure, education, and
+                healthcare—breaking historical cycles of marginalization and
+                securing long-term financial independence for future
+                generations.
               </p>
             </section>
 

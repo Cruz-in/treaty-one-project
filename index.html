@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTEC
-  Date last modified: 2026/05/15
+  Date last modified: 2026/05/29
   Page: #1
 -->
 <!doctype html>
@@ -64,7 +64,7 @@
       /* The fancy linear gradient used for the seamless background image fading */
       #hero {
         height: 100vh;
-        /* We make the background size slightly larger than the screen (110%) */
+        /* make the background size slightly larger than the screen (110%) */
         background:
           linear-gradient(to bottom, rgba(241, 245, 249, 0.3), var(--bg-1)),
           url(images/wallpaper.jpeg) center/110% no-repeat;
@@ -177,7 +177,7 @@
         transform: translateY(-3px);
         box-shadow: 0 8px 15px rgba(130, 59, 8, 0.3);
       }
-      /* We make the hero section "relative" so the particles stay trapped inside it */
+      /* make the hero section "relative" so the particles stay trapped inside it */
       #hero {
         position: relative;
         overflow: hidden;
@@ -236,7 +236,7 @@
         border-color: var(--border);
       }
 
-      .margin-bottom {
+      #margin-bottom {
         margin-bottom: 2rem;
       }
     </style>
@@ -274,12 +274,12 @@
           <!-- this image is defulted display none until the viewport width is 358px to prevent flexbox crushing -->
           <a href="index.html" title="Return Home"
             ><img
-              class="mini-logo"
+              id="mini-logo"
               src="images/Medicine_Wheel.png"
               alt="Return to return to home page"
           /></a>
 
-          <a href="index.html" class="logo" title="Return Home"
+          <a href="index.html" id="logo" title="Return Home"
             >Treaty 1 Education</a
           >
 
@@ -484,10 +484,10 @@
 
         <!-- Communities section: lists participating First Nations -->
         <section class="container">
-          <div class="card reveal-on-scroll" id="background">
+          <div class="card reveal-on-scroll" id="first-nations">
             <!-- inline for invidual styling -->
             <h2>Participating First Nations</h2>
-            <p class="margin-bottom">
+            <p id="margin-bottom">
               The treaty was signed by leaders representing seven distinct
               nations, primarily of
               <span class="highlight">Anishinaabe (Ojibway)</span> and

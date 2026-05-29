@@ -3,7 +3,7 @@
   Course: Web Development
   Teacher: Mr. Hardman
   School: PTEC
-  Date last modified: 2026/05/25
+  Date last modified: 2026/05/29
   Page: #2
 -->
 
@@ -61,7 +61,7 @@
         margin: 0 auto;
       }
 
-      #h2-margin {
+      .h2-margin {
         margin-top: clamp(
           1.25rem,
           4vw,
@@ -102,7 +102,7 @@
     <header>
       <nav aria-label="Main Navigation">
         <div class="nav-container">
-          <a href="index.html" class="logo" title="Return Home"
+          <a href="index.html" id="logo" title="Return Home"
             >Treaty 1 Education</a
           >
 
@@ -203,10 +203,10 @@
 
       <div id="main-content">
         <section class="container">
-          <h2 id="h2-margin">Clash of Perspectives</h2>
+          <h2 class="h2-margin">Clash of Perspectives</h2>
           <div class="bento-grid">
             <section class="card wide reveal-on-scroll">
-              <h3>Who Was at the Table?</h3>
+              <h3 id="at-the-table">Who Was at the Table?</h3>
               <p class="spaced-paragraph">
                 On <span class="highlight">July 25, 1871</span>, thousands of
                 Indigenous people gathered at Lower Fort Garry. The primary
@@ -237,7 +237,7 @@
             </section>
 
             <section class="card accent reveal-on-scroll">
-              <h3>Key Figures</h3>
+              <h3 id="key-figures">Key Figures</h3>
               <ul>
                 <li>
                   <span class="highlight"
@@ -261,7 +261,7 @@
 
         <section class="layer-box">
           <div class="container">
-            <h2>"Outside Promises"</h2>
+            <h2 id="outside-promises">"Outside Promises"</h2>
             <div class="map-grid">
               <div class="card reveal-on-scroll">
                 <h3>The Disconnect</h3>
@@ -292,7 +292,7 @@
 
         <section class="layer-box">
           <div class="container">
-            <h2 id="h2-margin">Mapping the Territory</h2>
+            <h2 class="h2-margin">Mapping the Territory</h2>
             <div class="map-grid">
               <div class="map-box reveal-on-scroll">
                 <h3>Treaty 1 Boundaries</h3>

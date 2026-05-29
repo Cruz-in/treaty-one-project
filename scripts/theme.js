@@ -68,9 +68,9 @@ function setupQuiz(formId, resultId) {
     e.preventDefault();
 
     //   I use the spread operator [...] to convert the raw NodeList of HTML inputs
-    //   into a standard JavaScript Array. Then, we use the .reduce() method to automatically
-    //   group the radio buttons together based on their 'name' attribute (q1, q2, etc.) so we
-    //   don't have to hardcode them!
+    //   into a standard JavaScript Array. Then, use the .reduce() method to automatically
+    //   group the radio buttons together based on their 'name' attribute (q1, q2, etc.) so i
+    //   don't have to hardcode them
     const questions = [...form.querySelectorAll('input[type="radio"]')].reduce(
       (groups, input) => {
         groups[input.name] = groups[input.name] || [];
@@ -187,7 +187,7 @@ if (openSearchBtn && searchDrawer) {
     searchDrawer.classList.add("active");
     searchOverlay.classList.add("active");
 
-    //Locks the main website from scrolling!
+    //Locks the main website from scrolling
     document.body.style.overflow = "hidden";
 
     // Small delay to let the drawer slide in before focusing the keyboard
