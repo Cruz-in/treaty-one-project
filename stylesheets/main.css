@@ -427,11 +427,9 @@ h3 {
 }
 
 /* Lifts the card up and changes border colour when mouse hovers */
-.card:hover,
-.map-box:hover {
-  /* !important gives the hover the power to override the scroll reveal lock  */
+.card.is-visible:hover,
+.map-box.is-visible:hover {
   transform: translateY(-10px) !important;
-  border-color: var(--primary-light);
   box-shadow: var(--shadow-lg);
 }
 
