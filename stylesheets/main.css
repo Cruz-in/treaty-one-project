@@ -427,9 +427,12 @@ h3 {
 }
 
 /* Lifts the card up and changes border colour when mouse hovers */
+/* .is-visible is the value after the loading animation */
 .card.is-visible:hover,
 .map-box.is-visible:hover {
-  transform: translateY(-10px) !important;
+  transform: translateY(
+    -10px
+  ) !important; /*the important to makes sure after the loading animation that the hover works*/
   box-shadow: var(--shadow-lg);
 }
 
